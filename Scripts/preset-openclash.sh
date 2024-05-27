@@ -8,8 +8,9 @@ mkdir -p files/etc/config
 # CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-CLASH_CONFIG_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build/main/Configs/openclash.config"
-MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build/main/Configs/mosdns.config"
+CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
+CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modifyx.py"
+MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
 # MOSDNS_CUSTOM_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build-Lean/main/clash/mosdns2.yaml"
 # MOSDNS_GEN_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build/main/Configs/mosdns"
 
@@ -37,11 +38,13 @@ fi
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
+wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modifyx.py
 wget -qO- $MOSDNS_CONFIG_URL > files/etc/config/mosdns
 # wget -qO- $MOSDNS_CUSTOM_URL > files/etc/mosdns/config_custom.yaml
 # wget -qO- $MOSDNS_GEN_URL > files/etc/init.d/mosdns
 
 chmod +x files/etc/openclash/core/clash*
+chmod +x files/etc/openclash/modifyx.py
 chmod +rw files/etc/config/openclash
 chmod +rw files/etc/config/mosdns
 # chmod +rw files/etc/mosdns/config_custom.yaml
