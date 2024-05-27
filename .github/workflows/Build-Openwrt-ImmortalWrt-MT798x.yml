@@ -6,7 +6,7 @@ on:
 env:
   REPO_URL: https://github.com/Ranx5/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
-  CONFIG_FILE: Configs/imm_798x.config
+  CONFIG_FILE: Configs/old_imm_798x.config
   DIY_P1_SH: Scripts/diy-798x-part1.sh
   DIY_P2_SH: Scripts/diy-798x-part2.sh
   CACHE_TOOLCHAIN: true
