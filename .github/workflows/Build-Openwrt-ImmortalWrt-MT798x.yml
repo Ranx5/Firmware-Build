@@ -85,7 +85,7 @@ jobs:
     - name: Generate Variables
       id: variable
       run: |
-        cp $CONFIG_FILE $OPENWRT_PATH/.config
+        cp ${{ github.event.inputs.configPath }} $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
