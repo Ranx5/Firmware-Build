@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/Ranx5/immortalwrt.git
+  REPO_URL: https://github.com/Ranx5/immortalwrt
   REPO_BRANCH: openwrt-23.05
   CONFIG_FILE: Configs/imm.config
   DIY_P1_SH: Scripts/diy-imm-part1.sh
