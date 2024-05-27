@@ -2,11 +2,17 @@ name: Build-Openwrt-ImmortalWrt-MT798x
 
 on:
   workflow_dispatch:
+    inputs:
+      configPath:
+        description: '选择配置文件'
+        required: true
+        type: string
+        default: 'Configs/old_imm_798x.config'
 
 env:
   REPO_URL: https://github.com/Ranx5/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
-  CONFIG_FILE: Configs/old_imm_798x.config
+  # CONFIG_FILE: Configs/old_imm_798x.config
   DIY_P1_SH: Scripts/diy-798x-part1.sh
   DIY_P2_SH: Scripts/diy-798x-part2.sh
   CACHE_TOOLCHAIN: true
@@ -107,7 +113,7 @@ jobs:
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        [ -e ${{ github.event.inputs.configPath }} ] && mv ${{ github.event.inputs.configPath }} $OPENWRT_PATH/.config
         chmod +x $DIY_P2_SH
         chmod +x $GITHUB_WORKSPACE/Scripts/preset-openclash.sh
         cd openwrt
