@@ -65,8 +65,8 @@ pgs.append({'name':'TW', 'type': 'load-balance', 'strategy': 'consistent-hashing
             'proxies':TW, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'JP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':JP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'USA', 'type': 'url-test', 'proxies':USA,
-            'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+pgs.append({'name':'USA', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+            'proxies':USA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'OT', 'type': 'select', 'proxies':OT})
 rps = {}
 rps['Google'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Google.yaml',
