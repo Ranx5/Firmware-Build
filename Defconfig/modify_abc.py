@@ -4,7 +4,8 @@ import os
 
 with open('/etc/openclash/config/abc.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = ['SGP', 'JPN', 'IDN', 'IND', 'AUS', 'USA', 'DEU']
+Proxy = ['HKG','SGP', 'JPN', 'IDN', 'IND', 'AUS', 'USA', 'DEU']
+HKG = []
 SGP = []
 JPN = []
 IDN = []
@@ -15,7 +16,10 @@ DEU = []
 testtime='300'
 for p in x['proxies']:
     name = p['name']
-    if '新' in name:
+    if '香' in name:
+        Proxy.append(name)
+        HKG.append(name)
+    elif '新' in name:
         Proxy.append(name)
         SGP.append(name)
     elif '日' in name:
@@ -36,7 +40,7 @@ for p in x['proxies']:
     else:
         Proxy.append(name)
         IND.append(name)
-n = 7
+n = len(Proxy)
 Google = Proxy[n:]
 Disneyplus = Google
 Netflix = Google
@@ -62,6 +66,8 @@ pgs.append({'name':'Github', 'type':'select', 'proxies':Github})
 pgs.append({'name':'Twitter', 'type':'select', 'proxies':Twitter})
 pgs.append({'name':'Telegram', 'type':'select', 'proxies':Telegram})
 pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Microsoft})
+pgs.append({'name':'HKG', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+            'proxies':HKG, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'SGP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':SGP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'JPN', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
