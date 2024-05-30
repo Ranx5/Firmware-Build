@@ -3,18 +3,33 @@ name: Build-Openwrt-ImmortalWrt
 on:
   workflow_dispatch:
     inputs:
-      configPath:
-        description: '选择配置文件'
+      branch:
+        description: '选择分支'
+        required: true
+        type: string
+        default: 'openwrt-23.05'
+      config:
+        description: '选择配置'
         required: true
         type: string
         default: 'Configs/imm.config'
+      script1:
+        description: '选择脚本1'
+        required: true
+        type: string
+        default: 'Scripts/diy-imm-part1.sh'
+      script2:
+        description: '选择脚本2'
+        required: true
+        type: string
+        default: 'Scripts/diy-imm-part2.sh'
 
 env:
   REPO_URL: https://github.com/Ranx5/immortalwrt
-  REPO_BRANCH: openwrt-23.05
-  # CONFIG_FILE: Configs/imm.config
-  DIY_P1_SH: Scripts/diy-imm-part1.sh
-  DIY_P2_SH: Scripts/diy-imm-part2.sh
+  REPO_BRANCH: ${{ github.event.inputs.branch }}
+  CONFIG_FILE: ${{ github.event.inputs.config }}
+  DIY_P1_SH: ${{ github.event.inputs.script1 }}
+  DIY_P2_SH: ${{ github.event.inputs.script2 }}
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   UPLOAD_ARTIFACT: false
@@ -85,7 +100,7 @@ jobs:
     - name: Generate Variables
       id: variable
       run: |
-        cp ${{ github.event.inputs.configPath }} $OPENWRT_PATH/.config
+        cp $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
@@ -113,7 +128,7 @@ jobs:
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
-        [ -e ${{ github.event.inputs.configPath }} ] && mv ${{ github.event.inputs.configPath }} $OPENWRT_PATH/.config
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
         chmod +x $DIY_P2_SH
         chmod +x $GITHUB_WORKSPACE/Scripts/preset-openclash.sh
         cd openwrt
@@ -181,6 +196,7 @@ jobs:
           **This is Temporary Firmware for ImmortalWrt**
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
+          - ${{ github.event.inputs.branch }}
           - ${{ env.COMMIT_AUTHOR }}
           - ${{ env.COMMIT_DATE }}
           - ${{ env.COMMIT_MESSAGE }}
