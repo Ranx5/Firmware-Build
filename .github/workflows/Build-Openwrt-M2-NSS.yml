@@ -2,13 +2,34 @@ name: Build-Openwrt-M2-NSS
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: '选择分支'
+        required: true
+        type: string
+        default: 'ipq60xx-devel_nss'
+      config:
+        description: '选择配置'
+        required: true
+        type: string
+        default: 'Configs/nss.config'
+      script1:
+        description: '选择脚本1'
+        required: true
+        type: string
+        default: 'Scripts/diy-m2-nss-part1.sh'
+      script2:
+        description: '选择脚本2'
+        required: true
+        type: string
+        default: 'Scripts/diy-m2-nss-part2.sh'
 
 env:
   REPO_URL: https://github.com/Ranx5/openwrt-js
-  REPO_BRANCH: ipq60xx-devel_nss
-  CONFIG_FILE: Configs/m2_nss.config
-  DIY_P1_SH: Scripts/diy-m2-nss-part1.sh
-  DIY_P2_SH: Scripts/diy-m2-nss-part2.sh
+  REPO_BRANCH: ${{ github.event.inputs.branch }}
+  CONFIG_FILE: ${{ github.event.inputs.config }}
+  DIY_P1_SH: ${{ github.event.inputs.script1 }}
+  DIY_P2_SH: ${{ github.event.inputs.script2 }}
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   UPLOAD_ARTIFACT: false
