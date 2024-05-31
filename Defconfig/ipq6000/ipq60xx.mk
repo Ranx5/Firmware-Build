@@ -71,7 +71,7 @@ define Device/cmiot_ax18
 	PAGESIZE := 2048
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
-	DEVICE_PACKAGES := ipq-wifi-cmiot_ax18 kmod-fs-ext4 mkf2fs f2fsck kmod-fs-f2fs python-yaml
+	DEVICE_PACKAGES := ipq-wifi-cmiot_ax18 kmod-fs-ext4 mkf2fs f2fsck kmod-fs-f2fs
 endef
 TARGET_DEVICES += cmiot_ax18
 
@@ -84,7 +84,7 @@ define Device/zn_m2
 	PAGESIZE := 2048
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
-	DEVICE_PACKAGES := ipq-wifi-zn_m2 kmod-fs-ext4 mkf2fs f2fsck kmod-fs-f2fs python-yaml
+	DEVICE_PACKAGES := ipq-wifi-zn_m2 kmod-fs-ext4 mkf2fs f2fsck kmod-fs-f2fs
 endef
 TARGET_DEVICES += zn_m2
 
