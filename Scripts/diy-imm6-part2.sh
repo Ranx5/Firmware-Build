@@ -25,7 +25,5 @@ rm -f target/linux/mediatek/filogic/base-files/etc/board.d/02_network
 wget -cO target/linux/mediatek/filogic/base-files/etc/board.d/02_network https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/rax3000m/02_network
 rm -f target/linux/mediatek/filogic/base-files/etc/hotplug.d/ieee80211/11_fix_wifi_mac
 wget -cO target/linux/mediatek/filogic/base-files/etc/hotplug.d/ieee80211/11_fix_wifi_mac https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/rax3000m/11_fix_wifi_mac
-rm -f target/linux/mediatek/filogic/base-files/lib/upgrade/platform.sh
-wget -cO target/linux/mediatek/filogic/base-files/lib/upgrade/platform.sh https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/rax3000m/platform.sh
 rm -f target/linux/mediatek/image/filogic.mk
 wget -cO target/linux/mediatek/image/filogic.mk https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/rax3000m/filogic.mk
