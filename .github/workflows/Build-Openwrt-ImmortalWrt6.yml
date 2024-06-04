@@ -160,10 +160,10 @@ jobs:
       id: compile
       run: |
         rm -f $OPENWRT_PATH/.config
-        [ -e $CONFIG2_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        [ -e $CONFIG2_FILE ] && mv $CONFIG2_FILE $OPENWRT_PATH/.config
         chmod +x $DIY_P3_SH
         cd $OPENWRT_PATH
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        $GITHUB_WORKSPACE/$DIY_P3_SH
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
