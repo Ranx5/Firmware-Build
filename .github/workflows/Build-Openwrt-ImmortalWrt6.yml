@@ -1,4 +1,4 @@
-name: Build-Openwrt-ImmortalWrt
+name: Build-Openwrt-ImmortalWrt6
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
         description: '选择配置1'
         required: true
         type: string
-        default: 'Configs/imm.config'
+        default: 'Configs/imm6.config'
       config2:
         description: '选择配置2'
         required: true
