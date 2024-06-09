@@ -3,16 +3,21 @@ name: Build-Openwrt-M2-NSS
 on:
   workflow_dispatch:
     inputs:
+      code:
+        description: '选择仓库'
+        required: true
+        type: string
+        default: 'https://github.com/qosmio/openwrt-ipq'
       branch:
         description: '选择分支'
         required: true
         type: string
-        default: 'ipq60xx-devel_nss'
+        default: 'qualcommax-6.x-nss-wifi'
       config:
         description: '选择配置'
         required: true
         type: string
-        default: 'Configs/nss.config'
+        default: 'Configs/qosmio_nss.config'
       script1:
         description: '选择脚本1'
         required: true
@@ -25,7 +30,7 @@ on:
         default: 'Scripts/diy-m2-nss-part2.sh'
 
 env:
-  REPO_URL: https://github.com/Ranx5/openwrt-js
+  REPO_URL: ${{ github.event.inputs.code }}
   REPO_BRANCH: ${{ github.event.inputs.branch }}
   CONFIG_FILE: ${{ github.event.inputs.config }}
   DIY_P1_SH: ${{ github.event.inputs.script1 }}
