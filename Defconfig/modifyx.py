@@ -6,14 +6,13 @@ with open('/etc/openclash/config/uv.yaml', 'rb') as f1:
     x1 = yaml.safe_load(f1)
 with open('/etc/openclash/config/abc.yaml', 'rb') as f2:
     x2 = yaml.safe_load(f2)
-Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'HK-ovo', 'SGP-ovo', 'JP-ovo', 'USA-ovo', 'IDN-ovo', 'IND-ovo', 'AUS-ovo', 'DEU-ovo', 'OT']
+Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'SGP-ovo', 'JP-ovo', 'USA-ovo', 'IDN-ovo', 'IND-ovo', 'AUS-ovo', 'DEU-ovo', 'OT']
 n = len(Proxy)
 HK = []
 SGP = []
 JP = []
 TW = []
 USA = []
-HK_ovo = []
 SGP_ovo = []
 JP_ovo = []
 USA_ovo = []
@@ -26,10 +25,7 @@ testtime='300'
 x1['proxies'] = x1['proxies'] + x2['proxies']
 for p in x1['proxies']:
     name = p['name']
-    if '香港 - HY2' in name:
-        Proxy.append(name)
-        HK_ovo.append(name)
-    elif '香' in name:
+    if '香' in name:
         Proxy.append(name)
         HK.append(name)
     elif '日本 - HY2' in name:
@@ -95,8 +91,6 @@ pgs.append({'name':'Telegram', 'type':'select', 'proxies':Telegram})
 pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Microsoft})
 pgs.append({'name':'HK', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':HK, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'HK-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':HK_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'SGP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':SGP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'SGP-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
