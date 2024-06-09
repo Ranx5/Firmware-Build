@@ -21,6 +21,7 @@ wget -cO target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-ax18.dts
 wget -cO target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-cmiot.dtsi https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/ipq60xx/ipq6018-cmiot.dtsi
 wget -cO target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-cpufreq.dtsi https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/ipq60xx/ipq6018-cpufreq.dtsi
 wget -cO target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-m2.dts https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/ipq60xx/ipq6018-m2.dts
+wget -cO target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-256m.dtsi https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/ipq60xx/ipq6018-256m.dtsi
 rm -f target/linux/qualcommax/image/ipq60xx.mk
 wget -cO target/linux/qualcommax/image/ipq60xx.mk https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/ipq60xx/ipq60xx.mk
 mkdir -p package/firmware/ipq-wifi/src
