@@ -1,6 +1,6 @@
 #!/bin/bash
 # 修改默认IP
-sed -i 's/192.168.1.1/192.168.32.11/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.32.1/g' package/base-files/files/bin/config_generate
 # 正常编译补丁
 # sed -i 's/TARGET_CFLAGS += -DHAVE_MAP_SYNC/TARGET_CFLAGS += -DHAVE_MAP_SYNC -D_LARGEFILE64_SOURCE/' feeds/packages/utils/xfsprogs/Makefile
 # 启用Firewall4
