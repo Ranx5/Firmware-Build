@@ -7,27 +7,27 @@ on:
         description: '选择仓库'
         required: true
         type: string
-        default: 'https://github.com/qosmio/openwrt-ipq'
+        default: 'https://github.com/Ranx5/openwrt-6.x-nss'
       branch:
         description: '选择分支'
         required: true
         type: string
-        default: 'qualcommax-6.x-nss-wifi'
+        default: 'main'
       config:
         description: '选择配置'
         required: true
         type: string
-        default: 'Configs/qosmio_nss.config'
+        default: 'Configs/ipq60xx_nss_no_wifi.config'
       script1:
         description: '选择脚本1'
         required: true
         type: string
-        default: 'Scripts/diy-m2-nss-part1.sh'
+        default: 'Scripts/diy-m2-nss-part0.sh'
       script2:
         description: '选择脚本2'
         required: true
         type: string
-        default: 'Scripts/diy-m2-nss-part2.sh'
+        default: 'Scripts/diy-imm-part2.sh'
 
 env:
   REPO_URL: ${{ github.event.inputs.code }}
