@@ -1,6 +1,6 @@
 #!/bin/bash
-# Add a feed source
-# echo 'src-git passwall2_packages https://github.com/xiaorouji/openwrt-passwall-packages.git' >> feeds.conf.default
-# echo 'src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git' >> feeds.conf.default
+# 修改默认IP
+sed -i 's/192.168.1.1/192.168.32.1/g' package/base-files/files/bin/config_generate
+# 更新feed
 ./scripts/feeds update -a
 ./scripts/feeds install -a
