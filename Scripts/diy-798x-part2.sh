@@ -1,6 +1,6 @@
 #!/bin/bash
 # 修改默认IP
-sed -i 's/192.168.1.1/192.168.32.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.1.1/192.168.32.1/g' package/base-files/files/bin/config_generate
 # 添加luci-app-mosdns
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
