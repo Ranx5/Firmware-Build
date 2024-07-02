@@ -55,6 +55,7 @@ on:
         default: 'Scripts/diy-imm-part2.sh'
         options:
           - 'Scripts/diy-imm-part2.sh'
+          - 'Scripts/diy-imm-part3.sh'
           - 'Scripts/diy-798x-part2.sh'
           - 'Scripts/diy-nothing.sh'
       script3:
