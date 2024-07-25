@@ -6,7 +6,7 @@ with open('/etc/openclash/config/uv.yaml', 'rb') as f1:
     x1 = yaml.safe_load(f1)
 with open('/etc/openclash/config/abc.yaml', 'rb') as f2:
     x2 = yaml.safe_load(f2)
-Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'SGP-ovo', 'JP-ovo', 'USA-ovo', 'IDN-ovo', 'IND-ovo', 'AUS-ovo', 'DEU-ovo', 'OT']
+Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'SGP-ovo', 'JP-ovo', 'USA-ovo', 'IDN-ovo', 'IND-ovo', 'AUS-ovo', 'DEU-ovo', 'FR-ovo', 'OT']
 n = len(Proxy)
 HK = []
 SGP = []
@@ -20,6 +20,7 @@ IDN_ovo = []
 IND_ovo = []
 AUS_ovo = []
 DEU_ovo = []
+FR_ovo = []
 OT = []
 testtime='300'
 x1['proxies'] = x1['proxies'] + x2['proxies']
@@ -55,6 +56,9 @@ for p in x1['proxies']:
     elif '印度' in name:
         Proxy.append(name)
         IND_ovo.append(name)
+    elif '法国' in name:
+        Proxy.append(name)
+        FR_ovo.append(name)
     elif '悉尼' in name:
         Proxy.append(name)
         AUS_ovo.append(name)
@@ -113,6 +117,8 @@ pgs.append({'name':'AUS-ovo', 'type': 'load-balance', 'strategy': 'consistent-ha
             'proxies':AUS_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'DEU-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':DEU_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+pgs.append({'name':'FR-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+            'proxies':FR_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'OT', 'type': 'select', 'proxies':OT})
 rps = {}
 rps['Google'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Google.yaml',
