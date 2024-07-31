@@ -23,7 +23,7 @@ IND_ovo = []
 AUS_ovo = []
 DEU_ovo = []
 FR_ovo = []
-HK_cc ＝ []
+HK_cc = []
 OT = []
 testtime='300'
 x1['proxies'] = x1['proxies'] + x2['proxies'] + x3['proxies']
