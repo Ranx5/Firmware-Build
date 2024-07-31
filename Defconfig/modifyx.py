@@ -6,7 +6,7 @@ with open('/etc/openclash/config/uv.yaml', 'rb') as f1:
     x1 = yaml.safe_load(f1)
 with open('/etc/openclash/config/abc.yaml', 'rb') as f2:
     x2 = yaml.safe_load(f2)
-with open('/etc/openclash/config/xyz.yaml', 'rb') as f2:
+with open('/etc/openclash/config/xyz.yaml', 'rb') as f3:
     x3 = yaml.safe_load(f3)
 Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'SGP-ovo', 'JP-ovo', 'USA-ovo', 'IDN-ovo', 'IND-ovo', 'AUS-ovo', 'DEU-ovo', 'FR-ovo', 'HK-cc', 'OT']
 n = len(Proxy)
