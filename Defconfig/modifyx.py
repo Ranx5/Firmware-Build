@@ -6,9 +6,7 @@ with open('/etc/openclash/config/uv.yaml', 'rb') as f1:
     x1 = yaml.safe_load(f1)
 with open('/etc/openclash/config/abc.yaml', 'rb') as f2:
     x2 = yaml.safe_load(f2)
-with open('/etc/openclash/config/xyz.yaml', 'rb') as f3:
-    x3 = yaml.safe_load(f3)
-Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'SGP-ovo', 'JP-ovo', 'USA-ovo', 'IDN-ovo', 'IND-ovo', 'AUS-ovo', 'DEU-ovo', 'FR-ovo', 'HK-cc', 'OT']
+Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'SGP-ovo', 'JP-ovo', 'USA-ovo', 'IDN-ovo', 'HKG-ovo', 'AUS-ovo', 'DEU-ovo', 'FR-ovo', 'HK-cc', 'OT']
 n = len(Proxy)
 HK = []
 SGP = []
@@ -19,17 +17,20 @@ SGP_ovo = []
 JP_ovo = []
 USA_ovo = []
 IDN_ovo = []
-IND_ovo = []
+HKG_ovo = []
 AUS_ovo = []
 DEU_ovo = []
 FR_ovo = []
 HK_cc = []
 OT = []
 testtime='300'
-x1['proxies'] = x1['proxies'] + x2['proxies'] + x3['proxies']
+x1['proxies'] = x1['proxies'] + x2['proxies']
 for p in x1['proxies']:
     name = p['name']
-    if '香' in name:
+    if '香港 - HY2' in name:
+        Proxy.append(name)
+        HKG_ovo.append(name)
+    elif '香' in name:
         Proxy.append(name)
         HK.append(name)
     elif '日本 - HY2' in name:
@@ -56,9 +57,6 @@ for p in x1['proxies']:
     elif '印尼' in name:
         Proxy.append(name)
         IDN_ovo.append(name)
-    elif '印度' in name:
-        Proxy.append(name)
-        IND_ovo.append(name)
     elif '法国' in name:
         Proxy.append(name)
         FR_ovo.append(name)
@@ -68,8 +66,6 @@ for p in x1['proxies']:
     elif '德国' in name:
         Proxy.append(name)
         DEU_ovo.append(name)
-    elif 'NODE' in name:
-        HK_cc.append(name)
     else:
         Proxy.append(name)
         OT.append(name)
@@ -116,8 +112,8 @@ pgs.append({'name':'USA-ovo', 'type': 'load-balance', 'strategy': 'consistent-ha
             'proxies':USA_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'IDN-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':IDN_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'IND-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':IND_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+pgs.append({'name':'HKG-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+            'proxies':HKG_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'AUS-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':AUS_ovo, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'DEU-ovo', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
