@@ -9,7 +9,7 @@ mkdir -p files/etc/config
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
-CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modifyx.py"
+CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
 MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
 # MOSDNS_CUSTOM_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build-Lean/main/clash/mosdns2.yaml"
 # MOSDNS_GEN_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build/main/Configs/mosdns"
