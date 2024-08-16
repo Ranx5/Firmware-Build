@@ -38,13 +38,13 @@ fi
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
-wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modifyx.py
+wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modify_uv.py
 wget -qO- $MOSDNS_CONFIG_URL > files/etc/config/mosdns
 # wget -qO- $MOSDNS_CUSTOM_URL > files/etc/mosdns/config_custom.yaml
 # wget -qO- $MOSDNS_GEN_URL > files/etc/init.d/mosdns
 
 chmod +x files/etc/openclash/core/clash*
-chmod +x files/etc/openclash/modifyx.py
+chmod +x files/etc/openclash/modify_uv.py
 chmod +rw files/etc/config/openclash
 chmod +rw files/etc/config/mosdns
 # chmod +rw files/etc/mosdns/config_custom.yaml
