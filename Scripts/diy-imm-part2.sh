@@ -16,3 +16,5 @@ git clone --depth=1 https://github.com/vernesong/OpenClash.git -b dev package/lu
 # 添加luci-app-passwall2
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall-packages
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2.git package/luci-app-passwall2
+# 添加luci-app-mihomo
+git clone --depth=1 https://github.com/morytyann/OpenWrt-mihomo.git -b main package/luci-app-mihomo
