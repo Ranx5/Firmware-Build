@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/abc.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = ['HKG','SGP', 'JPN', 'IDN', 'AUS', 'USA', 'DEU']
+Proxy = ['HKG','SGP', 'JPN', 'IDN', 'AUS', 'USA', 'DEU', 'FR']
 HKG = []
 SGP = []
 JPN = []
@@ -12,6 +12,7 @@ IDN = []
 AUS = []
 USA = []
 DEU = []
+FR =[]
 testtime='300'
 n = len(Proxy)
 for p in x['proxies']:
@@ -37,6 +38,9 @@ for p in x['proxies']:
     elif '德国' in name:
         Proxy.append(name)
         DEU.append(name)
+    elif '法国' in name:
+        Proxy.append(name)
+        FR.append(name)
     else:
         Proxy.append(name)
 Google = Proxy[n:]
@@ -78,6 +82,8 @@ pgs.append({'name':'USA', 'type': 'load-balance', 'strategy': 'consistent-hashin
             'proxies':USA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'DEU', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':DEU, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+pgs.append({'name':'FR', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+            'proxies':FR, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 rps = {}
 rps['Google'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Google.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Google.yaml'}
