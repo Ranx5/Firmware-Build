@@ -4,16 +4,16 @@ import os
 
 with open('/etc/openclash/config/abc.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = ['HKG','SGP', 'JPN', 'IDN', 'IND', 'AUS', 'USA', 'DEU']
+Proxy = ['HKG','SGP', 'JPN', 'IDN', 'AUS', 'USA', 'DEU']
 HKG = []
 SGP = []
 JPN = []
 IDN = []
-IND = []
 AUS = []
 USA = []
 DEU = []
 testtime='300'
+n = len(Proxy)
 for p in x['proxies']:
     name = p['name']
     if '香' in name:
@@ -28,19 +28,17 @@ for p in x['proxies']:
     elif '悉尼' in name:
         Proxy.append(name)
         AUS.append(name)
-    elif '尼' in name:
+    elif '印尼' in name:
         Proxy.append(name)
         IDN.append(name)
-    elif '美' in name:
+    elif '美国' in name:
         Proxy.append(name)
         USA.append(name)
-    elif '德' in name:
+    elif '德国' in name:
         Proxy.append(name)
         DEU.append(name)
     else:
         Proxy.append(name)
-        IND.append(name)
-n = len(Proxy)
 Google = Proxy[n:]
 Disneyplus = Google
 Netflix = Google
@@ -76,8 +74,6 @@ pgs.append({'name':'IDN', 'type': 'load-balance', 'strategy': 'consistent-hashin
             'proxies':IDN, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'AUS', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':AUS, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'IND', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':IND, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'USA', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':USA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'DEU', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
