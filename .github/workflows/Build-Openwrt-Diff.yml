@@ -39,7 +39,6 @@ on:
           - 'Configs/798x_def_diff.config'
           - 'Configs/imm_def_diff.config'
           - 'Configs/imm_diff.config'
-          - 'Configs/imm_master.config'
           - 'Configs/imm_798x_diff.config'
           - 'Configs/m2_no_wifi_diff.config'
       script1:
