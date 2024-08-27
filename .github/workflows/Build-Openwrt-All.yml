@@ -39,6 +39,7 @@ on:
           - 'Configs/798x_def.config'
           - 'Configs/imm_def.config'
           - 'Configs/imm.config'
+          - 'Configs/imm_master.config'
           - 'Configs/imm_798x.config'
           - 'Configs/m2_no_wifi.config'
       script1:
