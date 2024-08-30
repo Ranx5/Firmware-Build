@@ -20,6 +20,7 @@ on:
           - 'https://github.com/Ranx5/immortalwrt-mt798x'
           - 'https://github.com/Ranx5/immortalwrt'
           - 'https://github.com/Ranx5/openwrt-6.x-nss'
+          - 'https://github.com/immortalwrt/immortalwrt.git'
       branch:
         description: '选择分支'
         required: true
