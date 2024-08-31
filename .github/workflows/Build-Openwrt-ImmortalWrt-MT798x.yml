@@ -3,16 +3,16 @@ name: Build-Openwrt-ImmortalWrt-MT798x
 on:
   workflow_dispatch:
     inputs:
-      configPath:
+      config:
         description: '选择配置文件'
         required: true
         type: string
-        default: 'Configs/imm_798x.config'
+        default: 'Configs/imm_798x_diff.config'
 
 env:
   REPO_URL: https://github.com/Ranx5/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
-  # CONFIG_FILE: Configs/old_imm_798x.config
+  CONFIG_FILE: ${{ github.event.inputs.config }}
   DIY_P1_SH: Scripts/diy-798x-part1.sh
   DIY_P2_SH: Scripts/diy-798x-part2.sh
   CACHE_TOOLCHAIN: true
@@ -81,12 +81,28 @@ jobs:
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_OUTPUT
+        
+    - name: Load custom feeds
+      run: |
+        chmod +x $DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P1_SH
+
+    - name: Load Custom Configuration
+      run: |
+        [ -e files ] && mv files $OPENWRT_PATH/files
+        chmod +x $DIY_P2_SH
+        chmod +x $GITHUB_WORKSPACE/Scripts/preset-openclash.sh
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/Scripts/preset-openclash.sh
 
     - name: Generate Variables
       id: variable
       run: |
-        cp ${{ github.event.inputs.configPath }} $OPENWRT_PATH/.config
+        cp $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
+        make defconfig
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
         DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
@@ -103,22 +119,6 @@ jobs:
         ccache: false
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
-        
-    - name: Load custom feeds
-      run: |
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-
-    - name: Load Custom Configuration
-      run: |
-        [ -e files ] && mv files $OPENWRT_PATH/files
-        [ -e ${{ github.event.inputs.configPath }} ] && mv ${{ github.event.inputs.configPath }} $OPENWRT_PATH/.config
-        chmod +x $DIY_P2_SH
-        chmod +x $GITHUB_WORKSPACE/Scripts/preset-openclash.sh
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
-        $GITHUB_WORKSPACE/Scripts/preset-openclash.sh
 
     - name: Download DL Package
       run: |
