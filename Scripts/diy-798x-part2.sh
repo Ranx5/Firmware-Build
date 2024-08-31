@@ -12,12 +12,6 @@ echo $old_perms
 rm -f package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 wget -cO package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns
 chmod $old_perms package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
-# 添加luci-app-ssrplus
-# rm -rf feeds/luci/applications/luci-app-ssr-plus
-# git clone --depth=1 https://github.com/fw876/helloworld.git -b master package/helloworld
 # 添加luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash
 git clone --depth=1 https://github.com/vernesong/OpenClash.git -b dev package/luci-app-openclash
-# 添加luci-app-passwall2
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall-packages
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2.git package/luci-app-passwall2
