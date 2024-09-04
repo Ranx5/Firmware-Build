@@ -135,6 +135,30 @@ for k in x.keys():
     elif k == 'proxies':    
         z[k] = x[k]
 z['rule-providers'] = rps
+z['sniffer'] = {
+        'enable': True,
+        'force-dns-mapping': True,
+        'parse-pure-ip': True,
+        'override-destination': False,
+        'sniff': {
+            'HTTP': {
+                'ports': [80, '8080-8880'],
+                'override-destination': True
+            },
+            'TLS': {
+                'ports': [443, 8443]
+            },
+            'QUIC': {
+                'ports': [443, 8443]
+            }
+        },
+        'force-domain': [
+            '+.v2ex.com'
+        ],
+        'skip-domain': [
+            'Mijia Cloud'
+        ]
+    }
 if os.path.exists('/etc/openclash/config/config_uv.yaml'):
     os.system('rm /etc/openclash/config/config_uv.yaml')
 with open('/etc/openclash/config/config_uv.yaml', 'w') as file:
