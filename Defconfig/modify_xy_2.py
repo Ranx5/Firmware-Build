@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/xy.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = ['HK', 'SG', 'JP', 'TW', 'USA', 'IEPL', 'HB', 'OT']
+Proxy = ['HK', 'SG', 'JP', 'TW', 'USA', 'RU', 'IEPL', 'HB', 'OT']
 HK = []
 SG = []
 JP = []
