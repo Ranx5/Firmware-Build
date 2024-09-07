@@ -24,7 +24,7 @@ for p in x['proxies']:
     elif '香' in name:
         Proxy.append(name)
         HK.append(name)
-    elif '日' in name:
+    elif '日本' in name:
         Proxy.append(name)
         JP.append(name)
     elif '新' in name:
