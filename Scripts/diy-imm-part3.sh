@@ -15,8 +15,6 @@ rm -rf feeds/luci/applications/luci-app-openclash
 git clone --depth=1 https://github.com/vernesong/OpenClash.git -b dev package/luci-app-openclash
 # 添加luci-app-mihomo
 git clone --depth=1 https://github.com/morytyann/OpenWrt-mihomo.git -b main package/luci-app-mihomo
-# 添加luci-theme-design
-git clone --depth=1 https://github.com/kenzok78/luci-theme-design.git -b js package/luci-theme-design
 # 更换Ruby
 rm -rf feeds/packages/lang/ruby
 mkdir ruby && chmod -R 777 ruby
