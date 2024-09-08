@@ -15,3 +15,5 @@ chmod $old_perms package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 # 添加luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash
 git clone --depth=1 https://github.com/vernesong/OpenClash.git -b dev package/luci-app-openclash
+# 添加luci-theme-design
+git clone --depth=1 https://github.com/kenzok78/luci-theme-design.git -b js package/luci-theme-design
