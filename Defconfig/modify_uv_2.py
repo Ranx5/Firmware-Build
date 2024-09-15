@@ -157,6 +157,7 @@ z['sniffer'] = {
             'Mijia Cloud'
         ]
     }
+z['dns'] = {'proxy-server-nameserver': ['223.5.5.5']}
 if os.path.exists('/etc/openclash/config/config_uv.yaml'):
     os.system('rm /etc/openclash/config/config_uv.yaml')
 with open('/etc/openclash/config/config_uv.yaml', 'w') as file:
