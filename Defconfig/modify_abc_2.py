@@ -175,6 +175,7 @@ z['sniffer'] = {
             'Mijia Cloud'
         ]
     }
+z['dns'] = {'proxy-server-nameserver': ['223.5.5.5'], 'respect-rules': True}
 if os.path.exists('/etc/openclash/config/config_abc.yaml'):
     os.system('rm /etc/openclash/config/config_abc.yaml')
     print('删除旧配置！')
