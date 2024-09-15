@@ -9,6 +9,7 @@ old_perms=$(stat -c %a package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns)
 echo $old_perms
 rm -f package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 wget -cO package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns
+wget -cO package/mosdns/luci-app-mosdns/htdocs/luci-static/resources/view/mosdns/basic.js https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/basic.js
 chmod $old_perms package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 # 添加luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash
