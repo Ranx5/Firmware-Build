@@ -36,12 +36,8 @@ on:
         type: choice
         default: 'Configs/imm_master_diff.config'
         options:
-          - 'Configs/798x_def_diff.config'
-          - 'Configs/imm_def_diff.config'
-          - 'Configs/imm_diff.config'
           - 'Configs/imm_master_diff.config'
           - 'Configs/imm_798x_diff.config'
-          - 'Configs/m2_no_wifi_diff.config'
       script1:
         description: '选择脚本1'
         required: true
@@ -64,7 +60,7 @@ on:
         description: '选择脚本3'
         required: true
         type: choice
-        default: 'Scripts/preset-mihomo.sh'
+        default: 'Scripts/preset-meta.sh'
         options:
           - 'Scripts/preset-openclash.sh'
           - 'Scripts/preset-mihomo.sh'
