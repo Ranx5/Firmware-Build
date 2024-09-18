@@ -137,7 +137,7 @@ z['sniffer'] = {
         'enable': True,
         'force-dns-mapping': True,
         'parse-pure-ip': True,
-        'override-destination': False,
+        'override-destination': True,
         'sniff': {
             'HTTP': {
                 'ports': [80, '8080-8880'],
