@@ -68,6 +68,7 @@ on:
         options:
           - 'Scripts/preset-openclash.sh'
           - 'Scripts/preset-mihomo.sh'
+          - 'Scripts/preset-meta.sh'
           - 'Scripts/diy-nothing.sh'
 
 env:
