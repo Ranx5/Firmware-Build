@@ -153,7 +153,7 @@ z['sniffer'] = {
         'enable': True,
         'force-dns-mapping': True,
         'parse-pure-ip': True,
-        'override-destination': False,
+        'override-destination': True,
         'sniff': {
             'HTTP': {
                 'ports': [80, '8080-8880'],
@@ -176,6 +176,7 @@ z['sniffer'] = {
 z['dns'] = {'proxy-server-nameserver': ['223.5.5.5'], 'respect-rules': True}
 if os.path.exists('/etc/openclash/config/config_xy.yaml'):
     os.system('rm /etc/openclash/config/config_xy.yaml')
+    print('删除旧配置！')
 with open('/etc/openclash/config/config_xy.yaml', 'w') as file:
     file.write(yaml.dump(z, allow_unicode=True))
     print('配置修改成功！')
