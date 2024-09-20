@@ -105,7 +105,6 @@ rps['Spotify'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provid
 
 rps['Github'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Github.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Github.yaml'}
-
 rps['Twitter'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Twitter.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Twitter.yaml'}
 rps['Telegram'] = {'type': 'http', 'behavior': 'ipcidr', 'path':'./rule_provider/Telegram.yaml',
@@ -173,7 +172,10 @@ z['sniffer'] = {
             'Mijia Cloud'
         ]
     }
-z['dns'] = {'proxy-server-nameserver': ['223.5.5.5'], 'respect-rules': True}
+z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
+            'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
+            'respect-rules': True}
+
 if os.path.exists('/etc/openclash/config/config_xy.yaml'):
     os.system('rm /etc/openclash/config/config_xy.yaml')
     print('删除旧配置！')
