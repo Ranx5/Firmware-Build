@@ -13,7 +13,7 @@ MIHOMO_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/C
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
-CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv_2.py"
+CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
 
 # 获取仓库的最新发布信息
 release_info=$(wget -qO- https://api.github.com/repos/MetaCubeX/mihomo/releases/latest)
