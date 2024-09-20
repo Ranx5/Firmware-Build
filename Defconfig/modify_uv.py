@@ -158,7 +158,8 @@ z['sniffer'] = {
     }
 z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
-            'respect-rules': False}
+            'respect-rules': True}
+
 if os.path.exists('/etc/openclash/config/config_uv.yaml'):
     os.system('rm /etc/openclash/config/config_uv.yaml')
     print('删除旧配置！')
