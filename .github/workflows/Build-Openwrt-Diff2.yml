@@ -39,6 +39,7 @@ on:
         options:
           - 'Configs/imm_master_diff.config'
           - 'Configs/imm_798x_diff.config'
+          - 'Configs/imm_master_test.config'
       script1:
         description: '选择脚本1'
         required: true
@@ -254,6 +255,7 @@ jobs:
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is Temporary Firmware for ${{ env.FIRMWARE_TAG }}**
+          - 配置文件为$CONFIG_FILE
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
           - ${{ env.COMMIT_AUTHOR }}
