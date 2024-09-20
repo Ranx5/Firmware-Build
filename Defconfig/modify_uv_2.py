@@ -80,7 +80,6 @@ rps['Netflix'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provid
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Netflix.yaml'}
 rps['Instagram'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Instagram.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Instagram.yaml'}
-
 rps['Facebook'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Facebook.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Facebook.yaml'}
 
@@ -157,7 +156,9 @@ z['sniffer'] = {
             'Mijia Cloud'
         ]
     }
-z['dns'] = {'proxy-server-nameserver': ['223.5.5.5']}
+z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
+            'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
+            'respect-rules': False}
 if os.path.exists('/etc/openclash/config/config_uv.yaml'):
     os.system('rm /etc/openclash/config/config_uv.yaml')
     print('删除旧配置！')
