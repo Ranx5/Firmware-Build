@@ -4,14 +4,13 @@ import os
 
 with open('/etc/openclash/config/mn.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = ['HK', 'SGP', 'JP', 'TW', 'KR', 'USA', 'MITM', 'BETA', 'OT']
+Proxy = ['HK', 'SGP', 'JP', 'TW', 'KR', 'USA', 'BETA', 'OT']
 HK = []
 SGP = []
 JP = []
 TW = []
 KR = []
 USA = []
-MITM = []
 BETA = []
 OT = []
 testtime='300'
@@ -27,9 +26,6 @@ for p in x['proxies']:
     elif 'Japan' in name:
         Proxy.append(name)
         JP.append(name)
-    elif 'MITM' in name:
-        Proxy.append(name)
-        MITM.append(name)
     elif 'Singapore' in name:
         Proxy.append(name)
         SGP.append(name)
@@ -47,7 +43,7 @@ for p in x['proxies']:
         OT.append(name)
 if not OT:
     Proxy.pop()
-n = len(Proxy)
+    n = n - 1
 Google = Proxy[n:]
 Disneyplus = Google
 Netflix = Google
@@ -58,6 +54,7 @@ Spotify = Proxy[:n] + ['DIRECT']
 Github = Proxy[:n]
 Twitter = Proxy[:n]
 Telegram = Proxy[:n]
+Pornhub = Proxy[:n]
 Microsoft = Spotify
 
 pgs = []
@@ -72,6 +69,7 @@ pgs.append({'name':'Spotify', 'type':'select', 'proxies':Spotify})
 pgs.append({'name':'Github', 'type':'select', 'proxies':Github})
 pgs.append({'name':'Twitter', 'type':'select', 'proxies':Twitter})
 pgs.append({'name':'Telegram', 'type':'select', 'proxies':Telegram})
+pgs.append({'name':'Pornhub', 'type':'select', 'proxies':Pornhub})
 pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Microsoft})
 pgs.append({'name':'HK', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':HK, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
@@ -87,8 +85,6 @@ pgs.append({'name':'USA', 'type': 'load-balance', 'strategy': 'consistent-hashin
             'proxies':USA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'BETA', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':BETA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'MITM', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':MITM, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 if OT:
     pgs.append({'name':'OT', 'type': 'select', 'proxies':OT})
 rps = {}
@@ -140,7 +136,7 @@ rs.append('RULE-SET,Disneyplus,Disneyplus')
 rs.append('RULE-SET,Netflix,Netflix')
 rs.append('RULE-SET,NetflixIP,Netflix')
 rs.append('RULE-SET,Scholar,DIRECT')
-rs.append('RULE-SET,Pornhub,MITM')
+rs.append('RULE-SET,Pornhub,Pornhub')
 rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
