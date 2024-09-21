@@ -85,7 +85,7 @@ pgs.append({'name':'KR', 'type': 'load-balance', 'strategy': 'consistent-hashing
             'proxies':KR, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'USA', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':USA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'META', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+pgs.append({'name':'BETA', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':META, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'MITM', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':MITM, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
