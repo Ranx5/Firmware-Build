@@ -12,6 +12,7 @@ TW = []
 KR = []
 USA = []
 MITM = []
+BETA = []
 OT = []
 testtime='300'
 n = len(Proxy)
