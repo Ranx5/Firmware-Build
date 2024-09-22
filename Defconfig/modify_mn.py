@@ -62,7 +62,7 @@ for s in Strategy2:
 for s in Strategy3:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['Direct']})
 for s in ProxySet:
-    if s is not 'OT':
+    if s != 'OT':
         pgs.append({'name':s, 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
                     'proxies':Proxy[s], 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 if Proxy['OT']:
