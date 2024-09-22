@@ -52,15 +52,16 @@ for p in x['proxies']:
         Proxy['OT'].append(name)
         ProxySet.add('OT')
 ProxySet = list(ProxySet)
-Strategy1 = ['Google', 'Disneyplus', 'Netflix', 'OpenAI']
+Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'PornHub']
 Strategy3 = ['Spotify', 'Microsoft']
+pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
     pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
 for s in Strategy2:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
 for s in Strategy3:
-    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['Direct']})
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
 for s in ProxySet:
     if s != 'OT':
         pgs.append({'name':s, 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
@@ -106,18 +107,18 @@ rs.append('RULE-SET,Telegram,Telegram')
 rs.append('RULE-SET,Twitter,Twitter')
 rs.append('RULE-SET,Instagram,Instagram')
 rs.append('RULE-SET,Facebook,Instagram')
-rs.append('RULE-SET,Youtube,Youtube')
+rs.append('RULE-SET,Youtube,YouTube')
 rs.append('DOMAIN-SUFFIX,googleapis.cn,Google')
 rs.append('RULE-SET,Google,Google')
 rs.append('RULE-SET,Spotify,Spotify')
-rs.append('RULE-SET,Github,Github')
+rs.append('RULE-SET,Github,GitHub')
 rs.append('RULE-SET,OpenAI,OpenAI')
 rs.append('RULE-SET,Microsoft,Microsoft')
-rs.append('RULE-SET,Disneyplus,Disneyplus')
+rs.append('RULE-SET,Disneyplus,DisneyPlus')
 rs.append('RULE-SET,Netflix,Netflix')
 rs.append('RULE-SET,NetflixIP,Netflix')
 rs.append('RULE-SET,Scholar,DIRECT')
-rs.append('RULE-SET,Pornhub,Pornhub')
+rs.append('RULE-SET,Pornhub,PornHub')
 rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
