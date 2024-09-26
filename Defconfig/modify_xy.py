@@ -98,12 +98,13 @@ rps['Instagram'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_prov
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Instagram.yaml'}
 rps['Facebook'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Facebook.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Facebook.yaml'}
+
 rps['Spotify'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Spotify.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Spotify.yaml'}
-rps['Pornhub'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Spotify.yaml',
-                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Pornhub.yaml'}
+
 rps['Github'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Github.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Github.yaml'}
+
 rps['Twitter'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Twitter.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Twitter.yaml'}
 rps['Telegram'] = {'type': 'http', 'behavior': 'ipcidr', 'path':'./rule_provider/Telegram.yaml',
@@ -123,18 +124,17 @@ rs.append('RULE-SET,Telegram,Telegram')
 rs.append('RULE-SET,Twitter,Twitter')
 rs.append('RULE-SET,Instagram,Instagram')
 rs.append('RULE-SET,Facebook,Instagram')
-rs.append('RULE-SET,Youtube,YouTube')
+rs.append('RULE-SET,Youtube,Youtube')
 rs.append('DOMAIN-SUFFIX,googleapis.cn,Google')
 rs.append('RULE-SET,Google,Google')
 rs.append('RULE-SET,Spotify,Spotify')
-rs.append('RULE-SET,Github,GitHub')
+rs.append('RULE-SET,Github,Github')
 rs.append('RULE-SET,OpenAI,OpenAI')
 rs.append('RULE-SET,Microsoft,Microsoft')
-rs.append('RULE-SET,Disneyplus,DisneyPlus')
+rs.append('RULE-SET,Disneyplus,Disneyplus')
 rs.append('RULE-SET,Netflix,Netflix')
 rs.append('RULE-SET,NetflixIP,Netflix')
 rs.append('RULE-SET,Scholar,DIRECT')
-rs.append('RULE-SET,Pornhub,PornHub')
 rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
