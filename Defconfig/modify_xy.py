@@ -86,71 +86,56 @@ pgs.append({'name':'IEPL', 'type': 'select', 'proxies':IEPL})
 pgs.append({'name':'HB', 'type': 'select', 'proxies':HB})
 pgs.append({'name':'OT', 'type': 'select', 'proxies':OT})
 rps = {}
-rps['Google1'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Domain_Google.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/google.mrs'}
-rps['Google2'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Ip_Google.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geoip/google.mrs'}
-rps['Youtube'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Youtube.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/youtube.mrs'}
-rps['Disneyplus'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Disneyplus.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo/geosite/disney.mrs'}
-rps['Netflix1'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Domain_Netflix.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/netflix.mrs'}
-rps['Netflix2'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Ip_Netflix.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geoip/netflix.mrs'}
-rps['Instagram'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Instagram.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo/geosite/instagram.mrs'}
-rps['Facebook1'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Ip_Facebook.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo/geosite/facebook.mrs'}
-rps['Facebook2'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Ip_Facebook.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo/geoip/facebook.mrs'}
-rps['Spotify'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Spotify.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/spotify.mrs'}
-rps['Github'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Github.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/github.mrs'}
-rps['Twitter1'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Domain_Twitter.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/twitter.mrs'}
-rps['Twitter2'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Ip_Twitter.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geoip/twitter.mrs'}
-rps['Telegram1'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Domain_Telegram.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/telegram.mrs'}
-rps['Telegram2'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Ip_Telegram.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geoip/telegram.mrs'}
-rps['Microsoft'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Microsoft.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/microsoft.mrs'}
-rps['OpenAI'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/OpenAI.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/openai.mrs'}
-rps['Scholar'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Scholar.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo/geosite/category-scholar-!cn.mrs'}
-rps['ProxyGFW'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/ProxyGFW.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/proxy.mrs'}
-rps['Private1'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Domain_Private.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geosite/private.mrs'}
-rps['Private2'] = {'type': 'http', 'behavior': 'mrs', 'path':'./rule_provider/Ip_Private.mrs',
-                           'url':'https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo-lite/geoip/private.mrs'}
+rps['Google'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Google.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Google.yaml'}
+rps['Youtube'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Youtube.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/YouTube.yaml'}
+rps['Disneyplus'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Disneyplus.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/DisneyPlus.yaml'}
+rps['Netflix'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Netflix.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Netflix.yaml'}
+rps['Instagram'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Instagram.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Instagram.yaml'}
+rps['Facebook'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Facebook.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Facebook.yaml'}
+rps['Spotify'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Spotify.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Spotify.yaml'}
+rps['Pornhub'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Spotify.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Pornhub.yaml'}
+rps['Github'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Github.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Github.yaml'}
+rps['Twitter'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Twitter.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Twitter.yaml'}
+rps['Telegram'] = {'type': 'http', 'behavior': 'ipcidr', 'path':'./rule_provider/Telegram.yaml',
+                           'url':'https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt'}
+rps['NetflixIP'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/NetflixIP.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/NetflixIP.yaml'}
+rps['Microsoft'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Microsoft.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml'}
+rps['OpenAI'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/OpenAI.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OpenAi.yaml'}
+rps['Scholar'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Scholar.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Scholar.yaml'}
+rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
 rs = []
-rs.append('RULE-SET,Telegram2,Telegram')
-rs.append('RULE-SET,Telegram1,Telegram')
-rs.append('RULE-SET,Twitter1,Twitter')
-rs.append('RULE-SET,Twitter2,Twitter')
+rs.append('RULE-SET,Telegram,Telegram')
+rs.append('RULE-SET,Twitter,Twitter')
 rs.append('RULE-SET,Instagram,Instagram')
-rs.append('RULE-SET,Facebook1,Instagram')
-rs.append('RULE-SET,Facebook2,Instagram')
-rs.append('RULE-SET,Youtube,Youtube')
+rs.append('RULE-SET,Facebook,Instagram')
+rs.append('RULE-SET,Youtube,YouTube')
 rs.append('DOMAIN-SUFFIX,googleapis.cn,Google')
-rs.append('RULE-SET,Google2,Google')
-rs.append('RULE-SET,Google1,Google')
+rs.append('RULE-SET,Google,Google')
 rs.append('RULE-SET,Spotify,Spotify')
-rs.append('RULE-SET,Github,Github')
+rs.append('RULE-SET,Github,GitHub')
 rs.append('RULE-SET,OpenAI,OpenAI')
 rs.append('RULE-SET,Microsoft,Microsoft')
-rs.append('RULE-SET,Disneyplus,Disneyplus')
-rs.append('RULE-SET,Netflix1,Netflix')
-rs.append('RULE-SET,Netflix2,Netflix')
+rs.append('RULE-SET,Disneyplus,DisneyPlus')
+rs.append('RULE-SET,Netflix,Netflix')
+rs.append('RULE-SET,NetflixIP,Netflix')
 rs.append('RULE-SET,Scholar,DIRECT')
+rs.append('RULE-SET,Pornhub,PornHub')
 rs.append('RULE-SET,ProxyGFW,Proxy')
-rs.append('RULE-SET,Private1,DIRECT')
-rs.append('RULE-SET,Private2,DIRECT')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
 rs.append('MATCH,Proxy')
