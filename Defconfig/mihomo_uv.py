@@ -47,21 +47,17 @@ pgs.append({'name':'GitHub', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Twitter', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Telegram', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Proxy[:n]+['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy)
+pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy})
 pgs.append({'name':'HK', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':HK, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'SG', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':SG, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+pgs.append({'name':'SGP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+            'proxies':SGP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'TW', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':TW, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'JP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':JP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'USA', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':USA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'RU', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':RU, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'IEPL', 'type': 'select', 'proxies':IEPL})
-pgs.append({'name':'HB', 'type': 'select', 'proxies':HB})
 pgs.append({'name':'OT', 'type': 'select', 'proxies':OT})
 rps = {}
 rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
