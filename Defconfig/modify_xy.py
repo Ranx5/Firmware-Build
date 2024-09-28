@@ -58,7 +58,7 @@ pgs.append({'name':'Github', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Twitter', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Telegram', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Proxy[:n]+['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy[:n]})
+pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy)
 pgs.append({'name':'HK', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':HK, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'SG', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
@@ -101,6 +101,8 @@ rs.append('GEOSITE,category-scholar-cn,DIRECT')
 rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
+rs.append('DOMAIN-SUFFIX,ip.sb,Github')
+rs.append('DOMAIN-SUFFIX,ipify.org,Youtube')
 rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
