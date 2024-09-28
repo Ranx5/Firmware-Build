@@ -119,11 +119,9 @@ rps['Scholar'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provid
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Scholar.yaml'}
 rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
-rps['Private'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Private.yaml',
-                           'url':'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/private.yaml'}
 
 rs = []
-rs.append('RULE-SET,Private,DIRECT')
+rs.append('IP-CIDR,127.0.0.0/8,DIRECT,no-resolve')
 rs.append('RULE-SET,Telegram,Telegram')
 rs.append('RULE-SET,Twitter,Twitter')
 rs.append('RULE-SET,Instagram,Instagram')
