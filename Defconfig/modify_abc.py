@@ -57,7 +57,7 @@ pgs.append({'name':'GitHub', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Twitter', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Telegram', 'type':'select', 'proxies':Proxy[:n]})
 pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Proxy[:n]+['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy)
+pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy})
 pgs.append({'name':'HK', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
             'proxies':HK, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 pgs.append({'name':'SG', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
