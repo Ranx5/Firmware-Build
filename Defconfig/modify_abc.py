@@ -1,77 +1,71 @@
-
 #!/usr/bin/env python3
 import yaml
 import os
 
 with open('/etc/openclash/config/abc.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = ['HKG','SGP', 'JPN', 'IDN', 'AUS', 'USA', 'DEU', 'FR']
-HKG = []
-SGP = []
-JPN = []
-IDN = []
-AUS = []
-USA = []
-DEU = []
-FR =[]
+Proxy = {'HKG':[], 'SGP':[], 'JPN':[], 'IDN':[], 'AUS':[], 'USA':[],  'FR':[], 'DEU':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
+ProxySet = set()
+pgs = []
 for p in x['proxies']:
     name = p['name']
-    if '香' in name:
-        Proxy.append(name)
-        HKG.append(name)
-    elif '新' in name:
-        Proxy.append(name)
-        SGP.append(name)
-    elif '日' in name:
-        Proxy.append(name)
-        JPN.append(name)
-    elif '悉尼' in name:
-        Proxy.append(name)
-        AUS.append(name)
+    if '香港' in name:
+        Proxy['All'].append(name)
+        Proxy['HKG'].append(name)
+        ProxySet.add('HKG')
+    elif '新加坡' in name:
+        Proxy['All'].append(name)
+        Proxy['SGP'].append(name)
+        ProxySet.add('SGP')
+    elif '日本' in name:
+        Proxy['All'].append(name)
+        Proxy['JPN'].append(name)
+        ProxySet.add('JPN')
     elif '印尼' in name:
-        Proxy.append(name)
-        IDN.append(name)
+        Proxy['All'].append(name)
+        Proxy['IDN'].append(name)
+        ProxySet.add('IDN')
+    elif '悉尼' in name:
+        Proxy['All'].append(name)
+        Proxy['AUS'].append(name)
+        ProxySet.add('AUS')
     elif '美国' in name:
-        Proxy.append(name)
-        USA.append(name)
-    elif '德国' in name:
-        Proxy.append(name)
-        DEU.append(name)
+        Proxy['All'].append(name)
+        Proxy['USA'].append(name)
+        ProxySet.add('USA')
     elif '法国' in name:
-        Proxy.append(name)
-        FR.append(name)
+        Proxy['All'].append(name)
+        Proxy['FR'].append(name)
+        ProxySet.add('FR')
+    elif '德国' in name:
+        Proxy['All'].append(name)
+        Proxy['DEU'].append(name)
+        ProxySet.add('DEU')
     else:
-        Proxy.append(name)
-pgs = []
-pgs.append({'name':'Proxy', 'type':'select', 'proxies':Proxy})
-pgs.append({'name':'Google', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'DisneyPlus', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'Netflix', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'OpenAI', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'Instagram', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'YouTube', 'type':'select', 'proxies':Proxy[:n]+['DIRECT']})
-pgs.append({'name':'Spotify', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'GitHub', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'Twitter', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'Telegram', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Proxy[:n]+['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy})
-pgs.append({'name':'HKG', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':HKG, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'SGP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':SGP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'JPN', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':JPN, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'IDN', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':IDN, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'AUS', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':AUS, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'DEU', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':DEU, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'FR', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':FR, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+        Proxy['All'].append(name)
+        Proxy['OT'].append(name)
+        ProxySet.add('OT')
+ProxySet = list(ProxySet)
+Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'PornHub']
+Strategy3 = ['Spotify', 'Microsoft']
+pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
+for s in Strategy1:
+    pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
+for s in Strategy2:
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
+for s in Strategy3:
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
+for s in ProxySet:
+    if s != 'OT':
+        pgs.append({'name':s, 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+                    'proxies':Proxy[s], 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+pgs.append({'name':'DNS', 'type':'select', 'proxies':ProxySet+Proxy['All']})
+if Proxy['OT']:
+    pgs.append({'name':'OT', 'type': 'select', 'proxies':Proxy['OT']})
+    
 rps = {}
 rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
