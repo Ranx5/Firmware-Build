@@ -21,6 +21,7 @@ on:
           - 'https://github.com/Ranx5/immortalwrt-mt798x'
           - 'https://github.com/Ranx5/immortalwrt'
           - 'https://github.com/Ranx5/openwrt-6.x-nss'
+          - 'https://github.com/padavanonly/immortalwrt-mt798x-23.05.git'
       branch:
         description: '选择分支'
         required: true
@@ -39,6 +40,7 @@ on:
         options:
           - 'Configs/imm_master_diff.config'
           - 'Configs/imm_798x_diff.config'
+          - 'Configs/imm_798x_nft.config'
           - 'Configs/imm_master_test.config'
           - 'Configs/ipq60xx_m2_no_wifi.config'
       script1:
