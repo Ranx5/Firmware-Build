@@ -78,7 +78,7 @@ rps['AdReject'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provi
 
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
-rs.append('RULE-SET,AdReject,REJECT)
+rs.append('RULE-SET,AdReject,REJECT')
 rs.append('IP-SUFFIX,1.1.1.1/24,DNS,no-resolve')
 rs.append('IP-SUFFIX,8.8.8.8/24,DNS,no-resolve')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
