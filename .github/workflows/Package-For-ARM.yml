@@ -100,7 +100,7 @@ jobs:
         DISTRIB_REVISION: R${{ env.DATE1 }} by Ran
 
     - name: Package OpenWrt Firmware
-      if: steps.download.outputs.status == 'success' and ! [[ "$SOURCE" == true ]]
+      if: steps.download.outputs.status == 'success' and [[ "$SOURCE" != true ]]
       uses: ophub/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
