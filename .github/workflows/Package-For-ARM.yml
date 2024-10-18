@@ -16,8 +16,10 @@ on:
       source:
         description: '选择unifreq打包脚本'
         required: true
-        type: boolean
-        default: true
+        type: choice
+        default: 'unifreq'
+        options:
+          - 'ophub'
       soc:
         description: '选择芯片类型'
         required: true
@@ -89,19 +91,7 @@ jobs:
 
     - name: Package OpenWrt Firmware
       if: steps.download.outputs.status == 'success' and [[ "$SOURCE" == true ]]
-      uses: unifreq/openwrt_packit@master
-      env:
-        OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
-        PACKAGE_SOC: ${{ github.event.inputs.soc }}
-        WHOAMI: $WHOAMI
-        KERNEL_VERSION_NAME: ${{ github.event.inputs.kernel }}
-        CUSTOMIZE_RK3399: ${{ github.event.inputs.board }}
-        KERNEL_AUTO_LATEST: true
-        DISTRIB_REVISION: R${{ env.DATE1 }} by Ran
-
-    - name: Package OpenWrt Firmware
-      if: steps.download.outputs.status == 'success' and [[ "$SOURCE" != true ]]
-      uses: ophub/openwrt_packit@master
+      uses: ${{ github.event.inputs.source }}/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
         PACKAGE_SOC: ${{ github.event.inputs.soc }}
