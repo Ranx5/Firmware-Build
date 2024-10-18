@@ -98,8 +98,8 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         allowUpdates: true
-        removeArtifacts: true
-        tag: env.RELEASE_TAG
+        replacesArtifacts: true
+        tag: ${{ env.RELEASE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*img.gz*
     
