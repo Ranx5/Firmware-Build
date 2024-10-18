@@ -19,6 +19,7 @@ on:
         type: choice
         default: 'unifreq'
         options:
+          - 'unifreq'
           - 'ophub'
       soc:
         description: '选择芯片类型'
