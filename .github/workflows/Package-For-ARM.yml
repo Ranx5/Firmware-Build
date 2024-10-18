@@ -1,0 +1,126 @@
+name: Package-For-ARM
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: '选择仓库'
+        required: true
+        type: string
+        default: 'Ranx5/Firmware-Build'
+      tag:
+        description: '选择发布标签'
+        required: true
+        type: string
+        default: 'RK3399'
+      source:
+        description: '选择unifreq打包脚本'
+        required: true
+        type: boolean
+        default: true
+      soc:
+        description: '选择芯片类型'
+        required: true
+        type: string
+        default: 'rk3399'
+      kernel:
+        description: '选择内核版本'
+        required: true
+        type: string
+        default: '6.6.y'
+      board:
+        description: '选择打包对象'
+        required: true
+        type: string
+        default: 'tpm312:rk3399-tpm312.dts'
+
+env:
+  GITHUB_REPO: ${{ github.event.inputs.target }}
+  RELEASE_TAG: ${{ github.event.inputs.tag }}
+  SOURCE: ${{ github.event.inputs.source }}
+  UPLOAD_BIN_DIR: false
+  UPLOAD_ARTIFACT: false
+  UPLOAD_RELEASE: true
+  FIRMWARE_TAG: ${{ github.event.inputs.target }}
+  TZ: Asia/Shanghai
+  WHOAMI: Rancho
+
+jobs:
+  Build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Check Server Performance
+      run: |
+        echo "警告⚠"
+        echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
+        echo -e "已知CPU型号(降序): 7763，8370C，8272CL，8171M，E5-2673\n"
+        echo "--------------------------CPU信息--------------------------"
+        echo "CPU物理数量: $(cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l)"
+        echo "CPU核心数量: $(nproc)"
+        echo -e "CPU型号信息:$(cat /proc/cpuinfo | grep -m1 name | awk -F: '{print $2}')\n"
+        echo "--------------------------内存信息--------------------------"
+        echo "已安装内存详细信息:"
+        echo -e "$(sudo lshw -short -C memory | grep GiB)\n"
+        echo "--------------------------硬盘信息--------------------------"
+        echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
+
+    - name: Initialization Environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+        sudo -E systemctl daemon-reload
+        sudo -E apt-get -y autoremove --purge
+        sudo -E apt-get -y clean
+        sudo timedatectl set-timezone "$TZ"
+
+    - name: Download Armvirt Firmware
+      id: download
+      run: |
+        FIRMWARE_PATH=openwrt
+        [ -d $FIRMWARE_PATH ] || mkdir -p $FIRMWARE_PATH
+        cd $FIRMWARE_PATH
+        API_URL="https://api.github.com/repos/$GITHUB_REPO/releases/tags/$RELEASE_TAG"
+        RELEASE_DATA=$(curl -s "$API_URL")
+        DOWNLOAD_URL=$(echo "$RELEASE_DATA" | grep "browser_download_url" | grep "rootfs.tar.gz" | awk -F '"' '{print $4}')
+        wget -q "$DOWNLOAD_URL"
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Package OpenWrt Firmware
+      if: steps.download.outputs.status == 'success' and [[ "$SOURCE" == true ]]
+      uses: unifreq/openwrt_packit@master
+      env:
+        OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
+        PACKAGE_SOC: ${{ github.event.inputs.soc }}
+        WHOAMI: Ran
+        KERNEL_VERSION_NAME: ${{ github.event.inputs.kernel }}
+        CUSTOMIZE_RK3399: ${{ github.event.inputs.board }}
+        KERNEL_AUTO_LATEST: true
+        DISTRIB_REVISION: R${{ env.DATE1 }} by Ran
+
+    - name: Package OpenWrt Firmware
+      if: steps.download.outputs.status == 'success' and ! [[ "$SOURCE" == true ]]
+      uses: ophub/openwrt_packit@master
+      env:
+        OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
+        PACKAGE_SOC: ${{ github.event.inputs.soc }}
+        WHOAMI: Ran
+        KERNEL_VERSION_NAME: ${{ github.event.inputs.kernel }}
+        CUSTOMIZE_RK3399: ${{ github.event.inputs.board }}
+        KERNEL_AUTO_LATEST: true
+        DISTRIB_REVISION: R${{ env.DATE1 }} by Ran
+
+    - name: Upload OpenWrt To Release
+      if: env.PACKAGED_STATUS == 'success'
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        removeArtifacts: true
+        tag: $RELEASE_TAG
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*img.gz*
+    
