@@ -92,7 +92,7 @@ jobs:
 
     - name: Package OpenWrt Firmware
       if: steps.download.outputs.status == 'success'
-      uses: ${{ github.event.inputs.source }}/openwrt_packit@master
+      uses: $SOURCE/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
         PACKAGE_SOC: ${{ github.event.inputs.soc }}
