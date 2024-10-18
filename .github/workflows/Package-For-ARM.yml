@@ -27,7 +27,7 @@ on:
         description: '选择打包对象'
         required: true
         type: string
-        default: 'tpm312:rk3399-tpm312.dts'
+        default: 'tpm312:rk3399-tpm312.dtb'
 
 env:
   GITHUB_REPO: ${{ github.event.inputs.target }}
@@ -99,7 +99,7 @@ jobs:
       with:
         allowUpdates: true
         removeArtifacts: true
-        tag: $RELEASE_TAG
+        tag: env.RELEASE_TAG
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*img.gz*
     
