@@ -90,7 +90,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Package OpenWrt Firmware
-      if: steps.download.outputs.status == 'success' and [[ "$SOURCE" == true ]]
+      if: steps.download.outputs.status == 'success'
       uses: ${{ github.event.inputs.source }}/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
