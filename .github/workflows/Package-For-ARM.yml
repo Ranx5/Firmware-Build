@@ -88,7 +88,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
         
     - name: Package OpenWrt Firmware
-      if: steps.download.outputs.status == 'success' && ["$SOURCE" = true]
+      if: steps.download.outputs.status == 'success' && env.SOURCE == 'true'
       uses: unifreq/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
@@ -100,7 +100,7 @@ jobs:
         DISTRIB_REVISION: R${{ env.DATE1 }} by Ran
 
     - name: Package OpenWrt Firmware
-      if: steps.download.outputs.status == 'success' && ! ["$SOURCE" = true]
+      if: steps.download.outputs.status == 'success' && env.SOURCE != 'true'
       uses: ophub/openwrt_packit@master
       env:
         OPENWRT_ARMVIRT: openwrt/*rootfs.tar.gz
