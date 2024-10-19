@@ -21,7 +21,6 @@ git clone --depth=1 https://github.com/vernesong/OpenClash.git -b dev package/lu
 git clone --depth=1 https://github.com/kenzok78/luci-theme-argone.git -b main package/luci-theme-argone
 git clone --depth=1 https://github.com/kenzok78/luci-app-argone-config.git -b main package/luci-app-argone-config
 # 添加luci-app-passwall
-rm -rf feeds/luci/applications/luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall.git -b main package/luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages.git -b main package/passwall-packages
 # 添加luci-app-passwall2
