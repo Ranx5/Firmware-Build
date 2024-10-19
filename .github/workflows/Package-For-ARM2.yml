@@ -29,6 +29,7 @@ on:
         type: choice
         default: 'ophub/kernel'
         options:
+          - 'ophub/kernel'
           - 'breakings/OpenWrt'
       size:
         description: '设置分区大小'
