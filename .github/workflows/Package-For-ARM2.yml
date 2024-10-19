@@ -36,6 +36,16 @@ on:
         required: true
         type: string
         default: '256/1024'
+      kernel_usage:
+        description: "Set the tags of the stable kernel."
+        required: true
+        default: 'stable'
+        type: choice
+        options:
+          - 'stable'
+          - 'flippy'
+          - 'dev'
+          - 'beta'
       board:
         description: '选择打包对象'
         required: true
@@ -102,6 +112,7 @@ jobs:
         openwrt_kernel: ${{ github.event.inputs.kernel }}
         openwrt_size: ${{ github.event.inputs.size }}
         kernel_repo: ${{ github.event.inputs.kernel_repo }}
+        kernel_usage: ${{ github.event.inputs.kernel_usage }}
         builder_name: ${{ env.WHOAMI }}
 
     - name: Upload OpenWrt To Release
