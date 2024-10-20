@@ -15,7 +15,7 @@ CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/D
 MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
 ANTI_AD_URL="https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/adblock-for-dnsmasq.conf"
 CUSTOM_FIREWALL_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Scripts/openclash_custom_firewall_rules.sh"
-UCI_DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Scripts/default-setting.sh"
+UCI_DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Scripts/99z-default-setting.sh"
 # MOSDNS_CUSTOM_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build-Lean/main/clash/mosdns2.yaml"
 # MOSDNS_GEN_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build/main/Configs/mosdns"
 
