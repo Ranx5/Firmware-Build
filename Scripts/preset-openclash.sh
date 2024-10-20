@@ -1,7 +1,6 @@
 #!/bin/bash
 
 mkdir -p files/etc/openclash/core
-mkdir -p files/etc/openclash/core
 mkdir -p files/etc/openclash/custom
 mkdir -p files/etc/uci-defaults
 # mkdir -p files/etc/mosdns
