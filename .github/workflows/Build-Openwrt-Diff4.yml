@@ -38,7 +38,7 @@ on:
         required: true
         type: string
         default: 'Scripts/preset-meta.sh'
-      lan:
+      lan_ip:
         description: '设置LAN口IP'
         required: true
         default: '192.168.32.1'
@@ -50,7 +50,7 @@ env:
   DIY_P1_SH: ${{ github.event.inputs.script1 }}
   DIY_P2_SH: ${{ github.event.inputs.script2 }}
   DIY_P3_SH: ${{ github.event.inputs.script3 }}
-  LAN_IP: ${{ github.event.inputs.lan }}
+  LAN_IP: ${{ github.event.inputs.lan_ip }}
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   UPLOAD_ARTIFACT: false
