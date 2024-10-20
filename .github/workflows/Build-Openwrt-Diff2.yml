@@ -75,6 +75,7 @@ on:
       lan_ip:
         description: '设置LAN口IP'
         required: true
+        type: string
         default: '192.168.32.1'
 
 env:
@@ -84,6 +85,7 @@ env:
   DIY_P1_SH: ${{ github.event.inputs.script1 }}
   DIY_P2_SH: ${{ github.event.inputs.script2 }}
   DIY_P3_SH: ${{ github.event.inputs.script3 }}
+  LAN_IP: ${{ github.event.inputs.lan_ip }}
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   UPLOAD_ARTIFACT: false
@@ -264,8 +266,8 @@ jobs:
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is Temporary Firmware for ${{ env.FIRMWARE_TAG }}**
-          - ${{ github.event.inputs.config }}
-          - Lan IP Address: ${{ github.event.inputs.lan_ip }}
+          - ${{ env.CONFIG_FILE }}
+          - Lan IP Address: ${{ env.LAN_IP }}
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
           - ${{ env.COMMIT_AUTHOR }}
