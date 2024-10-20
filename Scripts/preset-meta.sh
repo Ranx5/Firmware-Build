@@ -52,12 +52,12 @@ wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
 wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modify_uv.py
 wget -qO- $ANTI_AD_URL > files/etc/openclash/anti-ad-for-dnsmasq.conf
 wget -qO- $CUSTOM_FIREWALL_URL > files/etc/openclash/custom/openclash_custom_firewall_rules.sh
-wget -qO- $UCI_DEFAULT_URL > files/etc/uci-defaults/default-setting.sh
+wget -qO- $UCI_DEFAULT_URL > files/etc/uci-defaults/99z-default-setting.sh
 
 # 设置权限
 chmod +x files/usr/bin/mihomo
 chmod +x files/etc/mihomo/modify_uv.py
-chmod +x files/etc/uci-defaults/default-setting.sh
+chmod +x files/etc/uci-defaults/99z-default-setting.sh
 chmod +x files/etc/openclash/custom/openclash_custom_firewall_rules.sh
 chmod +rw files/etc/openclash/anti-ad-for-dnsmasq.conf
 chmod +rw files/etc/config/mosdns
