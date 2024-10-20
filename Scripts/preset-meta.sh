@@ -5,6 +5,7 @@ mkdir -p files/etc/config
 mkdir -p files/usr/bin
 mkdir -p files/etc/mihomo
 mkdir -p files/etc/openclash/core
+mkdir -p files/etc/uci-defaults
 
 # 设置下载链接
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/mihomo_uv.py"
@@ -14,6 +15,8 @@ GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/downl
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
+ANTI_AD_URL="https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/adblock-for-dnsmasq.conf"
+UCI_DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Scripts/default-setting.sh"
 
 # 获取仓库的最新发布信息
 release_info=$(wget -qO- https://api.github.com/repos/MetaCubeX/mihomo/releases/latest)
@@ -45,10 +48,14 @@ wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
 wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modify_uv.py
+wget -qO- $ANTI_AD_URL > files/etc/openclash/anti-ad-for-dnsmasq.conf
+wget -qO- $UCI_DEFAULT_URL > files/etc/uci-defaults/default-setting.sh
 
 # 设置权限
 chmod +x files/usr/bin/mihomo
 chmod +x files/etc/mihomo/modify_uv.py
+chmod +x files/etc/uci-defaults/default-setting.sh
+chmod +rw files/etc/openclash/anti-ad-for-dnsmasq.conf
 chmod +rw files/etc/config/mosdns
 chmod +rw files/etc/config/mihomo
 chmod +x files/etc/openclash/core/clash*
