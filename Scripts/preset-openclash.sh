@@ -1,7 +1,8 @@
 #!/bin/bash
 
 mkdir -p files/etc/openclash/core
-mkdir -p files/etc/config
+mkdir -p files/etc/openclash/core
+mkdir -p files/etc/openclash/custom
 mkdir -p files/etc/uci-defaults
 # mkdir -p files/etc/mosdns
 # mkdir -p files/etc/init.d
@@ -13,6 +14,7 @@ CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Co
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
 MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
 ANTI_AD_URL="https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/adblock-for-dnsmasq.conf"
+CUSTOM_FIREWALL_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Scripts/openclash_custom_firewall_rules.sh"
 UCI_DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Scripts/default-setting.sh"
 # MOSDNS_CUSTOM_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build-Lean/main/clash/mosdns2.yaml"
 # MOSDNS_GEN_URL="https://raw.githubusercontent.com/Unwillingx/OpenWrt-Build/main/Configs/mosdns"
@@ -42,6 +44,7 @@ wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
 wget -qO- $ANTI_AD_URL > files/etc/openclash/anti-ad-for-dnsmasq.conf
+wget -qO- $CUSTOM_FIREWALL_URL > files/etc/openclash/custom/openclash_custom_firewall_rules.sh
 wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modify_uv.py
 wget -qO- $MOSDNS_CONFIG_URL > files/etc/config/mosdns
 wget -qO- $UCI_DEFAULT_URL > files/etc/uci-defaults/default-setting.sh
@@ -51,6 +54,7 @@ wget -qO- $UCI_DEFAULT_URL > files/etc/uci-defaults/default-setting.sh
 chmod +x files/etc/openclash/core/clash*
 chmod +x files/etc/openclash/modify_uv.py
 chmod +x files/etc/uci-defaults/default-setting.sh
+chmod +x files/etc/openclash/custom/openclash_custom_firewall_rules.sh
 chmod +rw files/etc/openclash/anti-ad-for-dnsmasq.conf
 chmod +rw files/etc/config/openclash
 chmod +rw files/etc/config/mosdns
