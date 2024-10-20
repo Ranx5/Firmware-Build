@@ -18,7 +18,7 @@ CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Co
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
 ANTI_AD_URL="https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/adblock-for-dnsmasq.conf"
 CUSTOM_FIREWALL_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Scripts/openclash_custom_firewall_rules.sh"
-UCI_DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Scripts/default-setting.sh"
+UCI_DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Scripts/99z-default-setting.sh"
 
 # 获取仓库的最新发布信息
 release_info=$(wget -qO- https://api.github.com/repos/MetaCubeX/mihomo/releases/latest)
