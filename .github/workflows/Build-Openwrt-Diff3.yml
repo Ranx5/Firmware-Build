@@ -41,6 +41,11 @@ on:
         required: true
         type: string
         default: 'Scripts/preset-meta.sh'
+      lan_ip:
+        description: '设置LAN口IP'
+        required: true
+        type: string
+        default: '192.168.32.1'
 
 env:
   REPO_URL: ${{ github.event.inputs.code }}
@@ -49,6 +54,7 @@ env:
   DIY_P1_SH: ${{ github.event.inputs.script1 }}
   DIY_P2_SH: ${{ github.event.inputs.script2 }}
   DIY_P3_SH: ${{ github.event.inputs.script3 }}
+  LAN_IP: ${{ github.event.inputs.lan }}
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   UPLOAD_ARTIFACT: false
@@ -142,6 +148,8 @@ jobs:
         chmod +x $DIY_P2_SH
         chmod +x $DIY_P3_SH
         cd openwrt
+        sed -i "s/192.168.1.1/$LAN_IP/g" package/base-files/files/bin/config_generate
+        echo "Set LAN IP Address: $LAN_IP"
         $GITHUB_WORKSPACE/$DIY_P2_SH
         $GITHUB_WORKSPACE/$DIY_P3_SH
         
@@ -172,7 +180,7 @@ jobs:
       uses: HiGarfield/cachewrtbuild@main
       with:
         ccache: false
-        mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}
+        mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}
         prefix: ${{ env.OPENWRT_PATH }}
     
     - name: Compile Firmware
@@ -228,6 +236,7 @@ jobs:
         body: |
           **This is Temporary Firmware for ${{ env.FIRMWARE_TAG }}**
           - ${{ github.event.inputs.config }}
+          - Lan IP Address: ${{ github.event.inputs.lan_ip }}
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
           - ${{ env.COMMIT_AUTHOR }}
