@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/abc.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HKG':[], 'SGP':[], 'JPN':[], 'IDN':[], 'AUS':[], 'USA':[],  'FR':[], 'DEU':[], 'OT':[], 'All':[]}
+Proxy = {'HKG':[], 'SGP':[], 'JPN':[], 'TW':[], 'IDN':[], 'AUS':[], 'USA':[],  'FR':[], 'DEU':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
@@ -23,6 +23,10 @@ for p in x['proxies']:
         Proxy['All'].append(name)
         Proxy['JPN'].append(name)
         ProxySet.add('JPN')
+    elif '台湾' in name:
+        Proxy['All'].append(name)
+        Proxy['TW'].append(name)
+        ProxySet.add('TW')
     elif '印尼' in name:
         Proxy['All'].append(name)
         Proxy['IDN'].append(name)
