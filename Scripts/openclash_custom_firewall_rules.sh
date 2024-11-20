@@ -26,10 +26,6 @@ if [ "$en_mode" == "fake-ip" ]; then
     LOG_OUT "Add special proxy rules"
     nft add rule inet fw4 openclash ip protocol tcp ip daddr != @china_ip_route  counter redirect to :7892
     nft add rule inet fw4 openclash_output ip protocol tcp ip daddr != @china_ip_route counter redirect to :7892
-    nft insert rule inet fw4 openclash_mangle ip protocol udp ip daddr @china_ip_route counter return
-    nft insert rule inet fw4 openclash ip daddr @china_ip_route counter return
-    nft insert rule inet fw4 openclash_output ip daddr @china_ip_route counter return
-    nft insert rule inet fw4 openclash_mangle ip daddr @china_ip_route counter return
     else
     LOG_OUT "china_ip_route is not exist. Skip add the rules"
   fi
