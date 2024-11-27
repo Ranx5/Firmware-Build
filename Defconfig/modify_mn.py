@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/mn.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'HK05':[], 'HK15':[], 'SGP':[], 'JP':[], 'TW':[], 'KR':[], 'USA':[], 'BETA':[], 'OT':[], 'All':[]}
+Proxy = {'HK':[], 'HK05':[], 'HK15':[], 'SG':[], 'JP':[], 'TW':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
@@ -33,16 +33,16 @@ for p in x['proxies']:
         ProxySet.add('JP')
     elif 'Singapore' in name:
         Proxy['All'].append(name)
-        Proxy['SGP'].append(name)
-        ProxySet.add('SGP')
+        Proxy['SG'].append(name)
+        ProxySet.add('SG')
     elif 'Taiwan' in name:
         Proxy['All'].append(name)
         Proxy['TW'].append(name)
         ProxySet.add('TW')
     elif 'UnitedStates' in name:
         Proxy['All'].append(name)
-        Proxy['USA'].append(name)
-        ProxySet.add('USA')
+        Proxy['US'].append(name)
+        ProxySet.add('US')
     elif 'Korea' in name:
         Proxy['All'].append(name)
         Proxy['KR'].append(name)
@@ -53,7 +53,7 @@ for p in x['proxies']:
         ProxySet.add('OT')
 ProxySet = list(ProxySet)
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
-Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'PornHub']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
 Strategy3 = ['Spotify', 'Microsoft']
 pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
@@ -75,7 +75,6 @@ rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provi
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
 
 rs = []
-rs.append('GEOIP,private,DIRECT,no-resolve')
 rs.append('IP-SUFFIX,1.1.1.1/24,DNS,no-resolve')
 rs.append('IP-SUFFIX,8.8.8.8/24,DNS,no-resolve')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
