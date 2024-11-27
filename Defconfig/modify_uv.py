@@ -1,70 +1,60 @@
+
 #!/usr/bin/env python3
 import yaml
 import os
 
 with open('/etc/openclash/config/uv.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = ['HK', 'SGP', 'JP', 'TW', 'USA', 'OT']
-HK = []
-SGP = []
-JP = []
-TW = []
-USA = []
-OT = []
+Proxy = {'HK':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
+ProxySet = set()
+pgs = []
 for p in x['proxies']:
     name = p['name']
+    Proxy['All'].append(name)
     if '香' in name:
-        Proxy.append(name)
-        HK.append(name)
+        Proxy['HK'].append(name)
+        ProxySet.add('HK')
     elif '日' in name:
-        Proxy.append(name)
-        JP.append(name)
+        Proxy['JP'].append(name)
+        ProxySet.add('JP')
     elif '新' in name:
-        Proxy.append(name)
-        SGP.append(name)
+        Proxy['SG'].append(name)
+        ProxySet.add('SG')
     elif '台' in name:
-        Proxy.append(name)
-        TW.append(name)
+        Proxy['TW'].append(name)
+        ProxySet.add('TW')
     elif '美' in name:
-        Proxy.append(name)
-        USA.append(name)
+        Proxy['US'].append(name)
+        ProxySet.add('US')
     else:
-        Proxy.append(name)
-        OT.append(name)
-
-pgs = []
-pgs.append({'name':'Proxy', 'type':'select', 'proxies':Proxy})
-pgs.append({'name':'Google', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'DisneyPlus', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'Netflix', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'OpenAI', 'type':'select', 'proxies':Proxy[n:]})
-pgs.append({'name':'Instagram', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'YouTube', 'type':'select', 'proxies':Proxy[:n]+['DIRECT']})
-pgs.append({'name':'Spotify', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'GitHub', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'Twitter', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'Telegram', 'type':'select', 'proxies':Proxy[:n]})
-pgs.append({'name':'Microsoft', 'type':'select', 'proxies':Proxy[:n]+['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':Proxy})
-pgs.append({'name':'HK', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':HK, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'SGP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':SGP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'TW', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':TW, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'JP', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':JP, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'USA', 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
-            'proxies':USA, 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
-pgs.append({'name':'OT', 'type': 'select', 'proxies':OT})
+        Proxy['OT'].append(name)
+        ProxySet.add('OT')
+ProxySet = list(ProxySet)
+Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
+Strategy3 = ['Spotify', 'Microsoft']
+pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
+for s in Strategy1:
+    pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
+for s in Strategy2:
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
+for s in Strategy3:
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
+pgs.append({'name':'DNS', 'type':'select', 'proxies':ProxySet+Proxy['All']})
+for s in ProxySet:
+    if s != 'OT':
+        pgs.append({'name':s, 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
+                    'proxies':Proxy[s], 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
+if Proxy['OT']:
+    pgs.append({'name':'OT', 'type': 'select', 'proxies':Proxy['OT']})
+    
 rps = {}
 rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
 
 rs = []
-rs.append('GEOIP,private,DIRECT,no-resolve')
 rs.append('IP-SUFFIX,1.1.1.1/24,DNS,no-resolve')
 rs.append('IP-SUFFIX,8.8.8.8/24,DNS,no-resolve')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
