@@ -5,8 +5,8 @@ mkdir -p files/etc/config
 mkdir -p files/etc/openclash/custom
 
 
-GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+GEOIP_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+GEOSITE_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
 # MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
