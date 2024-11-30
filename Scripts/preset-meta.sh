@@ -9,7 +9,7 @@ mkdir -p files/etc/openclash/custom
 
 # 设置下载链接
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/mihomo_uv.py"
-MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
+# MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
 MIHOMO_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mihomo.config"
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
@@ -41,7 +41,7 @@ fi
 
 # 下载配置文件
 wget -qO- $CONFIG_MODIFY_URL > files/etc/mihomo/modify_uv.py
-wget -qO- $MOSDNS_CONFIG_URL > files/etc/config/mosdns
+# wget -qO- $MOSDNS_CONFIG_URL > files/etc/config/mosdns
 wget -qO- $MIHOMO_CONFIG_URL > files/etc/config/mihomo
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
@@ -53,7 +53,7 @@ wget -qO- $CUSTOM_FIREWALL_URL > files/etc/openclash/custom/openclash_custom_fir
 chmod +x files/usr/bin/mihomo
 chmod +x files/etc/mihomo/modify_uv.py
 chmod +x files/etc/openclash/custom/openclash_custom_firewall_rules.sh
-chmod +rw files/etc/config/mosdns
+# chmod +rw files/etc/config/mosdns
 chmod +rw files/etc/config/mihomo
 chmod +x files/etc/openclash/core/clash*
 chmod +x files/etc/openclash/modify_uv.py
