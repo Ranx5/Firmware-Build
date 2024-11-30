@@ -30,6 +30,7 @@ on:
         options:
           - 'openwrt-21.02'
           - 'openwrt-23.05'
+          - 'openwrt-24.10'
           - 'master'
           - 'main'
       config:
@@ -55,7 +56,7 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-imm-part2.sh'
+        default: 'Scripts/diy-imm-part3.sh'
         options:
           - 'Scripts/diy-imm-part2.sh'
           - 'Scripts/diy-imm-part3.sh'
@@ -69,8 +70,10 @@ on:
         default: 'Scripts/preset-meta.sh'
         options:
           - 'Scripts/preset-openclash.sh'
+          - 'Scripts/preset-openclash2.sh'
           - 'Scripts/preset-mihomo.sh'
           - 'Scripts/preset-meta.sh'
+          - 'Scripts/preset-meta2.sh'
           - 'Scripts/diy-nothing.sh'
       lan_ip:
         description: '设置LAN口IP'
