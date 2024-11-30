@@ -1,6 +1,6 @@
 #!/bin/bash
-curl -Co ad.txt https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/refs/heads/main/Filters/AWAvenue-Ads-Rule-hosts.txt
-#curl -Co ad.txt https://gcore.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-hosts.txt
+curl -C - -o ad.txt https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/refs/heads/main/Filters/AWAvenue-Ads-Rule-hosts.txt
+#curl -C - -o ad.txt https://gcore.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-hosts.txt
 if [ $? -eq 0 ]; then
     echo "Download ad.txt successfully!"
     sed -i '/127/!d' ad.txt
