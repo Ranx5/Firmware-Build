@@ -40,6 +40,7 @@ on:
         default: 'Configs/imm_master_diff.config'
         options:
           - 'Configs/imm_master_diff.config'
+          - 'Configs/imm-24-diff.config'
           - 'Configs/imm_798x_diff.config'
           - 'Configs/imm_798x_nft.config'
           - 'Configs/imm_master_test.config'
