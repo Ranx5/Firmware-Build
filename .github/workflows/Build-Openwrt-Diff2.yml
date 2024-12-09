@@ -41,6 +41,8 @@ on:
         options:
           - 'Configs/imm_master_diff.config'
           - 'Configs/imm-24-diff.config'
+          - 'Configs/imm24-test-diff.config'
+          - 'Configs/imm24-test-diff2.config'
           - 'Configs/imm_798x_diff.config'
           - 'Configs/imm_798x_nft.config'
           - 'Configs/imm_master_test.config'
@@ -57,18 +59,20 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-imm-part3.sh'
+        default: 'Scripts/diy-imm-part4.sh'
         options:
           - 'Scripts/diy-imm-part2.sh'
           - 'Scripts/diy-imm-part3.sh'
           - 'Scripts/diy-imm-part4.sh'
+          - 'Scripts/diy-imm-part5.sh'
+          - 'Scripts/diy-imm-part6.sh'
           - 'Scripts/diy-798x-part2.sh'
           - 'Scripts/diy-nothing.sh'
       script3:
         description: '选择脚本3'
         required: true
         type: choice
-        default: 'Scripts/preset-meta.sh'
+        default: 'Scripts/preset-meta2.sh'
         options:
           - 'Scripts/preset-openclash.sh'
           - 'Scripts/preset-openclash2.sh'
