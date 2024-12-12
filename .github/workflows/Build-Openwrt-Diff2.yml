@@ -41,8 +41,8 @@ on:
         options:
           - 'Configs/imm_master_diff.config'
           - 'Configs/imm-24-diff.config'
-          - 'Configs/imm24-test-diff.config'
-          - 'Configs/imm24-test-diff2.config'
+          - 'Configs/imm24_test_diff.config'
+          - 'Configs/imm24_test_diff2.config'
           - 'Configs/imm_798x_diff.config'
           - 'Configs/imm_798x_nft.config'
           - 'Configs/imm_master_test.config'
