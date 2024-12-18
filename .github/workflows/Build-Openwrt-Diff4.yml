@@ -22,7 +22,7 @@ on:
         description: '选择配置'
         required: true
         type: string
-        default: 'Configs/rk3399.config'
+        default: 'Configs/rk3399_imm.config'
       script1:
         description: '选择脚本1'
         required: true
@@ -37,7 +37,7 @@ on:
         description: '选择脚本3'
         required: true
         type: string
-        default: 'Scripts/preset-meta.sh'
+        default: 'Scripts/preset-meta2.sh'
       lan_ip:
         description: '设置LAN口IP'
         required: true
