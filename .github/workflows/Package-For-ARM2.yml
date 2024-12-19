@@ -55,7 +55,7 @@ on:
         description: '选择打包对象'
         required: true
         type: string
-        default: 'Tpm312'
+        default: 'tpm312'
 
 env:
   GITHUB_REPO: ${{ github.event.inputs.target }}
