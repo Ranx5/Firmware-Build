@@ -42,7 +42,6 @@ for s in Strategy2:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
 for s in Strategy3:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in ProxySet:
     if s != 'OT':
         pgs.append({'name':s, 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
@@ -56,8 +55,8 @@ rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provi
 
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
-rs.append('IP-SUFFIX,1.1.1.1/24,DNS,no-resolve')
-rs.append('IP-SUFFIX,8.8.8.8/24,Google,no-resolve')
+rs.append('GEOIP,cloudflare,Proxy,no-resolve')
+rs.append('GEOSITE,cloudflare,Proxy')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
 rs.append('GEOSITE,twitter,Twitter')
 rs.append('GEOIP,twitter,Twitter,no-resolve')
