@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 import yaml
 import os
@@ -12,28 +11,23 @@ ProxySet = set()
 pgs = []
 for p in x['proxies']:
     name = p['name']
+    Proxy['All'].append(name)
     if 'HK' in name:
-        Proxy['All'].append(name)
         Proxy['HK'].append(name)
         ProxySet.add('HK')
     elif 'JP' in name:
-        Proxy['All'].append(name)
         Proxy['JP'].append(name)
         ProxySet.add('JP')
     elif 'SG' in name:
-        Proxy['All'].append(name)
         Proxy['SG'].append(name)
         ProxySet.add('SG')
     elif 'TW' in name:
-        Proxy['All'].append(name)
         Proxy['TW'].append(name)
         ProxySet.add('TW')
     elif 'US' in name:
-        Proxy['All'].append(name)
         Proxy['US'].append(name)
         ProxySet.add('US')
     else:
-        Proxy['All'].append(name)
         Proxy['OT'].append(name)
         ProxySet.add('OT')
 ProxySet = list(ProxySet)
@@ -47,7 +41,6 @@ for s in Strategy2:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
 for s in Strategy3:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in ProxySet:
     if s != 'OT':
         pgs.append({'name':s, 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
@@ -61,8 +54,8 @@ rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provi
 
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
-rs.append('IP-SUFFIX,1.1.1.1/24,DNS,no-resolve')
-rs.append('IP-SUFFIX,8.8.8.8/24,DNS,no-resolve')
+rs.append('GEOIP,cloudflare,Proxy,no-resolve')
+rs.append('GEOSITE,cloudflare,Proxy')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
 rs.append('GEOSITE,twitter,Twitter')
 rs.append('GEOIP,twitter,Twitter,no-resolve')
