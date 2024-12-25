@@ -28,6 +28,6 @@ if [ -f "$FILE_NAME" ]; then
     /etc/init.d/network restart
     echo "网络服务已重启。"
 else
-    echo "文件 $FILE_NAME 不存在，请检查文件路径。"
+    echo "文件不存在，请检查文件路径。"
     exit 1
 fi
