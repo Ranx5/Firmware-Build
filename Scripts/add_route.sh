@@ -1,9 +1,8 @@
 #!/bin/bash
-DEFAULT_GATEWAY="192.168.32.11"
-DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Defconfig/route.txt"
-# 网关地址从第一个参数获取
-gateway=${1:-$DEFAULT_GATEWAY}
-url=${2:-$DEFAULT_URL}
+#DEFAULT_GATEWAY="192.168.32.11"
+#DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Defconfig/route.txt"
+gateway=$1
+url=$2
 # 拉取远程文件
 curl -s $url | \
 {
