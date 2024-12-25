@@ -59,7 +59,7 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-imm-part4.sh'
+        default: 'Scripts/diy-imm-part5.sh'
         options:
           - 'Scripts/diy-imm-part2.sh'
           - 'Scripts/diy-imm-part3.sh'
