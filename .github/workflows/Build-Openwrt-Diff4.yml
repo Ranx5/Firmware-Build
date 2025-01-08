@@ -7,7 +7,7 @@ on:
         description: '选择平台'
         required: true
         type: string
-        default: 'RK3399'
+        default: 'Rockchip'
       code:
         description: '选择仓库'
         required: true
@@ -17,12 +17,12 @@ on:
         description: '选择分支'
         required: true
         type: string
-        default: 'master'
+        default: 'openwrt-24.10'
       config:
         description: '选择配置'
         required: true
         type: string
-        default: 'Configs/rk3399_imm.config'
+        default: 'Configs/imm24_rk3582_diff.config'
       script1:
         description: '选择脚本1'
         required: true
@@ -32,7 +32,7 @@ on:
         description: '选择脚本2'
         required: true
         type: string
-        default: 'Scripts/diy-rk3399-part2.sh'
+        default: 'Scripts/diy-rk3582-part2.sh'
       script3:
         description: '选择脚本3'
         required: true
