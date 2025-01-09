@@ -6,7 +6,7 @@ import os
 with open('/etc/openclash/config/uv.yaml', 'rb') as f:
     x = yaml.safe_load(f)
 Proxy = {'HK':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'OT':[], 'All':[]}
-testtime='300'
+testtime='60'
 n = len(Proxy)
 ProxySet = set()
 pgs = []
