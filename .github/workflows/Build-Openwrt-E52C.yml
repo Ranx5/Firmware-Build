@@ -257,7 +257,7 @@ jobs:
       id: prepare
       run: |
         PACKAGE_PATH=openwrt1
-        [ -d $FIRMWARE_PATH ] || mkdir -p $PACKAGE_PATH
+        mkdir -p $PACKAGE_PATH
         chmod -R 777 $PACKAGE_PATH
         find ${{ env.FIRMWARE_PATH }} -name "*rootfs.tar.gz" -exec cp {} $PACKAGE_PATH/ \;
         rm -rf openwrt
