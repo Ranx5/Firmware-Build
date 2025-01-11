@@ -9,13 +9,13 @@ mkdir -p files/etc/openclash/core
 
 # 设置下载链接
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/mihomo_uv.py"
-# MOSDNS_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mosdns.config"
 MIHOMO_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/mihomo.config"
 GEOIP_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
 GEOSITE_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
 ANTI_ADS_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Scripts/anti_ads.sh"
+ADD_ROUTE_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Scripts/add_route.sh"
 
 # 获取仓库的最新发布信息
 release_info=$(wget -qO- https://api.github.com/repos/MetaCubeX/mihomo/releases/latest)
@@ -41,19 +41,19 @@ fi
 
 # 下载配置文件
 wget -qO- $CONFIG_MODIFY_URL > files/etc/mihomo/modify_uv.py
-# wget -qO- $MOSDNS_CONFIG_URL > files/etc/config/mosdns
 wget -qO- $MIHOMO_CONFIG_URL > files/etc/config/mihomo
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
 wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modify_uv.py
 wget -qO- $ANTI_ADS_URL > files/etc/openclash/anti_ads.sh
+wget -qO- $ADD_ROUTE_URL > files/etc/openclash/add_route.sh
 
 # 设置权限
 chmod +x files/usr/bin/mihomo
 chmod +x files/etc/mihomo/modify_uv.py
 chmod +x files/etc/openclash/anti_ads.sh
-# chmod +rw files/etc/config/mosdns
+chmod +x files/etc/openclash/add_route.sh
 chmod +rw files/etc/config/mihomo
 chmod +x files/etc/openclash/core/clash*
 chmod +x files/etc/openclash/modify_uv.py
