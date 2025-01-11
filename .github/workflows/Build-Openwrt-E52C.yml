@@ -103,16 +103,16 @@ jobs:
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
-    #- name: Free Disk Space
-     # id: clear
-     # uses: jlumbroso/free-disk-space@main
-      #with:
-      #  tool-cache: true
-      #  android: true
-      #  dotnet: true
-      #  haskell: true
-      #  large-packages: true
-      #  swap-storage: true
+    - name: Free Disk Space
+      id: clear
+      uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: true
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
 
     - name: Initialization Environment
       env:
@@ -261,7 +261,6 @@ jobs:
         mkdir -p $PACKAGE_PATH
         chmod -R 777 $PACKAGE_PATH
         find ${{ env.FIRMWARE_PATH }} -name "*rootfs.tar.gz" -exec cp {} $PACKAGE_PATH/ \;
-        rm -rf openwrt
         cd $PACKAGE_PATH
         echo "PACKAGE_PATH=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
