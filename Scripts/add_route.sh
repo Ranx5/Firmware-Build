@@ -1,8 +1,14 @@
 #!/bin/bash
-#DEFAULT_GATEWAY="192.168.32.11"
-#DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Defconfig/route.txt"
-gateway=$1
-url=$2
+file="/etc/config/network"
+line_count=$(sed -n '/route/p' "$file" | wc -l)
+if [ "$line_count" -gt 2 ]; then
+    echo "已存在路由规则，脚本退出。"
+    exit 1
+fi
+DEFAULT_GATEWAY="192.168.32.11"
+DEFAULT_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Defconfig/route.txt"
+gateway=${1:-$DEFAULT_GATEWAY}
+url=${2:-$DEFAULT_URL}
 # 拉取远程文件
 curl -s $url | \
 {
