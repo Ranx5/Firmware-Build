@@ -7,7 +7,7 @@ on:
         description: '选择平台'
         required: true
         type: string
-        default: 'Rockchip'
+        default: 'Rockchip_E52C'
       code:
         description: '选择仓库'
         required: true
