@@ -1,4 +1,4 @@
-name: Build-Openwrt-Arm
+name: Build-Openwrt-E52C
 
 on:
   workflow_dispatch:
@@ -31,6 +31,7 @@ on:
           - 'Configs/e52c_imm_master.config'
           - 'Configs/e52c_lede.config'
           - 'Configs/e52c_lienol_main.config'
+          - 'Configs/test.config'
       script1:
         description: '选择脚本1'
         required: true
@@ -102,16 +103,16 @@ jobs:
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
-    - name: Free Disk Space
-      id: clear
-      uses: jlumbroso/free-disk-space@main
-      with:
-        tool-cache: true
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        swap-storage: true
+    #- name: Free Disk Space
+     # id: clear
+     # uses: jlumbroso/free-disk-space@main
+      #with:
+      #  tool-cache: true
+      #  android: true
+      #  dotnet: true
+      #  haskell: true
+      #  large-packages: true
+      #  swap-storage: true
 
     - name: Initialization Environment
       env:
