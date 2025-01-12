@@ -123,7 +123,7 @@ jobs:
 
     - name: Upload OpenWrt To Release
       if: env.PACKAGED_STATUS == 'success'
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.15.0
       with:
         allowUpdates: true
         replacesArtifacts: true
