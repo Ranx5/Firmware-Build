@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       target:
-        description: '选择平台'
+        description: '设置标签'
         required: true
         type: string
         default: 'Rockchip_E52C'
