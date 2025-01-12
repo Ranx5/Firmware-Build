@@ -223,7 +223,8 @@ jobs:
         find $OPENWRT_PATH/bin/packages -type f \( -name "*.ipk" -o -name "*.apk" \) -exec mv -f {} packages \;
         tar -zcf Packages.tar.gz packages
         rm -rf packages feeds.buildinfo version.buildinfo
-        echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
+        FILES=$(find "$PWD" -maxdepth 1 -type f)
+        echo "FIRMWARE_PATH=$FILES" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload Firmware To Artifact
@@ -241,7 +242,7 @@ jobs:
         allowUpdates: true
         tag: ${{ env.RELEASE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/*
+        artifacts: ${{ env.FIRMWARE_PATH }}
         body: |
           **This is Temporary Firmware for ${{ env.FIRMWARE_TAG }}**
           - ${{ github.event.inputs.config }}
