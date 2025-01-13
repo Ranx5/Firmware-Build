@@ -233,26 +233,6 @@ jobs:
       with:
         name: OpenWrt_firmware_${{ env.RELEASE_TAG }}
         path: ${{ env.FIRMWARE_PATH }}
-
-    - name: Upload Firmware To Release
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
-      uses: ncipollo/release-action@v1.15.0
-      with:
-        name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
-        allowUpdates: true
-        tag: ${{ env.RELEASE_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/*
-        body: |
-          **This is Temporary Firmware for ${{ env.FIRMWARE_TAG }}**
-          - ${{ github.event.inputs.config }}
-          - LAN IP Address: ${{ env.LAN_IP }}
-          ### 🧊 固件版本
-          - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
-          - ${{ env.COMMIT_AUTHOR }}
-          - ${{ env.COMMIT_DATE }}
-          - ${{ env.COMMIT_MESSAGE }}
-          - ${{ env.COMMIT_HASH }}
           
     - name: Initialization Package Preparation
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
@@ -275,13 +255,25 @@ jobs:
         KERNEL_VERSION_NAME: 6.6.y
         WHOAMI: ${{ env.WHOAMI }}
 
-    - name: Upload OpenWrt To Release
+    - name: Upload Fireware To Release
       if: env.PACKAGED_STATUS == 'success'
       uses: ncipollo/release-action@v1.15.0
       with:
+        name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
+        replacesArtifacts: true
         tag: ${{ env.RELEASE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*img.gz*
+        body: |
+          **This is Temporary Firmware for ${{ env.FIRMWARE_TAG }}**
+          - ${{ github.event.inputs.config }}
+          - LAN IP Address: ${{ env.LAN_IP }}
+          ### 🧊 固件版本
+          - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
+          - ${{ env.COMMIT_AUTHOR }}
+          - ${{ env.COMMIT_DATE }}
+          - ${{ env.COMMIT_MESSAGE }}
+          - ${{ env.COMMIT_HASH }}
 
         
