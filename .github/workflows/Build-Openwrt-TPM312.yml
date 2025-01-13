@@ -1,28 +1,36 @@
-name: Build-Openwrt-Diff4
+name: Build-Openwrt-TPM312
 
 on:
   workflow_dispatch:
     inputs:
       target:
-        description: '选择平台'
+        description: '设置平台'
         required: true
         type: string
-        default: 'Rockchip'
+        default: 'Rockchip_TPM312'
       code:
         description: '选择仓库'
         required: true
-        type: string
+        type: choice
         default: 'https://github.com/Ranx5/immortalwrt'
+        options:
+          - 'https://github.com/Ranx5/immortalwrt'
+          - 'https://github.com/Ranx5/lede'
+          - 'https://github.com/Ranx5/openwrt-lienol'
       branch:
         description: '选择分支'
         required: true
         type: string
-        default: 'openwrt-24.10'
+        default: 'master'
       config:
         description: '选择配置'
         required: true
-        type: string
-        default: 'Configs/imm24_rk3582_diff.config'
+        type: choice
+        default: 'Configs/tpm312_imm_master.config'
+        options:
+          - 'Configs/tpm312_imm_master.config'
+          - 'Configs/tpm312_lede.config'
+          - 'Configs/tpm312_lienol_main.config'
       script1:
         description: '选择脚本1'
         required: true
@@ -31,17 +39,59 @@ on:
       script2:
         description: '选择脚本2'
         required: true
-        type: string
-        default: 'Scripts/diy-rk3582-part2.sh'
+        type: choice
+        default: 'Scripts/diy-rockchip-imm-part2.sh'
+        options:
+          - 'Scripts/diy-rockchip-imm-part2.sh'
+          - 'Scripts/diy-rockchip-lede-part2.sh'
+          - 'Scripts/diy-rockchip-lienol-part2.sh'
       script3:
         description: '选择脚本3'
         required: true
         type: string
-        default: 'Scripts/preset-meta2.sh'
+        default: 'Scripts/preset-meta.sh'
       lan_ip:
         description: '设置LAN口IP'
         required: true
-        default: '192.168.32.1'
+        default: '192.168.32.11'
+      kernel:
+        description: '选择内核版本'
+        required: true
+        type: string
+        default: '6.6.y'
+      kernel_repo:
+        description: '选择内核来源'
+        required: true
+        type: choice
+        default: 'ophub/kernel'
+        options:
+          - 'ophub/kernel'
+          - 'breakings/OpenWrt'
+      size:
+        description: '设置分区大小'
+        required: true
+        type: string
+        default: '256/1024'
+      kernel_usage:
+        description: "设置内核类型"
+        required: true
+        default: 'stable'
+        type: choice
+        options:
+          - 'stable'
+          - 'flippy'
+          - 'dev'
+          - 'beta'
+      auto_kernel:
+        description: "内核是否最新"
+        required: true
+        type: boolean
+        default: true
+      board:
+        description: '选择打包对象'
+        required: true
+        type: string
+        default: 'tpm312'
 
 env:
   REPO_URL: ${{ github.event.inputs.code }}
@@ -52,8 +102,6 @@ env:
   DIY_P3_SH: ${{ github.event.inputs.script3 }}
   LAN_IP: ${{ github.event.inputs.lan_ip }}
   CACHE_TOOLCHAIN: true
-  UPLOAD_BIN_DIR: false
-  UPLOAD_ARTIFACT: false
   UPLOAD_RELEASE: true
   FIRMWARE_TAG: ${{ github.event.inputs.target }}
   TZ: Asia/Shanghai
@@ -193,13 +241,6 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: Upload Bin Directory
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      uses: actions/upload-artifact@main
-      with:
-        name: ${{ env.SOURCE_REPO }}-bin-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
-        path: ${{ env.OPENWRT_PATH }}/bin
-
     - name: Organize Files
       id: organize
       if: steps.compile.outputs.status == 'success'
@@ -210,25 +251,44 @@ jobs:
         find $OPENWRT_PATH/bin/packages -type f \( -name "*.ipk" -o -name "*.apk" \) -exec mv -f {} packages \;
         tar -zcf Packages.tar.gz packages
         rm -rf packages feeds.buildinfo version.buildinfo
+        find "$PWD" -mindepth 1 -type d -exec rm -rf {} +
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: Upload Firmware To Artifact
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_ARTIFACT == 'true'
-      uses: actions/upload-artifact@main
-      with:
-        name: OpenWrt_firmware_${{ env.RELEASE_TAG }}
-        path: ${{ env.FIRMWARE_PATH }}
-
-    - name: Upload Firmware To Release
+    - name: Initialization Package Preparation
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
-      uses: ncipollo/release-action@v1
+      id: prepare
+      run: |
+        PACKAGE_PATH=openwrt1
+        mkdir -p $PACKAGE_PATH
+        chmod -R 777 $PACKAGE_PATH
+        find ${{ env.FIRMWARE_PATH }} -name "*rootfs.tar.gz" -exec cp {} $PACKAGE_PATH/ \;
+        cd $PACKAGE_PATH
+        echo "PACKAGE_PATH=$PWD" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Package Armvirt as OpenWrt
+      uses: ophub/amlogic-s9xxx-openwrt@main
+      with:
+        openwrt_path: openwrt1/*rootfs.tar.gz
+        openwrt_board: ${{ github.event.inputs.board }}
+        openwrt_kernel: ${{ github.event.inputs.kernel }}
+        auto_kernel: ${{ github.event.inputs.auto_kernel }}
+        openwrt_size: ${{ github.event.inputs.size }}
+        kernel_repo: ${{ github.event.inputs.kernel_repo }}
+        kernel_usage: ${{ github.event.inputs.kernel_usage }}
+        builder_name: ${{ env.WHOAMI }}
+
+    - name: Upload Fireware To Release
+      if: env.PACKAGED_STATUS == 'success'
+      uses: ncipollo/release-action@v1.15.0
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
+        replacesArtifacts: true
         tag: ${{ env.RELEASE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/*
+        artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
           **This is Temporary Firmware for ${{ env.FIRMWARE_TAG }}**
           - ${{ github.event.inputs.config }}
