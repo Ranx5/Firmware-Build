@@ -54,11 +54,6 @@ on:
         description: '设置LAN口IP'
         required: true
         default: '192.168.32.11'
-      kernel:
-        description: '选择内核版本'
-        required: true
-        type: string
-        default: '6.6.y'
       kernel_repo:
         description: '选择内核来源'
         required: true
@@ -72,26 +67,6 @@ on:
         required: true
         type: string
         default: '256/1024'
-      kernel_usage:
-        description: "设置内核类型"
-        required: true
-        default: 'stable'
-        type: choice
-        options:
-          - 'stable'
-          - 'flippy'
-          - 'dev'
-          - 'beta'
-      auto_kernel:
-        description: "内核是否最新"
-        required: true
-        type: boolean
-        default: true
-      board:
-        description: '选择打包对象'
-        required: true
-        type: string
-        default: 'tpm312'
 
 env:
   REPO_URL: ${{ github.event.inputs.code }}
@@ -271,12 +246,12 @@ jobs:
       uses: ophub/amlogic-s9xxx-openwrt@main
       with:
         openwrt_path: openwrt1/*rootfs.tar.gz
-        openwrt_board: ${{ github.event.inputs.board }}
-        openwrt_kernel: ${{ github.event.inputs.kernel }}
-        auto_kernel: ${{ github.event.inputs.auto_kernel }}
+        openwrt_board: tpm312
+        openwrt_kernel: 6.6.y
+        auto_kernel: true
         openwrt_size: ${{ github.event.inputs.size }}
         kernel_repo: ${{ github.event.inputs.kernel_repo }}
-        kernel_usage: ${{ github.event.inputs.kernel_usage }}
+        kernel_usage: flippy
         builder_name: ${{ env.WHOAMI }}
 
     - name: Upload Fireware To Release
