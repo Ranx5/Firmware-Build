@@ -49,8 +49,6 @@ env:
   DIY_P3_SH: ${{ github.event.inputs.script3 }}
   LAN_IP: ${{ github.event.inputs.lan_ip }}
   CACHE_TOOLCHAIN: true
-  UPLOAD_BIN_DIR: false
-  UPLOAD_ARTIFACT: false
   UPLOAD_RELEASE: true
   FIRMWARE_TAG: ${{ github.event.inputs.tag }}
   TZ: Asia/Shanghai
