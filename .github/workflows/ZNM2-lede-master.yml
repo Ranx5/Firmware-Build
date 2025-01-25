@@ -19,6 +19,7 @@ on:
         options:
           - 'Configs/m2_lede_master.config'
           - 'Configs/m2_simple_diff.config'
+          - 'Configs/m2_lede_diff.config'
       script2:
         description: '选择脚本2'
         required: true
