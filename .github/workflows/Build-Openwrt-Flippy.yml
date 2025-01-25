@@ -1,4 +1,4 @@
-name: Build-Openwrt-E52C
+name: Build-Openwrt-Flippy
 
 on:
   workflow_dispatch:
