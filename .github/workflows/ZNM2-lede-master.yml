@@ -6,23 +6,35 @@ on:
       tag:
         description: '固件类型'
         required: true
-        type: string
-        default: 'ZN-M2-LEDE'
+        type: choice
+        default: 'ZN-M2-LEDE-MAIN'
+        options:
+          - 'ZN-M2-LEDE-MAIN'
+          - 'ZN-M2-LEDE-AP'
       config:
         description: '选择配置'
         required: true
-        type: string
-        default: 'Configs/m2_lede_diff.config'
+        type: choice
+        default: 'Configs/m2_lede_master.config'
+        options:
+          - 'Configs/m2_lede_master.config'
+          - 'Configs/m2_simple_diff.config'
       script2:
         description: '选择脚本2'
         required: true
-        type: string
+        type: choice
         default: 'Scripts/diy-m2-lede-part2.sh'
+        options:
+          - 'Scripts/diy-m2-lede-part2.sh'
+          - 'Scripts/diy-nothing.sh'
       script3:
         description: '选择脚本3'
         required: true
-        type: string
+        type: choice
         default: 'Scripts/preset-openclash2.sh'
+        options:
+          - 'Scripts/preset-openclash2.sh'
+          - 'Scripts/diy-nothing.sh'
       lan_ip:
         description: '设置LAN口IP'
         required: true
