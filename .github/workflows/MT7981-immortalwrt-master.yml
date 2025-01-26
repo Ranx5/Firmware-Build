@@ -11,6 +11,14 @@ on:
         options:
           - 'MT7981-MAIN'
           - 'MT7981-AP'
+      branch:
+        description: '选择配置'
+        required: true
+        type: choice
+        default: 'master'
+        options:
+          - 'master'
+          - 'openwrt-23.05'
       config:
         description: '选择配置'
         required: true
@@ -42,7 +50,7 @@ on:
         default: '192.168.32.1'
 env:
   REPO_URL: https://github.com/Ranx5/immortalwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: ${{ github.event.inputs.branch }}
   CONFIG_FILE: ${{ github.event.inputs.config }}
   DIY_P1_SH: Scripts/diy-imm-part1.sh
   DIY_P2_SH: ${{ github.event.inputs.script2 }}
