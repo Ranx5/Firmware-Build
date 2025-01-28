@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/mn.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'HK05':[], 'HK15':[], 'SG':[], 'JP':[], 'TW':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
+Proxy = {'HK05':[], 'HK20':[], 'SG':[], 'SG20':[] 'JP':[], 'TW':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
@@ -19,18 +19,18 @@ for p in x['proxies']:
         Proxy['All'].append(name)
         Proxy['HK05'].append(name)
         ProxySet.add('HK05')
-    elif '1.5x' in name:
-        Proxy['All'].append(name)
-        Proxy['HK15'].append(name)
-        ProxySet.add('HK15')
     elif 'HongKong' in name:
         Proxy['All'].append(name)
-        Proxy['HK'].append(name)
-        ProxySet.add('HK')
+        Proxy['HK20'].append(name)
+        ProxySet.add('HK20')
     elif 'Japan' in name:
         Proxy['All'].append(name)
         Proxy['JP'].append(name)
         ProxySet.add('JP')
+    elif '2x' in name:
+        Proxy['All'].append(name)
+        Proxy['SG20'].append(name)
+        ProxySet.add('SG20')
     elif 'Singapore' in name:
         Proxy['All'].append(name)
         Proxy['SG'].append(name)
@@ -62,7 +62,6 @@ for s in Strategy2:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
 for s in Strategy3:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
-pgs.append({'name':'DNS', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in ProxySet:
     if s != 'OT':
         pgs.append({'name':s, 'type': 'load-balance', 'strategy': 'consistent-hashing', 'disable-udp': False,
@@ -75,15 +74,14 @@ rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provi
                            'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
 
 rs = []
-rs.append('IP-SUFFIX,1.1.1.1/24,DNS,no-resolve')
-rs.append('IP-SUFFIX,8.8.8.8/24,DNS,no-resolve')
+rs.append('GEOIP,private,DIRECT,no-resolve')
+rs.append('GEOIP,cloudflare,Proxy,no-resolve')
+rs.append('GEOSITE,cloudflare,Proxy')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
 rs.append('GEOSITE,twitter,Twitter')
-rs.append('GEOIP,twitter,Twitter,no-resolve')
 rs.append('GEOSITE,instagram,Instagram')
 rs.append('GEOSITE,facebook,Instagram')
 rs.append('GEOSITE,youtube,YouTube')
-rs.append('DOMAIN-SUFFIX,googleapis.cn,Google')
 rs.append('GEOSITE,google,Google')
 rs.append('GEOSITE,spotify,Spotify')
 rs.append('GEOSITE,github,GitHub')
@@ -92,10 +90,8 @@ rs.append('GEOSITE,microsoft,Microsoft')
 rs.append('GEOSITE,disney,DisneyPlus')
 rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
-rs.append('GEOSITE,category-scholar-cn,DIRECT')
 rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
-rs.append('GEOSITE,apple,DIRECT')
 rs.append('DOMAIN-SUFFIX,ip.sb,GitHub')
 rs.append('DOMAIN-SUFFIX,ipify.org,YouTube')
 rs.append('MATCH,Proxy')
