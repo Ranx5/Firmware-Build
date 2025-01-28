@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/mn.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK05':[], 'HK20':[], 'SG':[], 'SG20':[] 'JP':[], 'TW':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
+Proxy = {'HK05':[], 'HK20':[], 'SG':[], 'SG20':[], 'JP':[], 'TW':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
