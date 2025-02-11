@@ -43,7 +43,7 @@ wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
 wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modify_uv.py
 wget -qO- $ANTI_ADS_URL > files/etc/openclash/anti_ads.sh
-wget -qO- $ANTI_ADS_URL > files/etc/openclash/update_core.sh
+wget -qO- $UPDATE_CORE_URL > files/etc/openclash/update_core.sh
 
 # 设置权限
 chmod +x files/usr/bin/mihomo
