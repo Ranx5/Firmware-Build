@@ -13,7 +13,6 @@ if [ "$local_version" != "$tag" ]; then
     download_url=$(echo "$release_data" | jq -r --arg filename "$target_name" '.assets[] | select(.name == $filename) | .browser_download_url')
     # 下载文件
     if [ -n "$download_url" ]; then
-        curl -L --retry 3 -o "$target_name" "$download_url"
         if curl -L -f -o $target_name $download_url; then
             echo "下载成功: $target_name"
         else
@@ -21,11 +20,12 @@ if [ "$local_version" != "$tag" ]; then
             exit 1
         fi
         gunzip $target_name
-        chmod +x $target_name
-        cp -f $target_name /usr/bin/mihomo
-        service openclash stop
-        mv $target_name /etc/openclash/core/clash_meta
-        service openclash start
+        target = "${target_name%.gz}"
+        chmod +x $target
+        cp -f $target /usr/bin/mihomo
+        /etc/init.d/openclash stop
+        mv $target /etc/openclash/core/clash_meta
+        /etc/init.d/openclash start
         echo "mihomo更新成功！"
     else
         echo "无法获取 $target_name的下载链接！"
