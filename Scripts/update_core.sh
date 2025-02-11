@@ -20,7 +20,7 @@ if [ "$local_version" != "$tag" ]; then
             exit 1
         fi
         gunzip $target_name
-        target = "${target_name%.gz}"
+        target="${target_name%.gz}"
         chmod +x $target
         cp -f $target /usr/bin/mihomo
         /etc/init.d/openclash stop
