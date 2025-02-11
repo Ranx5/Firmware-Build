@@ -20,12 +20,12 @@ if [ "$local_version" != "$tag" ]; then
             exit 1
         fi
         gunzip $target_name
-        target="${target_name%.gz}"
+        target=$(ls mihomo* 2>/dev/null | head -n 1)
         chmod +x $target
         cp -f $target /usr/bin/mihomo
-        /etc/init.d/openclash stop
+        sh /etc/init.d/openclash stop
         mv $target /etc/openclash/core/clash_meta
-        /etc/init.d/openclash start
+        sh /etc/init.d/openclash start
         echo "mihomo更新成功！"
     else
         echo "无法获取 $target_name的下载链接！"
