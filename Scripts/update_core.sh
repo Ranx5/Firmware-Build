@@ -14,7 +14,7 @@ if [ "$local_version" != "$tag" ]; then
     # 下载文件
     if [ -n "$download_url" ]; then
         curl -L --retry 3 -o "$target_name" "$download_url"
-        if [[ -f "$target_name" && $(stat --format="%s" "$target_name") -gt 0 ]]; then
+        if curl -L -f -o $target_name $download_url; then
             echo "下载成功: $target_name"
         else
             echo "$target_name下载失败，请检查网络！"
