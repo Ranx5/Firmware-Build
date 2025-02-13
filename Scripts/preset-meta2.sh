@@ -7,7 +7,6 @@ mkdir -p files/usr/bin
 mkdir -p files/etc/openclash/core
 
 # 设置下载链接
-CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/mihomo_uv.py"
 GEOIP_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
 GEOSITE_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
@@ -39,7 +38,6 @@ else
 fi
 
 # 下载配置文件
-wget -qO- $CONFIG_MODIFY_URL > files/etc/mihomo/modify_uv.py
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
