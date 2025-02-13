@@ -48,7 +48,6 @@ wget -qO- $UPDATE_CORE_URL > files/etc/openclash/update_core.sh
 
 # 设置权限
 chmod +x files/usr/bin/mihomo
-chmod +x files/etc/mihomo/modify_uv.py
 chmod +x files/etc/openclash/anti_ads.sh
 chmod +x files/etc/openclash/add_route.sh
 chmod +x files/etc/openclash/update_core.sh
