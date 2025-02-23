@@ -253,6 +253,7 @@ jobs:
         KERNEL_VERSION_NAME: ${{ env.KERNEL_VERSION }}
         OPENWRT_VER: R${{ env.DATE1 }}
         WHOAMI: ${{ env.WHOAMI }}
+        DISTRIB_REVISION: R${{ env.DATE1 }} by ${{ env.WHOAMI }}
 
     - name: Upload Fireware To Release
       if: env.PACKAGED_STATUS == 'success'
