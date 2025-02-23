@@ -250,6 +250,7 @@ jobs:
         KERNEL_REPO_URL: ${{ env.KERNEL_URL }}
         PACKAGE_SOC: e52c
         KERNEL_VERSION_NAME: ${{ env.KERNEL_VERSION }}
+        OPENWRT_VER: R${{ env.DATE }}
         WHOAMI: ${{ env.WHOAMI }}
 
     - name: Upload Fireware To Release
@@ -258,7 +259,7 @@ jobs:
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
-        replacesArtifacts: true
+        removeArtifacts: true
         tag: ${{ env.RELEASE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
