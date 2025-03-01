@@ -58,7 +58,7 @@ for p in x['proxies']:
 ProxySet = list(ProxySet)
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
-Strategy3 = ['Spotify', 'Microsoft']
+Strategy3 = ['Spotify', 'Microsoft', 'Emby']
 pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
     pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
@@ -94,7 +94,7 @@ rs.append('GEOSITE,microsoft,Microsoft')
 rs.append('GEOSITE,disney,DisneyPlus')
 rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
-rs.append('DOMAIN-SUFFIX,emby.moe,BETA')
+rs.append('DOMAIN-SUFFIX,emby.moe,Emby')
 rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('DOMAIN-SUFFIX,ip.sb,GitHub')
