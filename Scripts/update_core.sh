@@ -24,6 +24,7 @@ if [ "$local_version" != "$tag" ]; then
         chmod +x $target
         cp -f $target /usr/bin/mihomo
         sh /etc/init.d/openclash stop
+        sleep 10
         mv $target /etc/openclash/core/clash_meta
         sh /etc/init.d/openclash start
         echo "mihomo更新成功！"
