@@ -11,7 +11,7 @@ GEOSITE_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@rele
 CLASH_CONFIG_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Configs/openclash.config"
 CONFIG_MODIFY_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/main/Defconfig/modify_uv.py"
 ANTI_ADS_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Scripts/anti_ads.sh"
-UPDATE_CORE_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/mainScripts/update_core.sh"
+UPDATE_CORE_URL="https://raw.githubusercontent.com/Ranx5/Firmware-Build/refs/heads/main/Scripts/update_core.sh"
 
 # 获取仓库的最新发布信息
 release_info=$(wget -qO- https://api.github.com/repos/MetaCubeX/mihomo/releases/latest)
