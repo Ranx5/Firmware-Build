@@ -32,7 +32,7 @@ for p in x['proxies']:
             Proxy['All'].append(name)
             Proxy['TW20'].append(name)
             ProxySet.add('TW20')
-    elif 'HongKonge' in name
+    elif 'HongKonge' in name:
         Proxy['All'].append(name)
         Proxy['HK'].append(name)
         ProxySet.add('HK')
