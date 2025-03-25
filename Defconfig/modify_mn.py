@@ -20,7 +20,7 @@ for p in x['proxies']:
         Proxy['HK05'].append(name)
         ProxySet.add('HK05')
     elif '2x' in name:
-        if 'HongKonge' in name
+        if 'HongKonge' in name:
             Proxy['All'].append(name)
             Proxy['HK20'].append(name)
             ProxySet.add('HK20')
