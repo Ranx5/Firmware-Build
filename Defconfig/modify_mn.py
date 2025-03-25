@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/mn.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK05':[], 'HK20':[], 'SG':[], 'SG20':[], 'JP':[], 'TW':[],'TW20':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
+Proxy = {'HK':[], 'HK05':[], 'HK20':[], 'SG':[], 'SG20':[], 'JP':[], 'TW':[],'TW20':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
@@ -19,26 +19,31 @@ for p in x['proxies']:
         Proxy['All'].append(name)
         Proxy['HK05'].append(name)
         ProxySet.add('HK05')
-    elif 'HongKong' in name:
+    elif '2x' in name:
+        if 'HongKonge' in name
+            Proxy['All'].append(name)
+            Proxy['HK20'].append(name)
+            ProxySet.add('HK20')
+        elif 'Singapore' in name:
+            Proxy['All'].append(name)
+            Proxy['SG20'].append(name)
+            ProxySet.add('SG20')
+        elif 'Taiwan' in name:
+            Proxy['All'].append(name)
+            Proxy['TW20'].append(name)
+            ProxySet.add('TW20')
+    elif 'HongKonge' in name
         Proxy['All'].append(name)
-        Proxy['HK20'].append(name)
-        ProxySet.add('HK20')
+        Proxy['HK'].append(name)
+        ProxySet.add('HK')
     elif 'Japan' in name:
         Proxy['All'].append(name)
         Proxy['JP'].append(name)
         ProxySet.add('JP')
-    elif '2x' in name and 'Singapore' in name:
-        Proxy['All'].append(name)
-        Proxy['SG20'].append(name)
-        ProxySet.add('SG20')
     elif 'Singapore' in name:
         Proxy['All'].append(name)
         Proxy['SG'].append(name)
         ProxySet.add('SG')
-    elif '2x' in name and 'Taiwan' in name:
-        Proxy['All'].append(name)
-        Proxy['TW20'].append(name)
-        ProxySet.add('TW20')
     elif 'Taiwan' in name:
         Proxy['All'].append(name)
         Proxy['TW'].append(name)
