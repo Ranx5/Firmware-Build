@@ -1,12 +1,9 @@
 #!/bin/bash
-curl -C - -o ad.txt https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/refs/heads/main/Filters/AWAvenue-Ads-Rule-hosts.txt
-#curl -C - -o ad.txt https://gcore.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-hosts.txt
+curl -C - -o ad.txt https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/refs/heads/main/Filters/AWAvenue-Ads-Rule-Dnsmasq.conf
+#curl -C - -o ad.txt https://gcore.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Dnsmasq.conf
 if [ $? -eq 0 ]; then
     echo "Download ad.txt successfully!"
-    sed -i '/127/!d' ad.txt
-    sed -i '1d' ad.txt
-    sed -i 's/$/\//' ad.txt
-    sed -i 's/127.0.0.1 /address=\//' ad.txt
+    sed -i '/address/!d' ad.txt
     echo "Modify ad.txt successfully!"
     if [ ! -e /etc/copy_dnsmasq.conf ]; then
         cp -f /etc/dnsmasq.conf /etc/copy_dnsmasq.conf
