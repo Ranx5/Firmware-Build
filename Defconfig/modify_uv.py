@@ -39,7 +39,7 @@ pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
     pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
 for s in Strategy2:
-    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy3:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
 for s in ProxySet:
