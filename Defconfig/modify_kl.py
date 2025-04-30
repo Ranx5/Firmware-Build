@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/kl.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'SG':[], 'JP':[], 'TW':[], 'KR':[], 'US':[], 'OT':[], 'All':[]}
+Proxy = {'HKb':[], 'HKn':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'OT':[], 'All':[]}
 testtime='60'
 n = len(Proxy)
 ProxySet = set()
@@ -12,22 +12,22 @@ pgs = []
 for p in x['proxies']:
     name = p['name']
     Proxy['All'].append(name)
-    if 'HK' in name:
-        Proxy['HK'].append(name)
-        ProxySet.add('HK')
-    elif 'JP' in name:
+    if '香港基础' in name:
+        Proxy['HKb'].append(name)
+        ProxySet.add('HKb')
+    elif '香港标准' in name:
+        Proxy['HKn'].append(name)
+        ProxySet.add('HKn')
+    elif '日本' in name:
         Proxy['JP'].append(name)
         ProxySet.add('JP')
-    elif 'SG' in name:
+    elif '新加坡' in name:
         Proxy['SG'].append(name)
         ProxySet.add('SG')
-    elif 'TW' in name:
+    elif '台湾' in name:
         Proxy['TW'].append(name)
         ProxySet.add('TW')
-    elif 'KR' in name:
-        Proxy['KR'].append(name)
-        ProxySet.add('KR')
-    elif 'US' in name:
+    elif '美国' in name:
         Proxy['US'].append(name)
         ProxySet.add('US')
     else:
@@ -61,7 +61,6 @@ rs.append('GEOIP,cloudflare,Proxy,no-resolve')
 rs.append('GEOSITE,cloudflare,Proxy')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
 rs.append('GEOSITE,twitter,Twitter')
-rs.append('GEOIP,twitter,Twitter,no-resolve')
 rs.append('GEOSITE,instagram,Instagram')
 rs.append('GEOSITE,facebook,Instagram')
 rs.append('GEOSITE,youtube,YouTube')
@@ -74,7 +73,6 @@ rs.append('GEOSITE,microsoft,Microsoft')
 rs.append('GEOSITE,disney,DisneyPlus')
 rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
-rs.append('GEOSITE,category-scholar-cn,DIRECT')
 rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
