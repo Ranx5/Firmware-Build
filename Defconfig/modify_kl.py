@@ -34,10 +34,12 @@ for p in x['proxies']:
         Proxy['OT'].append(name)
         ProxySet.add('OT')
 ProxySet = list(ProxySet)
+Strategy0 = ['Proxy', 'YouTube']
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
-Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
+Strategy2 = ['Instagram', 'GitHub', 'Twitter', 'Telegram']
 Strategy3 = ['Spotify', 'Microsoft']
-pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
+for s in Strategy0:
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
     pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
 for s in Strategy2:
