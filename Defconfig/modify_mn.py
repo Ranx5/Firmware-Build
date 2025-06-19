@@ -84,7 +84,6 @@ rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provi
 
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
-rs.append('GEOSITE,china-list,DIRECT')
 rs.append('GEOSITE,cn,DIRECT')
 rs.append('GEOIP,cloudflare,Proxy,no-resolve')
 rs.append('GEOSITE,cloudflare,Proxy')
@@ -108,6 +107,7 @@ rs.append('RULE-SET,ProxyGFW,Proxy')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('DOMAIN-SUFFIX,ip.sb,GitHub')
 rs.append('DOMAIN-SUFFIX,ipify.org,YouTube')
+rs.append('GEOSITE,cn,DIRECT')
 rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
