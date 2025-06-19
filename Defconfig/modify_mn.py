@@ -84,7 +84,6 @@ rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provi
 
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
-rs.append('GEOSITE,cn,DIRECT')
 rs.append('GEOIP,cloudflare,Proxy,no-resolve')
 rs.append('GEOSITE,cloudflare,Proxy')
 rs.append('GEOIP,telegram,Telegram,no-resolve')
