@@ -5,6 +5,7 @@
 mkdir -p files/etc/config
 mkdir -p files/usr/bin
 mkdir -p files/etc/openclash/core
+mkdir -p files/etc/nikki/run
 
 # 设置下载链接
 GEOIP_URL="https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
@@ -41,6 +42,7 @@ fi
 # 下载配置文件
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
+cp -f files/etc/openclash/Geo* files/etc/nikki/run
 wget -qO- $CLASH_CONFIG_URL > files/etc/config/openclash
 wget -qO- $NIKKI_CONFIG_URL > files/etc/config/nikki
 wget -qO- $CONFIG_MODIFY_URL > files/etc/openclash/modify_mn.py
