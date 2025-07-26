@@ -88,30 +88,6 @@ for k in x.keys():
     elif k == 'proxies':    
         z[k] = x[k]
 z['rule-providers'] = rps
-z['sniffer'] = {
-        'enable': True,
-        'force-dns-mapping': True,
-        'parse-pure-ip': True,
-        'override-destination': True,
-        'sniff': {
-            'HTTP': {
-                'ports': [80, '8080-8880'],
-                'override-destination': True
-            },
-            'TLS': {
-                'ports': [443, 8443]
-            },
-            'QUIC': {
-                'ports': [443, 8443]
-            }
-        },
-        'force-domain': [
-            '+.v2ex.com'
-        ],
-        'skip-domain': [
-            'Mijia Cloud'
-        ]
-    }
 z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
             'respect-rules': True}
