@@ -17,6 +17,7 @@ on:
           - 'https://github.com/Ranx5/immortalwrt'
           - 'https://github.com/Ranx5/lede'
           - 'https://github.com/Ranx5/openwrt-lienol'
+          - 'https://github.com/immortalwrt/immortalwrt'
       branch:
         description: '选择分支'
         required: true
@@ -29,6 +30,7 @@ on:
         default: 'Configs/e52c_imm_master.config'
         options:
           - 'Configs/e52c_imm_master.config'
+          - 'Configs/e52c_imm_master_docker.config'
           - 'Configs/e52c_lede.config'
           - 'Configs/e52c_lienol_main.config'
           - 'Configs/test.config'
