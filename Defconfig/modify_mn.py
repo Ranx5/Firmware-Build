@@ -77,11 +77,6 @@ for s in ProxySet:
                     'proxies':Proxy[s], 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 if Proxy['OT']:
     pgs.append({'name':'OT', 'type': 'select', 'proxies':Proxy['OT']})
-    
-rps = {}
-rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
-                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
-
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
 rs.append('GEOIP,cloudflare,Proxy,no-resolve')
@@ -102,7 +97,7 @@ rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('DOMAIN-SUFFIX,emby.moe,Emby')
 rs.append('GEOSITE,apple,DIRECT')
-rs.append('RULE-SET,ProxyGFW,Proxy')
+rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
     if k == 'proxy-groups':
@@ -111,7 +106,6 @@ for k in x.keys():
         z[k] = rs 
     elif k == 'proxies':    
         z[k] = x[k]
-z['rule-providers'] = rps
 z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
             'respect-rules': True}
