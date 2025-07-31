@@ -47,11 +47,6 @@ for s in ProxySet:
                     'proxies':Proxy[s], 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 if Proxy['OT']:
     pgs.append({'name':'OT', 'type': 'select', 'proxies':Proxy['OT']})
-    
-rps = {}
-rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
-                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
-
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
 rs.append('GEOIP,cloudflare,Proxy,no-resolve')
@@ -71,7 +66,7 @@ rs.append('GEOSITE,disney,DisneyPlus')
 rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
-rs.append('RULE-SET,ProxyGFW,Proxy')
+rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
     if k == 'proxy-groups':
