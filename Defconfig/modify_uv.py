@@ -73,11 +73,6 @@ rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('GEOSITE,category-scholar-cn,DIRECT')
 rs.append('RULE-SET,ProxyGFW,Proxy')
-rs.append('GEOIP,CN,DIRECT,no-resolve')
-rs.append('GEOSITE,apple,DIRECT')
-rs.append('DOMAIN-SUFFIX,ip.sb,GitHub')
-rs.append('DOMAIN-SUFFIX,ipify.org,YouTube')
-rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
     if k == 'proxy-groups':
