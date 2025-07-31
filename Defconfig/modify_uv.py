@@ -66,6 +66,7 @@ rs.append('GEOSITE,disney,DisneyPlus')
 rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
+rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
