@@ -12,19 +12,19 @@ pgs = []
 for p in x['proxies']:
     name = p['name']
     Proxy['All'].append(name)
-    if '香' in name:
+    if 'HK' in name:
         Proxy['HK'].append(name)
         ProxySet.add('HK')
-    elif '日' in name:
+    elif 'JP' in name:
         Proxy['JP'].append(name)
         ProxySet.add('JP')
-    elif '新' in name:
+    elif 'SG' in name:
         Proxy['SG'].append(name)
         ProxySet.add('SG')
-    elif '台' in name:
+    elif 'TW' in name:
         Proxy['TW'].append(name)
         ProxySet.add('TW')
-    elif '美' in name:
+    elif 'US' in name:
         Proxy['US'].append(name)
         ProxySet.add('US')
     else:
