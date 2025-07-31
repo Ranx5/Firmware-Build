@@ -75,7 +75,6 @@ for k in x.keys():
         z[k] = rs 
     elif k == 'proxies':    
         z[k] = x[k]
-z['rule-providers'] = rps
 z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
             'respect-rules': True}
