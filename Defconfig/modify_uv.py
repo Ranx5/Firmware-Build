@@ -49,7 +49,7 @@ for s in ProxySet:
 if Proxy['OT']:
     pgs.append({'name':'OT', 'type': 'select', 'proxies':Proxy['OT']})
 rps = {}
-rps['Apple'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Apple.yaml',
+rps['Apple'] = {'type': 'http', 'behavior': 'ipcidr', 'path':'./rule_provider/Apple.yaml',
                            'url':'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.yaml'}
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
