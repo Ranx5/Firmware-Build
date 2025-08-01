@@ -48,6 +48,9 @@ for s in ProxySet:
                     'proxies':Proxy[s], 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 if Proxy['OT']:
     pgs.append({'name':'OT', 'type': 'select', 'proxies':Proxy['OT']})
+rps = {}
+rps['Apple'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/Apple.yaml',
+                           'url':'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.yaml'}
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
 rs.append('GEOIP,cloudflare,Proxy,no-resolve')
@@ -67,7 +70,7 @@ rs.append('GEOSITE,disney,DisneyPlus')
 rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
-rs.append('GEOIP,CN,DIRECT,no-resolve')
+rs.append('RULE-SET,Apple,DIRECT')
 rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
@@ -77,6 +80,7 @@ for k in x.keys():
         z[k] = rs 
     elif k == 'proxies':    
         z[k] = x[k]
+z['rule-providers'] = rps
 z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
             'respect-rules': True}
