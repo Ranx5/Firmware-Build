@@ -11,25 +11,26 @@ ProxySet = set()
 pgs = []
 for p in x['proxies']:
     name = p['name']
-    Proxy['All'].append(name)
-    if 'HK' in name:
-        Proxy['HK'].append(name)
-        ProxySet.add('HK')
-    elif 'JP' in name:
-        Proxy['JP'].append(name)
-        ProxySet.add('JP')
-    elif 'SG' in name:
-        Proxy['SG'].append(name)
-        ProxySet.add('SG')
-    elif 'TW' in name:
-        Proxy['TW'].append(name)
-        ProxySet.add('TW')
-    elif 'US' in name:
-        Proxy['US'].append(name)
-        ProxySet.add('US')
-    else:
-        Proxy['OT'].append(name)
-        ProxySet.add('OT')
+    if '稳定' in name:
+        Proxy['All'].append(name)
+        if 'HK' in name:
+            Proxy['HK'].append(name)
+            ProxySet.add('HK')
+        elif 'JP' in name:
+            Proxy['JP'].append(name)
+            ProxySet.add('JP')
+        elif 'SG' in name:
+            Proxy['SG'].append(name)
+            ProxySet.add('SG')
+        elif 'TW' in name:
+            Proxy['TW'].append(name)
+            ProxySet.add('TW')
+        elif 'US' in name:
+            Proxy['US'].append(name)
+            ProxySet.add('US')
+        else:
+            Proxy['OT'].append(name)
+            ProxySet.add('OT')
 ProxySet = list(ProxySet)
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
