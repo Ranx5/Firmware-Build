@@ -4,60 +4,36 @@ import os
 
 with open('/etc/openclash/config/mn.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'HK05':[], 'HK20':[], 'SG':[], 'SG20':[], 'JP':[], 'TW':[],'TW20':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
+Proxy = {'HK':[], 'SG':[],'JP':[], 'TW':[], 'KR':[], 'US':[], 'BETA':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
 pgs = []
 for p in x['proxies']:
     name = p['name']
+    Proxy['All'].append(name)
     if 'BETA' in name:
-        Proxy['All'].append(name)
         Proxy['BETA'].append(name)
         ProxySet.add('BETA')
-    elif '0.5x' in name:
-        Proxy['All'].append(name)
-        Proxy['HK05'].append(name)
-        ProxySet.add('HK05')
-    elif '2x' in name:
-        if 'HongKong' in name:
-            Proxy['All'].append(name)
-            Proxy['HK20'].append(name)
-            ProxySet.add('HK20')
-        elif 'Singapore' in name:
-            Proxy['All'].append(name)
-            Proxy['SG20'].append(name)
-            ProxySet.add('SG20')
-        elif 'Taiwan' in name:
-            Proxy['All'].append(name)
-            Proxy['TW20'].append(name)
-            ProxySet.add('TW20')
     elif 'HongKong' in name:
-        Proxy['All'].append(name)
         Proxy['HK'].append(name)
         ProxySet.add('HK')
     elif 'Japan' in name:
-        Proxy['All'].append(name)
         Proxy['JP'].append(name)
         ProxySet.add('JP')
     elif 'Singapore' in name:
-        Proxy['All'].append(name)
         Proxy['SG'].append(name)
         ProxySet.add('SG')
     elif 'Taiwan' in name:
-        Proxy['All'].append(name)
         Proxy['TW'].append(name)
         ProxySet.add('TW')
     elif 'UnitedStates' in name:
-        Proxy['All'].append(name)
         Proxy['US'].append(name)
         ProxySet.add('US')
     elif 'Korea' in name:
-        Proxy['All'].append(name)
         Proxy['KR'].append(name)
         ProxySet.add('KR')
     else:
-        Proxy['All'].append(name)
         Proxy['OT'].append(name)
         ProxySet.add('OT')
 ProxySet = list(ProxySet)
