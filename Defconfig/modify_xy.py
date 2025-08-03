@@ -81,6 +81,8 @@ rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
 rs.append('RULE-SET,Apple,DIRECT,no-resolve')
 rs.append('RULE-SET,ProxyGFW,Proxy')
+rs.append('GEOIP,CN,DIRECT,no-resolve')
+rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
     if k == 'proxy-groups':
