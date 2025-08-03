@@ -58,6 +58,8 @@ if Proxy['OT']:
 rps = {}
 rps['Apple'] = {'type': 'http', 'behavior': 'ipcidr', 'path':'./rule_provider/Apple.yaml',
                            'url':'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.yaml'}
+rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
+                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
 rs.append('GEOIP,cloudflare,Proxy,no-resolve')
@@ -78,7 +80,7 @@ rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
 rs.append('RULE-SET,Apple,DIRECT,no-resolve')
-rs.append('MATCH,Proxy')
+rs.append('RULE-SET,ProxyGFW,Proxy')
 z = {}
 for k in x.keys():
     if k == 'proxy-groups':
