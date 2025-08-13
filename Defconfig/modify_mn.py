@@ -77,6 +77,7 @@ rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('DOMAIN-SUFFIX,emby.moe,Emby')
 rs.append('GEOSITE,apple,DIRECT')
 rs.append('RULE-SET,Apple,DIRECT,no-resolve')
+rs.append('GEOSITE,cn,DIRECT')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('MATCH,Proxy')
 z = {}
