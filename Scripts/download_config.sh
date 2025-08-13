@@ -12,7 +12,7 @@ if [ $# -lt 2 ]; then
 fi
 
 DOWNLOAD_URL="$1"
-DOWNLOAD_UA="${2:-clash.meta}
+DOWNLOAD_UA="${2:-clash.meta}"
 DOWNLOAD_PATH="./config.yaml"  # 固定保存路径
 
 echo -e "${GREEN}开始下载:${NC} $DOWNLOAD_URL"
