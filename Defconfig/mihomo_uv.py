@@ -4,15 +4,15 @@ import os
 
 with open('./config.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'OT':[], 'All':[]}
+Proxy = {'HK':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'HK_HY2':[], 'SG_HY2':[], 'JP_HY2':[], 'TW_HY2':[], 'US_HY2':[],'HK_Any':[], 'SG_Any':[], 'JP_Any':[], 'TW_Any':[], 'US_Any':[], 'OT':[], 'All':[]}
 testtime='60'
 n = len(Proxy)
 ProxySet = set()
 pgs = []
 for p in x['proxies']:
     name = p['name']
+    Proxy['All'].append(name)
     if '稳定' in name:
-        Proxy['All'].append(name)
         if 'HK' in name:
             Proxy['HK'].append(name)
             ProxySet.add('HK')
@@ -28,6 +28,44 @@ for p in x['proxies']:
         elif 'US' in name:
             Proxy['US'].append(name)
             ProxySet.add('US')
+        else:
+            Proxy['OT'].append(name)
+            ProxySet.add('OT')
+    elif 'HY' in name:
+        if 'HK' in name:
+            Proxy['HK_HY2'].append(name)
+            ProxySet.add('HK_HY2')
+        elif 'JP' in name:
+            Proxy['JP_HY2'].append(name)
+            ProxySet.add('JP_HY2')
+        elif 'SG' in name:
+            Proxy['SG_HY2'].append(name)
+            ProxySet.add('SG_HY2')
+        elif 'TW' in name:
+            Proxy['TW_HY2'].append(name)
+            ProxySet.add('TW_HY2')
+        elif 'US' in name:
+            Proxy['US_HY2'].append(name)
+            ProxySet.add('US_HY2')
+        else:
+            Proxy['OT'].append(name)
+            ProxySet.add('OT')
+    elif 'Any' in name:
+        if 'HK' in name:
+            Proxy['HK_Any'].append(name)
+            ProxySet.add('HK_Any')
+        elif 'JP' in name:
+            Proxy['JP_Any'].append(name)
+            ProxySet.add('JP_Any')
+        elif 'SG' in name:
+            Proxy['SG_Any'].append(name)
+            ProxySet.add('SG_Any')
+        elif 'TW' in name:
+            Proxy['TW_Any'].append(name)
+            ProxySet.add('TW_Any')
+        elif 'US' in name:
+            Proxy['US_Any'].append(name)
+            ProxySet.add('US_Any')
         else:
             Proxy['OT'].append(name)
             ProxySet.add('OT')
