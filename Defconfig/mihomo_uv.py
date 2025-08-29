@@ -31,7 +31,7 @@ for p in x['proxies']:
         else:
             Proxy['OT'].append(name)
             ProxySet.add('OT')
-    elif 'HY' in name:
+    elif 'Hy' in name:
         if 'HK' in name:
             Proxy['HK_Hy2'].append(name)
             ProxySet.add('HK_Hy2')
