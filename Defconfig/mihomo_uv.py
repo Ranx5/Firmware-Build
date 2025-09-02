@@ -12,7 +12,7 @@ pgs = []
 for p in x['proxies']:
     name = p['name']
     Proxy['All'].append(name)
-    if '稳定' in name:
+    if '三网' in name:
         if 'HK' in name:
             Proxy['HK'].append(name)
             ProxySet.add('HK')
