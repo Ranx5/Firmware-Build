@@ -4,15 +4,15 @@ import os
 
 with open('/etc/openclash/config/uv.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'OT':[], 'All':[]}
+Proxy = {'HK':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'HK_Hy2':[], 'SG_Hy2':[], 'JP_Hy2':[], 'TW_Hy2':[], 'US_Hy2':[],'HK_Any':[], 'SG_Any':[], 'JP_Any':[], 'TW_Any':[], 'US_Any':[], 'OT':[], 'All':[]}
 testtime='60'
 n = len(Proxy)
 ProxySet = set()
 pgs = []
 for p in x['proxies']:
     name = p['name']
-    if '稳定' in name:
-        Proxy['All'].append(name)
+    Proxy['All'].append(name)
+    if '三网' in name:
         if 'HK' in name:
             Proxy['HK'].append(name)
             ProxySet.add('HK')
@@ -31,6 +31,44 @@ for p in x['proxies']:
         else:
             Proxy['OT'].append(name)
             ProxySet.add('OT')
+    elif 'Hy' in name:
+        if 'HK' in name:
+            Proxy['HK_Hy2'].append(name)
+            ProxySet.add('HK_Hy2')
+        elif 'JP' in name:
+            Proxy['JP_Hy2'].append(name)
+            ProxySet.add('JP_Hy2')
+        elif 'SG' in name:
+            Proxy['SG_Hy2'].append(name)
+            ProxySet.add('SG_Hy2')
+        elif 'TW' in name:
+            Proxy['TW_Hy2'].append(name)
+            ProxySet.add('TW_Hy2')
+        elif 'US' in name:
+            Proxy['US_Hy2'].append(name)
+            ProxySet.add('US_Hy2')
+        else:
+            Proxy['OT'].append(name)
+            ProxySet.add('OT')
+    elif 'Any' in name:
+        if 'HK' in name:
+            Proxy['HK_Any'].append(name)
+            ProxySet.add('HK_Any')
+        elif 'JP' in name:
+            Proxy['JP_Any'].append(name)
+            ProxySet.add('JP_Any')
+        elif 'SG' in name:
+            Proxy['SG_Any'].append(name)
+            ProxySet.add('SG_Any')
+        elif 'TW' in name:
+            Proxy['TW_Any'].append(name)
+            ProxySet.add('TW_Any')
+        elif 'US' in name:
+            Proxy['US_Any'].append(name)
+            ProxySet.add('US_Any')
+        else:
+            Proxy['OT'].append(name)
+            ProxySet.add('OT')
 ProxySet = list(ProxySet)
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
@@ -39,7 +77,7 @@ pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
     pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
 for s in Strategy2:
-    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet+Proxy['All']})
+    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet})
 for s in Strategy3:
     pgs.append({'name':s, 'type':'select', 'proxies':ProxySet + ['DIRECT']})
 for s in ProxySet:
@@ -87,9 +125,9 @@ z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
             'respect-rules': True}
 
-if os.path.exists('/etc/openclash/config/config_uv.yaml'):
-    os.system('rm /etc/openclash/config/config_uv.yaml')
+if os.path.exists('/etc/openclash/config/uv.yaml'):
+    os.system('rm /etc/openclash/config/uv.yaml')
     print('删除旧配置！')
-with open('/etc/openclash/config/config_uv.yaml', 'w') as file:
+with open('/etc/openclash/config/uv.yaml', 'w') as file:
     file.write(yaml.dump(z, allow_unicode=True))
     print('配置修改成功！')
