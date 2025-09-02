@@ -125,9 +125,9 @@ z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
             'respect-rules': True}
 
-if os.path.exists('/etc/openclash/config/uv.yaml'):
-    os.system('rm /etc/openclash/config/uv.yaml')
+if os.path.exists('/etc/openclash/config/config_uv.yaml'):
+    os.system('rm /etc/openclash/config/config_uv.yaml')
     print('删除旧配置！')
-with open('/etc/openclash/config/uv.yaml', 'w') as file:
+with open('/etc/openclash/config/config_uv.yaml', 'w') as file:
     file.write(yaml.dump(z, allow_unicode=True))
     print('配置修改成功！')
