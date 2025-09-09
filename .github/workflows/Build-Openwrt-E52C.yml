@@ -7,7 +7,7 @@ on:
         description: '设置标签'
         required: true
         type: string
-        default: 'Rockchip_E52C'
+        default: 'Rockchip_E52C_Docker'
       code:
         description: '选择仓库'
         required: true
@@ -27,7 +27,7 @@ on:
         description: '选择配置'
         required: true
         type: choice
-        default: 'Configs/e52c_imm_master.config'
+        default: 'Configs/e52c_imm_master_docker.config'
         options:
           - 'Configs/e52c_imm_master.config'
           - 'Configs/e52c_imm_master_docker.config'
@@ -43,9 +43,9 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-rockchip-imm-part2.sh'
+        default: 'Scripts/diy-rockchip-flippy-part2.sh'
         options:
-          - 'Scripts/diy-rockchip-imm-part2.sh'
+          - 'Scripts/diy-rockchip-flippy-part2.sh'
           - 'Scripts/diy-rockchip-lede-part2.sh'
           - 'Scripts/diy-rockchip-lienol-part2.sh'
       script3:
