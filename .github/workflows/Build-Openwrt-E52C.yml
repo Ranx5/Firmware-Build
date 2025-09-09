@@ -32,7 +32,7 @@ on:
         description: '设置LAN口IP'
         required: true
         type: string
-        default: '192.168.32.1'
+        default: '192.168.32.11'
 env:
   REPO_URL: https://github.com/Ranx5/immortalwrt
   REPO_BRANCH: ${{ github.event.inputs.branch }}
