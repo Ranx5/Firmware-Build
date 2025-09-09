@@ -27,10 +27,10 @@ on:
         description: '选择配置'
         required: true
         type: choice
-        default: 'Configs/e52c_imm_master_docker.config'
+        default: 'Configs/e52c_flippym_master_docker.config'
         options:
-          - 'Configs/e52c_imm_master.config'
-          - 'Configs/e52c_imm_master_docker.config'
+          - 'Configs/e52c_flippy_master.config'
+          - 'Configs/e52c_flippy_master_docker.config'
           - 'Configs/e52c_lede.config'
           - 'Configs/e52c_lienol_main.config'
           - 'Configs/test.config'
