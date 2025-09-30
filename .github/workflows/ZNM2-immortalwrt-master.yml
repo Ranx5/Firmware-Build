@@ -20,9 +20,10 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-mt7981-imm-part2.sh'
+        default: 'Scripts/diy-rockship-imm-part2.sh'
         options:
           - 'Scripts/diy-mt7981-imm-part2.sh'
+          - 'Scripts/diy-rockship-imm-part2.sh'
           - 'Scripts/diy-nothing.sh'
       script3:
         description: '选择脚本3'
