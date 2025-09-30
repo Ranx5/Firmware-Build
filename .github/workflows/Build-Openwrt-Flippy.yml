@@ -47,16 +47,16 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-rockchip-imm-part2.sh'
+        default: 'Scripts/diy-rockchip-flippy-part2.sh'
         options:
           - 'Scripts/diy-rockchip-imm-part2.sh'
           - 'Scripts/diy-rockchip-lede-part2.sh'
-          - 'Scripts/diy-rockchip-lienol-part2.sh'
+          - 'Scripts/diy-rockchip-flippy-part2.sh'
       script3:
         description: '选择脚本3'
         required: true
         type: string
-        default: 'Scripts/preset-meta.sh'
+        default: 'Scripts/preset-meta2.sh'
       version:
         description: '内核版本'
         required: true
