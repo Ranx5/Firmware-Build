@@ -42,11 +42,11 @@ for p in x['proxies']:
             ProxySet.add('TW')
     elif 'USA' in name:
         if 'SS' in name:
-            Proxy['USA_ss'].append(name)
-            ProxySet.add('USA_ss')
+            Proxy['US_ss'].append(name)
+            ProxySet.add('US_ss')
         else:
-            Proxy['USA'].append(name)
-            ProxySet.add('USA')
+            Proxy['US'].append(name)
+            ProxySet.add('US')
     elif 'UK' in name:
         if 'SS' in name:
             Proxy['UK_ss'].append(name)
