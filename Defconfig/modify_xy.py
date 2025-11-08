@@ -93,6 +93,6 @@ z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
 if os.path.exists('/etc/openclash/config/config_xy.yaml'):
     os.system('rm /etc/openclash/config/config_xy.yaml')
     print('删除旧配置！')
-with open('/etc/openclash/config/config_mn.yaml', 'w') as file:
+with open('/etc/openclash/config/config_xy.yaml', 'w') as file:
     file.write(yaml.dump(z, allow_unicode=True))
     print('配置修改成功！')
