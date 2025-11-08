@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/xy.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'SG':[],'JP':[], 'TW':[], 'US':[], 'UK':[], 'BETA':[], 'OT':[], 'All':[]}
+Proxy = {'HK':[], 'HK_ss':[], 'SG':[], 'SG_ss':[], 'JP':[], 'JP_ss':[], 'TW':[], 'TW_ss':[], 'US':[], 'US_ss':[], 'UK':[], 'UK_ss':[], 'MYS':[], 'ARG':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
@@ -13,23 +13,53 @@ for p in x['proxies']:
     name = p['name']
     Proxy['All'].append(name)
     if 'Hong Kong' in name:
-        Proxy['HK'].append(name)
-        ProxySet.add('HK')
+        if 'SS' in name:
+            Proxy['HK_ss'].append(name)
+            ProxySet.add('HK_ss')
+        else:
+            Proxy['HK'].append(name)
+            ProxySet.add('HK')
     elif 'Japan' in name:
-        Proxy['JP'].append(name)
-        ProxySet.add('JP')
+        if 'SS' in name:
+            Proxy['JP_ss'].append(name)
+            ProxySet.add('JP_ss')
+        else:
+            Proxy['JP'].append(name)
+            ProxySet.add('JP')
     elif 'Singapore' in name:
-        Proxy['SG'].append(name)
-        ProxySet.add('SG')
+        if 'SS' in name:
+            Proxy['SG_ss'].append(name)
+            ProxySet.add('SG_ss')
+        else:
+            Proxy['SG'].append(name)
+            ProxySet.add('SG')
     elif 'Taiwan' in name:
-        Proxy['TW'].append(name)
-        ProxySet.add('TW')
+        if 'SS' in name:
+            Proxy['TW_ss'].append(name)
+            ProxySet.add('TW_ss')
+        else:
+            Proxy['TW'].append(name)
+            ProxySet.add('TW')
     elif 'USA' in name:
-        Proxy['US'].append(name)
-        ProxySet.add('US')
+        if 'SS' in name:
+            Proxy['USA_ss'].append(name)
+            ProxySet.add('USA_ss')
+        else:
+            Proxy['USA'].append(name)
+            ProxySet.add('USA')
     elif 'UK' in name:
-        Proxy['UK'].append(name)
-        ProxySet.add('UK')
+        if 'SS' in name:
+            Proxy['UK_ss'].append(name)
+            ProxySet.add('UK_ss')
+        else:
+            Proxy['UK'].append(name)
+            ProxySet.add('UK')
+    elif 'Malaysia' in name:
+        Proxy['MYS'].append(name)
+        ProxySet.add('MYS')
+    elif 'Argentina' in name:
+        Proxy['ARG'].append(name)
+        ProxySet.add('ARG')
     else:
         Proxy['OT'].append(name)
         ProxySet.add('OT')
