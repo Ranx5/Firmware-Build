@@ -6,14 +6,12 @@ output = "profiles/config_mn2.yaml"
 
 data = YAML.load_file(source, aliases: true)
 
-HK = data["proxies"].select do |n|
-  n["name"].include?("HongKong") && !n["name"].include?("BETA")
-end
-TW = data["proxies"].select { |n| n["name"].include?("Taiwan") }
-JP = data["proxies"].select { |n| n["name"].include?("Japan") }
-SG = data["proxies"].select { |n| n["name"].include?("Singapore") }
-US = data["proxies"].select { |n| n["name"].include?("UnitedStates") }
-node_name = data["proxies"].map { |node| node["name"] }
+HK = data["proxies"].select { |n| n["name"].include?("HongKong") }.select { |n| !n["name"].include?("BETA") }.map { |n| n["name"]}
+TW = data["proxies"].select { |n| n["name"].include?("Taiwan")}.map { |n| n["name"] }
+JP = data["proxies"].select { |n| n["name"].include?("Japan")}.map { |n| n["name"] }
+SG = data["proxies"].select { |n| n["name"].include?("Singapore")}.map { |n| n["name"] }
+US = data["proxies"].select { |n| n["name"].include?("UnitedStates")}.map { |n| n["name"] }
+node_name = data["proxies"].map { |n| n["name"] }
 
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
@@ -22,22 +20,22 @@ Strategy3 = ['Spotify', 'Microsoft', 'Emby']
 Proxy = ["HK", "TW", "JP", "SG", "US"]
 ProxySet = {"HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US}
 
-proxy_groups = {"Proxy" => {"name" => "Proxy", "type" => "select", "proxies" => Proxy.concat(node_name)}}
+proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
 
 Strategy1.each do |group|
-  proxy_groups[group] = {"name" => group, "type" => "select", "proxies" => node_name}                         
+  proxy_groups << {"name" => group, "type" => "select", "proxies" => node_name}                         
 end
 
 Strategy2.each do |group|
-  proxy_groups[group] = {"name" => group, "type" => "select", "proxies" => Proxy}
+  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy}
 end
 
 Strategy3.each do |group|
-  proxy_groups[group] = {"name" => group, "type" => "select", "proxies" => Proxy.concat(["DIRECT"])}
+  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy + ["DIRECT"]}
 end
 
 Proxy.each do |group|
-  proxy_groups[group] = {"name" => group,
+  proxy_groups << {"name" => group,
                         "type" => "load-balance",
                         "strategy" => "consistent-hashing",
                         "url" => "consistent-hashing",
