@@ -5,12 +5,6 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # 无色
 
-# 用法检查
-if [ $# -lt 2 ]; then
-    echo -e "${RED}用法: $0 <下载地址> <User-Agent>${NC}"
-    exit 1
-fi
-
 DOWNLOAD_URL="$1"
 DOWNLOAD_UA="${2:-clash.meta}"
 DOWNLOAD_PATH="./config.yaml"  # 固定保存路径
