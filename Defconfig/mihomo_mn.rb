@@ -2,7 +2,7 @@
 require 'yaml'
 
 source = "config.yaml"
-output = "profiles/config_mn2.yaml"
+output = "profiles/config_mn.yaml"
 
 data = YAML.load_file(source, aliases: true)
 
