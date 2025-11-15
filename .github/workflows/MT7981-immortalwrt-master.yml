@@ -7,10 +7,10 @@ on:
         description: '固件类型'
         required: true
         type: choice
-        default: 'MT7981-MAIN'
+        default: 'MT7981-master'
         options:
-          - 'MT7981-MAIN'
-          - 'MT7981-AP'
+          - 'MT7981-master'
+          - 'MT7981-2410'
       source:
         description: '选择源码'
         required: true
