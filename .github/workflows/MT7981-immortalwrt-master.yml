@@ -35,6 +35,7 @@ on:
         options:
           - 'Configs/mt7981_ap_diff.config'
           - 'Configs/mt7981_main_diff.config'
+          - 'Configs/mt7981_2410_diff.config'
       script2:
         description: '选择脚本2'
         required: true
@@ -42,6 +43,7 @@ on:
         default: 'Scripts/diy-mt7981-imm-part2.sh'
         options:
           - 'Scripts/diy-mt7981-imm-part2.sh'
+          - 'Scripts/diy-mt7981-imm24-part2.sh'
           - 'Scripts/diy-nothing.sh'
       script3:
         description: '选择脚本3'
