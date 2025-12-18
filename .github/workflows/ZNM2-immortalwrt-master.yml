@@ -8,6 +8,22 @@ on:
         required: true
         type: string
         default: 'ZN-M2'
+      source:
+        description: '选择源码'
+        required: true
+        type: choice
+        default: 'https://github.com/Ranx5/openwrt-6.x'
+        options:
+          - 'https://github.com/Ranx5/openwrt-6.x'
+          - 'https://github.com/LiBwrt/openwrt-6.x'
+      branch:
+        description: '选择源码'
+        required: true
+        type: choice
+        default: 'k6.12-nss'
+        options:
+          - 'k6.12-nss'
+          - '25.12-nss'
       config:
         description: '选择配置'
         required: true
@@ -20,7 +36,7 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-rockship-imm-part2.sh'
+        default: 'Scripts/diy-mt7981-imm-part2.sh'
         options:
           - 'Scripts/diy-mt7981-imm-part2.sh'
           - 'Scripts/diy-rockship-imm-part2.sh'
@@ -39,8 +55,8 @@ on:
         type: string
         default: '192.168.32.1'
 env:
-  REPO_URL: https://github.com/Ranx5/LiBwrt
-  REPO_BRANCH: kernel-6.12
+  REPO_URL: ${{ github.event.inputs.source }}
+  REPO_BRANCH: ${{ github.event.inputs.branch }}
   CONFIG_FILE: ${{ github.event.inputs.config }}
   DIY_P1_SH: Scripts/diy-imm-part1.sh
   DIY_P2_SH: ${{ github.event.inputs.script2 }}
