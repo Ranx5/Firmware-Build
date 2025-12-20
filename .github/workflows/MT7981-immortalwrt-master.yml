@@ -11,6 +11,7 @@ on:
         options:
           - 'MT7981-master'
           - 'MT7981-2410'
+          - 'MT7981-padavanonly'
       source:
         description: '选择源码'
         required: true
@@ -19,6 +20,7 @@ on:
         options:
           - 'https://github.com/Ranx5/immortalwrt'
           - 'https://github.com/immortalwrt/immortalwrt'
+          - 'https://github.com/padavanonly/immortalwrt-mt798x-6.6.git'
       branch:
         description: '选择配置'
         required: true
@@ -27,6 +29,7 @@ on:
         options:
           - 'master'
           - 'openwrt-24.10'
+          - 'openwrt-24.10-6.6'
       config:
         description: '选择配置'
         required: true
@@ -36,6 +39,7 @@ on:
           - 'Configs/mt7981_ap_diff.config'
           - 'Configs/mt7981_main_diff.config'
           - 'Configs/mt7981_2410_diff.config'
+          - 'Configs/padavanonly_mt798x.config'
       script2:
         description: '选择脚本2'
         required: true
