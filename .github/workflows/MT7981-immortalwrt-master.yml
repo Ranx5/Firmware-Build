@@ -20,7 +20,7 @@ on:
         options:
           - 'https://github.com/Ranx5/immortalwrt'
           - 'https://github.com/immortalwrt/immortalwrt'
-          - 'https://github.com/padavanonly/immortalwrt-mt798x-6.6.git'
+          - 'https://github.com/padavanonly/immortalwrt-mt798x-6.6'
       branch:
         description: '选择配置'
         required: true
