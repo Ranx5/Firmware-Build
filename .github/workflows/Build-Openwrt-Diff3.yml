@@ -6,11 +6,8 @@ on:
       target:
         description: '选择平台'
         required: true
-        type: choice
+        type: string
         default: 'mt798x'
-        options:
-          - 'mt798x'
-          - 'ipq60xx'
       code:
         description: '选择仓库'
         required: true
