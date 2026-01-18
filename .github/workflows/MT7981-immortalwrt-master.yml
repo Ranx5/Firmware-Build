@@ -1,4 +1,4 @@
-name: MT7981-immortalwrt-master
+name: MediaTek-immortalwrt-master
 
 on:
   workflow_dispatch:
@@ -13,6 +13,7 @@ on:
           - 'MT7981-2410'
           - 'MT7981-padavanonly'
           - 'MT7981-2410-ap'
+          - 'MT7987-master'
       source:
         description: '选择源码'
         required: true
@@ -29,6 +30,7 @@ on:
         default: 'master'
         options:
           - 'master'
+          - 'master-mt7987'
           - 'openwrt-24.10'
           - 'openwrt-24.10-6.6'
       config:
@@ -37,6 +39,7 @@ on:
         type: choice
         default: 'Configs/mt7981_main_diff.config'
         options:
+          - 'Configs/mt3600be_imm_diff.config'
           - 'Configs/mt7981_ap_diff.config'
           - 'Configs/mt7981_main_diff.config'
           - 'Configs/mt7981_2410_diff.config'
