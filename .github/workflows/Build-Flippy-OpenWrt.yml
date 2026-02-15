@@ -8,7 +8,7 @@ on:
         description: '设置标签'
         required: true
         type: string
-        default: 'Flippy_rootfs_Docker'
+        default: 'Flippy_Rootfs_Docker'
       code:
         description: '选择仓库'
         required: true
