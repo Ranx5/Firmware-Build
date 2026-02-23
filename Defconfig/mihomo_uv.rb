@@ -6,11 +6,11 @@ output = "profiles/config_uv.yaml"
 
 data = YAML.load_file(source, aliases: true)
 target_nodes = data["proxies"].select { |n| n["name"].include?("三网")}.map { |n| n["name"] }
-HK = data["proxies"].select { |n| n["name"].include?("HK")}.map { |n| n["name"] }
-TW = data["proxies"].select { |n| n["name"].include?("TW")}.map { |n| n["name"] }
-JP = data["proxies"].select { |n| n["name"].include?("JP")}.map { |n| n["name"] }
-SG = data["proxies"].select { |n| n["name"].include?("SG")}.map { |n| n["name"] }
-US = data["proxies"].select { |n| n["name"].include?("US")}.map { |n| n["name"] }
+HK = target_nodes.select { |n| n["name"].include?("HK")}.map { |n| n["name"] }
+TW = target_nodes.select { |n| n["name"].include?("TW")}.map { |n| n["name"] }
+JP = target_nodes.select { |n| n["name"].include?("JP")}.map { |n| n["name"] }
+SG = target_nodes.select { |n| n["name"].include?("SG")}.map { |n| n["name"] }
+US = target_nodes.select { |n| n["name"].include?("US")}.map { |n| n["name"] }
 node_name = data["proxies"].map { |n| n["name"] }
 
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
