@@ -2,7 +2,7 @@
 require 'yaml'
 
 source = "config.yaml"
-output = "profiles/config_mn.yaml"
+output = "profiles/config_uv.yaml"
 
 data = YAML.load_file(source, aliases: true)
 target_nodes = data["proxies"].select { |n| n["name"].include?("三网")}.map { |n| n["name"] }
