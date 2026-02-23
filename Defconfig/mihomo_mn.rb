@@ -15,7 +15,7 @@ node_name = data["proxies"].map { |n| n["name"] }
 
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
-Strategy3 = ['Spotify', 'Microsoft', 'Emby']
+Strategy3 = ['Spotify', 'Microsoft']
 
 Proxy = ["HK", "TW", "JP", "SG", "US"]
 ProxySet = {"HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US}
@@ -71,7 +71,6 @@ config["rules"] = [
                         "GEOSITE,disney,DisneyPlus",
                         "GEOSITE,netflix,Netflix",
                         "GEOIP,netflix,Netflix,no-resolve",
-                        "DOMAIN-SUFFIX,emby.moe,Emby",
                         "GEOSITE,apple,DIRECT",
                         "RULE-SET,Apple,DIRECT,no-resolve",
                         "GEOSITE,cn,DIRECT",
