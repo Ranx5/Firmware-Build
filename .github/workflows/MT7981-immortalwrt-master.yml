@@ -11,6 +11,7 @@ on:
         options:
           - 'MT7981-master'
           - 'MT7981-2410'
+          - 'MT7981-2512'
           - 'MT7981-padavanonly'
           - 'MT7981-2410-ap'
           - 'MT7987-master'
@@ -32,6 +33,7 @@ on:
           - 'master'
           - 'master-mt7987'
           - 'openwrt-24.10'
+          - 'openwrt-25.12'
           - 'openwrt-24.10-6.6'
       config:
         description: '选择配置'
