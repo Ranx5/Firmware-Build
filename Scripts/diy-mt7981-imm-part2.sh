@@ -10,3 +10,5 @@ git clone --depth=1 https://github.com/vernesong/OpenClash.git -b dev package/lu
 # sed -i 's/--set=llvm\.download-ci-llvm=true/--set=llvm.download-ci-llvm=if-unchanged/' feeds/packages/lang/rust/Makefile
 # 添加luci-app-nikki
 git clone --depth=1 https://github.com/nikkinikki-org/OpenWrt-nikki.git -b main package/luci-app-nikki
+# 修改Rust编译方式
+sed -i 's/download-ci-llvm = true/download-ci-llvm = false/g' feeds/packages/lang/rust/Makefile
