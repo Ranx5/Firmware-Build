@@ -13,3 +13,5 @@ git clone --depth=1 https://github.com/nikkinikki-org/OpenWrt-nikki.git -b main 
 # git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2.git -b main package/luci-app-passwall2
 # 添加luci-app-amlogic
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git -b main package/luci-app-amlogic
+# 修改Rust编译方式
+sed -i 's/download-ci-llvm = true/download-ci-llvm = false/g' feeds/packages/lang/rust/Makefile
