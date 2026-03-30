@@ -4,20 +4,17 @@ import os
 
 with open('/etc/openclash/config/kl.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HKb':[], 'HKn':[], 'SG':[], 'JP':[], 'TW':[], 'US':[], 'OT':[], 'All':[]}
-testtime='60'
+Proxy = {'HK':[], 'SG':[],'JP':[], 'TW':[], 'KR':[], 'US':[], 'OT':[], 'All':[]}
+testtime='300'
 n = len(Proxy)
 ProxySet = set()
 pgs = []
 for p in x['proxies']:
     name = p['name']
     Proxy['All'].append(name)
-    if '香港基础' in name:
-        Proxy['HKb'].append(name)
-        ProxySet.add('HKb')
-    elif '香港标准' in name:
-        Proxy['HKn'].append(name)
-        ProxySet.add('HKn')
+    if '香港' in name:
+        Proxy['HK'].append(name)
+        ProxySet.add('HK')
     elif '日本' in name:
         Proxy['JP'].append(name)
         ProxySet.add('JP')
@@ -30,16 +27,17 @@ for p in x['proxies']:
     elif '美国' in name:
         Proxy['US'].append(name)
         ProxySet.add('US')
+    elif '韩国' in name:
+        Proxy['KR'].append(name)
+        ProxySet.add('KR')
     else:
         Proxy['OT'].append(name)
         ProxySet.add('OT')
 ProxySet = list(ProxySet)
-Strategy0 = ['Proxy', 'YouTube']
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
-Strategy2 = ['Instagram', 'GitHub', 'Twitter', 'Telegram']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
 Strategy3 = ['Spotify', 'Microsoft']
-for s in Strategy0:
-    pgs.append({'name':s, 'type':'select', 'proxies':ProxySet+Proxy['All']})
+pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
     pgs.append({'name':s, 'type':'select', 'proxies':Proxy['All']})
 for s in Strategy2:
@@ -52,11 +50,9 @@ for s in ProxySet:
                     'proxies':Proxy[s], 'url': 'http://www.gstatic.com/generate_204', 'interval': testtime})
 if Proxy['OT']:
     pgs.append({'name':'OT', 'type': 'select', 'proxies':Proxy['OT']})
-    
 rps = {}
-rps['ProxyGFW'] = {'type': 'http', 'behavior': 'classical', 'path':'./rule_provider/ProxyGFW.yaml',
-                           'url':'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml'}
-
+rps['Apple'] = {'type': 'http', 'behavior': 'ipcidr', 'path':'./rule_provider/Apple.yaml',
+                           'url':'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.yaml'}
 rs = []
 rs.append('GEOIP,private,DIRECT,no-resolve')
 rs.append('GEOIP,cloudflare,Proxy,no-resolve')
@@ -66,8 +62,8 @@ rs.append('GEOSITE,twitter,Twitter')
 rs.append('GEOSITE,instagram,Instagram')
 rs.append('GEOSITE,facebook,Instagram')
 rs.append('GEOSITE,youtube,YouTube')
-rs.append('DOMAIN-SUFFIX,googleapis.cn,Google')
 rs.append('GEOSITE,google,Google')
+rs.append('GEOIP,google,Google,no-resolve')
 rs.append('GEOSITE,spotify,Spotify')
 rs.append('GEOSITE,github,GitHub')
 rs.append('GEOSITE,openai,OpenAI')
@@ -75,11 +71,10 @@ rs.append('GEOSITE,microsoft,Microsoft')
 rs.append('GEOSITE,disney,DisneyPlus')
 rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
-rs.append('RULE-SET,ProxyGFW,Proxy')
-rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
-rs.append('DOMAIN-SUFFIX,ip.sb,GitHub')
-rs.append('DOMAIN-SUFFIX,ipify.org,YouTube')
+rs.append('RULE-SET,Apple,DIRECT,no-resolve')
+rs.append('GEOSITE,cn,DIRECT')
+rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('MATCH,Proxy')
 z = {}
 for k in x.keys():
@@ -90,30 +85,6 @@ for k in x.keys():
     elif k == 'proxies':    
         z[k] = x[k]
 z['rule-providers'] = rps
-z['sniffer'] = {
-        'enable': True,
-        'force-dns-mapping': True,
-        'parse-pure-ip': True,
-        'override-destination': True,
-        'sniff': {
-            'HTTP': {
-                'ports': [80, '8080-8880'],
-                'override-destination': True
-            },
-            'TLS': {
-                'ports': [443, 8443]
-            },
-            'QUIC': {
-                'ports': [443, 8443]
-            }
-        },
-        'force-domain': [
-            '+.v2ex.com'
-        ],
-        'skip-domain': [
-            'Mijia Cloud'
-        ]
-    }
 z['dns'] = {'default-nameserver': ['223.5.5.5', '119.29.29.29'],
             'proxy-server-nameserver': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query'],
             'respect-rules': True}
