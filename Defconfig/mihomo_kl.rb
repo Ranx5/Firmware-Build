@@ -12,7 +12,8 @@ JP = data["proxies"].select { |n| n["name"].include?("日本")}.map { |n| n["nam
 SG = data["proxies"].select { |n| n["name"].include?("新加坡")}.map { |n| n["name"] }
 US = data["proxies"].select { |n| n["name"].include?("美国")}.map { |n| n["name"] }
 KR = data["proxies"].select { |n| n["name"].include?("韩国")}.map { |n| n["name"] }
-node_name = data["proxies"].map { |n| n["name"] }
+exclude = ["剩余", "套餐"]
+node_name = data["proxies"].reject { |n| exclude.any? { |e| n["name"].to_s.include?(e) } }.map { |n| n["name"] }
 
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
