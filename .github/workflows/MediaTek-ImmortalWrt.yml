@@ -13,8 +13,7 @@ on:
           - 'MT7981-2410'
           - 'MT7981-2512'
           - 'MT7987-2512'
-          - 'MT7981-padavanonly'
-          - 'MT7981-2410-ap'
+          - 'MT7987-master'
       source:
         description: '选择源码'
         required: true
@@ -23,7 +22,6 @@ on:
         options:
           - 'https://github.com/Ranx5/immortalwrt'
           - 'https://github.com/immortalwrt/immortalwrt'
-          - 'https://github.com/padavanonly/immortalwrt-mt798x-6.6'
       branch:
         description: '选择配置'
         required: true
@@ -33,27 +31,25 @@ on:
           - 'master'
           - 'openwrt-24.10'
           - 'openwrt-25.12'
-          - 'openwrt-24.10-6.6'
       config:
         description: '选择配置'
         required: true
         type: choice
         default: 'Configs/mt7981_main_diff.config'
         options:
-          - 'Configs/mt3600be_imm_diff.config'
-          - 'Configs/mt7981_ap_diff.config'
-          - 'Configs/mt7981_main_diff.config'
-          - 'Configs/mt7981_2410_diff.config'
-          - 'Configs/padavanonly_mt798x.config'
-          - 'Configs/mt7981_imm24_ap.config'
+          - 'Configs/mt3600be_master.config'
+          - 'Configs/mt3600be_op2512.config'
+          - 'Configs/mt7981_master.config'
+          - 'Configs/mt7981_op2410.config'
+          - 'Configs/mt7981_op2512.config'
       script2:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-mt7981-imm-part2.sh'
+        default: 'Scripts/diy-mt798x-part2.sh'
         options:
-          - 'Scripts/diy-mt7981-imm-part2.sh'
-          - 'Scripts/diy-mt7981-imm24-part2.sh'
+          - 'Scripts/diy-mt798x-imm-part2.sh'
+          - 'Scripts/diy-mt798x-imm24-part2.sh'
           - 'Scripts/diy-nothing.sh'
       script3:
         description: '选择脚本3'
