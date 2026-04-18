@@ -15,7 +15,6 @@ on:
           - 'MT7987-2512'
           - 'MT7981-padavanonly'
           - 'MT7981-2410-ap'
-          - 'MT7987-master'
       source:
         description: '选择源码'
         required: true
@@ -32,10 +31,8 @@ on:
         default: 'master'
         options:
           - 'master'
-          - 'master-mt7987'
           - 'openwrt-24.10'
           - 'openwrt-25.12'
-          - '25.12-mt7987'
           - 'openwrt-24.10-6.6'
       config:
         description: '选择配置'
@@ -44,7 +41,6 @@ on:
         default: 'Configs/mt7981_main_diff.config'
         options:
           - 'Configs/mt3600be_imm_diff.config'
-          - 'Configs/mt7987_2512_diff.config'
           - 'Configs/mt7981_ap_diff.config'
           - 'Configs/mt7981_main_diff.config'
           - 'Configs/mt7981_2410_diff.config'
