@@ -1,5 +1,4 @@
-name: MediaTek-immortalwrt-master
-
+name: MediaTek-ImmortalWrt
 on:
   workflow_dispatch:
     inputs:
