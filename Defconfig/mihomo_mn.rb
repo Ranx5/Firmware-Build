@@ -38,7 +38,7 @@ Proxy.each do |group|
   proxy_groups << {"name" => group,
                         "type" => "load-balance",
                         "strategy" => "consistent-hashing",
-                        "url" => "consistent-hashing",
+                        "url" => "http://www.gstatic.com/generate_204",
                         "interval" => "300",
                         "disable-udp" => false,
                         "proxies" => ProxySet[group]}
