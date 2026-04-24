@@ -36,7 +36,7 @@ on:
         description: '选择脚本2'
         required: true
         type: string
-        default: 'Scripts/diy-rockchip-flippy-part2.sh'
+        default: 'Scripts/diy-flippy-part2.sh'
       script3:
         description: '选择脚本3'
         required: true
