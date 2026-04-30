@@ -45,7 +45,7 @@ on:
         description: '选择脚本2'
         required: true
         type: choice
-        default: 'Scripts/diy-mt798x-part2.sh'
+        default: 'Scripts/diy-mt798x-imm-part2.sh'
         options:
           - 'Scripts/diy-mt798x-imm-part2.sh'
           - 'Scripts/diy-mt798x-imm24-part2.sh'
