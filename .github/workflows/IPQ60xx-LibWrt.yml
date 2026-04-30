@@ -11,7 +11,7 @@ on:
         description: '选择源码'
         required: true
         type: string
-        default: 'https://github.com/LiBwrt/openwrt-6.x.git'
+        default: 'https://github.com/LiBwrt/openwrt-6.x'
       branch:
         description: '选择配置'
         required: true
