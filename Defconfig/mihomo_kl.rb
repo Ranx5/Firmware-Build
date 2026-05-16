@@ -12,15 +12,17 @@ JP = data["proxies"].select { |n| n["name"].include?("日本")}.map { |n| n["nam
 SG = data["proxies"].select { |n| n["name"].include?("新加坡")}.map { |n| n["name"] }
 US = data["proxies"].select { |n| n["name"].include?("美国")}.map { |n| n["name"] }
 KR = data["proxies"].select { |n| n["name"].include?("韩国")}.map { |n| n["name"] }
+UK = data["proxies"].select { |n| n["name"].include?("英国")}.map { |n| n["name"] }
+Akile = data["proxies"].select { |n| n["name"].include?("Akile")}.map { |n| n["name"] }
 exclude = ["剩余", "套餐"]
 node_name = data["proxies"].reject { |n| exclude.any? { |e| n["name"].to_s.include?(e) } }.map { |n| n["name"] }
 
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
-Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
 Strategy3 = ['Spotify', 'Microsoft']
 
-Proxy = ["HK", "TW", "JP", "SG", "US", "KR"]
-ProxySet = {"HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US, "KR" => KR}
+Proxy = ["Akile", "HK", "TW", "JP", "SG", "US", "KR", "UK"]
+ProxySet = {"Akile" => Akile, "HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US, "KR" => KR， "UK" => UK}
 
 proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
 
@@ -75,6 +77,7 @@ config["rules"] = [
                         "GEOIP,netflix,Netflix,no-resolve",
                         "GEOSITE,apple,DIRECT",
                         "RULE-SET,Apple,DIRECT,no-resolve",
+                        "DOMAIN-SUFFIX,emby.moe,Emby"
                         "GEOSITE,cn,DIRECT",
                         "GEOIP,CN,DIRECT,no-resolve",
                         "MATCH,Proxy"
