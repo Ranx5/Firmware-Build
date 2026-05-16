@@ -77,7 +77,7 @@ config["rules"] = [
                         "GEOIP,netflix,Netflix,no-resolve",
                         "GEOSITE,apple,DIRECT",
                         "RULE-SET,Apple,DIRECT,no-resolve",
-                        "DOMAIN-SUFFIX,emby.moe,Emby"
+                        "DOMAIN-SUFFIX,emby.moe,Emby",
                         "GEOSITE,cn,DIRECT",
                         "GEOIP,CN,DIRECT,no-resolve",
                         "MATCH,Proxy"
