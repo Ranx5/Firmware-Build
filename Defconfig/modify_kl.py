@@ -4,7 +4,7 @@ import os
 
 with open('/etc/openclash/config/kl.yaml', 'rb') as f:
     x = yaml.safe_load(f)
-Proxy = {'HK':[], 'SG':[],'JP':[], 'TW':[], 'KR':[], 'US':[], 'OT':[], 'All':[]}
+Proxy = {'Akile':[], 'HK':[], 'SG':[],'JP':[], 'TW':[], 'KR':[], 'US':[], 'UK':[], 'OT':[], 'All':[]}
 testtime='300'
 n = len(Proxy)
 ProxySet = set()
@@ -30,12 +30,18 @@ for p in x['proxies']:
     elif '韩国' in name:
         Proxy['KR'].append(name)
         ProxySet.add('KR')
+    elif '英国' in name:
+        Proxy['UK'].append(name)
+        ProxySet.add('UK')
+    elif 'Akile' in name:
+        Proxy['Akile'].append(name)
+        ProxySet.add('Akile')
     else:
         Proxy['OT'].append(name)
         ProxySet.add('OT')
 ProxySet = list(ProxySet)
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
-Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
 Strategy3 = ['Spotify', 'Microsoft']
 pgs.append({'name':'Proxy', 'type':'select', 'proxies':ProxySet+Proxy['All']})
 for s in Strategy1:
@@ -73,6 +79,7 @@ rs.append('GEOSITE,netflix,Netflix')
 rs.append('GEOIP,netflix,Netflix,no-resolve')
 rs.append('GEOSITE,apple,DIRECT')
 rs.append('RULE-SET,Apple,DIRECT,no-resolve')
+rs.append('DOMAIN-SUFFIX,emby.moe,Emby')
 rs.append('GEOSITE,cn,DIRECT')
 rs.append('GEOIP,CN,DIRECT,no-resolve')
 rs.append('MATCH,Proxy')
