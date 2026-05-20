@@ -78,6 +78,11 @@ config["rules"] = [
                         "GEOSITE,apple,DIRECT",
                         "RULE-SET,Apple,DIRECT,no-resolve",
                         "DOMAIN-SUFFIX,emby.moe,Emby",
+                        "DOMAIN-SUFFIX,xxlb.net,Emby",
+                        "DOMAIN-SUFFIX,symcd.com,Emby",
+                        "DOMAIN-SUFFIX,edge4k.com,Emby",
+                        "DOMAIN-SUFFIX,kakaocdn.net,Emby",
+                        "DOMAIN-SUFFIX,kakao.com,Emby",
                         "GEOSITE,cn,DIRECT",
                         "GEOIP,CN,DIRECT,no-resolve",
                         "MATCH,Proxy"
