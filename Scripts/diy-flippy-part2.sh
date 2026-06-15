@@ -1,6 +1,7 @@
 #!/bin/bash
 # 添加luci-app-daed
 rm -rf feeds/packages/net/daed
+rm -rf feeds/luci/applications/luci-app-daed
 git clone --depth=1 https://github.com/QiuSimons/luci-app-daed package/dae
 # 添加luci-app-mosdns
 rm -rf feeds/packages/lang/golang
