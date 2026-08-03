@@ -61,6 +61,7 @@ config["rules"] = [
                         "GEOIP,private,DIRECT,no-resolve",
                         "GEOIP,cloudflare,Proxy,no-resolve",
                         "GEOSITE,cloudflare,Proxy",
+                        "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
                         "GEOIP,telegram,Telegram,no-resolve",
                         "GEOSITE,twitter,Twitter",
                         "GEOSITE,instagram,Instagram",
