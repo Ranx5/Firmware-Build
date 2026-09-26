@@ -21,8 +21,8 @@ Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
 Strategy3 = ['Spotify', 'Microsoft']
 
-Proxy = ["Akile", "HK", "TW", "JP", "SG", "US", "KR", "UK"]
-ProxySet = {"Akile" => Akile, "HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US, "KR" => KR, "UK" => UK}
+ProxySet = {"Akile" => Akile, "HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US, "KR" => KR, "UK" => UK}.select { |_, proxies| proxies.any? }
+Proxy = ProxySet.keys
 
 proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
 
