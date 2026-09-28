@@ -6,12 +6,15 @@ output = "profiles/config_kl.yaml"
 
 data = YAML.load_file(source, aliases: true)
 
-HK = data["proxies"].select { |n| n["name"].include?("香港") }.map { |n| n["name"]}
+HK_ZX = data["proxies"].select { |n| n["name"].include?("香港") && n["name"].include?("专线") }.map { |n| n["name"]}
+HK_GS = data["proxies"].select { |n| n["name"].include?("香港") && n["name"].include?("高速") }.map { |n| n["name"]}
+JP_ZX = data["proxies"].select { |n| n["name"].include?("日本") && n["name"].include?("专线") }.map { |n| n["name"]}
+JP_GS = data["proxies"].select { |n| n["name"].include?("日本") && n["name"].include?("高速") }.map { |n| n["name"]}
+SG_ZX = data["proxies"].select { |n| n["name"].include?("新加坡") && n["name"].include?("专线") }.map { |n| n["name"]}
+SG_GS = data["proxies"].select { |n| n["name"].include?("新加坡") && n["name"].include?("高速") }.map { |n| n["name"]}
+US_LMT = data["proxies"].select { |n| n["name"].include?("美国") && n["name"].include?("流媒体") }.map { |n| n["name"]}
+US_GS = data["proxies"].select { |n| n["name"].include?("美国") && n["name"].include?("高速") }.map { |n| n["name"]}
 TW = data["proxies"].select { |n| n["name"].include?("台湾")}.map { |n| n["name"] }
-JP = data["proxies"].select { |n| n["name"].include?("日本")}.map { |n| n["name"] }
-SG = data["proxies"].select { |n| n["name"].include?("新加坡")}.map { |n| n["name"] }
-US = data["proxies"].select { |n| n["name"].include?("美国")}.map { |n| n["name"] }
-KR = data["proxies"].select { |n| n["name"].include?("韩国")}.map { |n| n["name"] }
 UK = data["proxies"].select { |n| n["name"].include?("英国")}.map { |n| n["name"] }
 Akile = data["proxies"].select { |n| n["name"].include?("Akile")}.map { |n| n["name"] }
 exclude = ["剩余", "套餐"]
@@ -21,7 +24,7 @@ Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
 Strategy3 = ['Spotify', 'Microsoft']
 
-ProxySet = {"Akile" => Akile, "HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US, "KR" => KR, "UK" => UK}.select { |_, proxies| proxies.any? }
+ProxySet = {"Akile" => Akile, "香港专线" => HK_ZX, "香港高速" => HK_GS, "日本专线" => JP_ZX, "日本高速" => JP_GS, "新加坡专线" => SG_ZX, "新加坡高速" => SG_GS, "美国流媒体" => US_LMT, "美国高速" => US_GS, "TW" => TW, "UK" => UK}.select { |_, proxies| proxies.any? }
 Proxy = ProxySet.keys
 
 proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
@@ -61,7 +64,6 @@ config["rules"] = [
                         "GEOIP,private,DIRECT,no-resolve",
                         "GEOIP,cloudflare,Proxy,no-resolve",
                         "GEOSITE,cloudflare,Proxy",
-                        "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
                         "GEOIP,telegram,Telegram,no-resolve",
                         "GEOSITE,twitter,Twitter",
                         "GEOSITE,instagram,Instagram",
