@@ -42,6 +42,7 @@ on:
           - 'Configs/mt3000_master.config'
           - 'Configs/mt3000_op2410.config'
           - 'Configs/mt3000_op2512.config'
+          - 'Configs/mt7981_diff_ap.config'
       script2:
         description: '选择脚本2'
         required: true
