@@ -29,6 +29,8 @@ ProxySet = {"香港专线" => HK_ZX, "香港高速" => HK_GS, "日本专线" => 
 if Akile.any?
   Proxy = ["Akile"] + ProxySet.keys
   proxy_groups << {"name" => "Akile", "type" => "select", "proxies" => Akile}
+else
+  Proxy = ProxySet.keys
 end
 proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
 
