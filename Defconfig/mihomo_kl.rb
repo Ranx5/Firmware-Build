@@ -25,10 +25,9 @@ Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
 Strategy3 = ['Spotify', 'Microsoft']
 
 ProxySet = {"香港专线" => HK_ZX, "香港高速" => HK_GS, "日本专线" => JP_ZX, "日本高速" => JP_GS, "新加坡专线" => SG_ZX, "新加坡高速" => SG_GS, "美国流媒体" => US_LMT, "美国高速" => US_GS, "TW" => TW, "UK" => UK}.select { |_, proxies| proxies.any? }
-Proxy = ProxySet.keys
 
 if Akile.any?
-  Proxy.unshift("Akile")
+  Proxy = ["Akile"] + ProxySet.keys
   proxy_groups << {"name" => "Akile", "type" => "select", "proxies" => Akile}
 end
 proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
