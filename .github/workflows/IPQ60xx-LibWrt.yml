@@ -16,7 +16,7 @@ on:
         description: '选择配置'
         required: true
         type: string
-        default: 'main-nss'
+        default: '25.12-nss'
       config:
         description: '选择配置'
         required: true
