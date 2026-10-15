@@ -11,14 +11,20 @@ TW = data["proxies"].select { |n| n["name"].include?("Taiwan")}.map { |n| n["nam
 JP = data["proxies"].select { |n| n["name"].include?("Japan")}.map { |n| n["name"] }
 SG = data["proxies"].select { |n| n["name"].include?("Singapore")}.map { |n| n["name"] }
 US = data["proxies"].select { |n| n["name"].include?("UnitedStates")}.map { |n| n["name"] }
-node_name = data["proxies"].map { |n| n["name"] }
+BETA = data["proxies"].select { |n| n["name"].include?("BETA")}.map { |n| n["name"] }
+exclude = ["剩余", "套餐"]
+node_name = data["proxies"].reject { |n| exclude.any? { |e| n["name"].to_s.include?(e) } }.map { |n| n["name"] }
+
+ProxySet = {"HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US, "BETA" => BETA}.select { |_, proxies| proxies.any? }
+Proxy = ProxySet.keys
+
+Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
+Strategy3 = ['Spotify', 'Microsoft']
 
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
 Strategy3 = ['Spotify', 'Microsoft']
-
-Proxy = ["HK", "TW", "JP", "SG", "US"]
-ProxySet = {"HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US}
 
 proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
 
@@ -57,6 +63,7 @@ config["rules"] = [
                         "GEOIP,private,DIRECT,no-resolve",
                         "GEOIP,cloudflare,Proxy,no-resolve",
                         "GEOSITE,cloudflare,Proxy",
+                        "AND,((NETWORK,UDP),(DST-PORT,443)),REJECT",
                         "GEOIP,telegram,Telegram,no-resolve",
                         "GEOSITE,twitter,Twitter",
                         "GEOSITE,instagram,Instagram",
@@ -73,9 +80,14 @@ config["rules"] = [
                         "GEOIP,netflix,Netflix,no-resolve",
                         "GEOSITE,apple,DIRECT",
                         "RULE-SET,Apple,DIRECT,no-resolve",
+                        "DOMAIN-SUFFIX,emby.moe,Emby",
+                        "DOMAIN-SUFFIX,xxlb.net,Emby",
+                        "DOMAIN-SUFFIX,symcd.com,Emby",
+                        "DOMAIN-SUFFIX,edge4k.com,Emby",
+                        "DOMAIN-SUFFIX,kakaocdn.net,Emby",
+                        "DOMAIN-SUFFIX,kakao.com,Emby",
                         "GEOSITE,cn,DIRECT",
                         "GEOIP,CN,DIRECT,no-resolve",
                         "MATCH,Proxy"
 ]
-
 File.write(output, config.to_yaml)
