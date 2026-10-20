@@ -12,28 +12,36 @@ JP = data["proxies"].select { |n| n["name"].include?("Japan")}.map { |n| n["name
 SG = data["proxies"].select { |n| n["name"].include?("Singapore")}.map { |n| n["name"] }
 US = data["proxies"].select { |n| n["name"].include?("UnitedStates")}.map { |n| n["name"] }
 BETA = data["proxies"].select { |n| n["name"].include?("BETA")}.map { |n| n["name"] }
-exclude = ["剩余", "套餐"]
+Akile = data["proxies"].select { |n| n["name"].include?("Akile")}.map { |n| n["name"] }
+exclude = ["官网", "剩余", "套餐"]
 node_name = data["proxies"].reject { |n| exclude.any? { |e| n["name"].to_s.include?(e) } }.map { |n| n["name"] }
 
 ProxySet = {"HK" => HK, "TW" => TW, "JP" => JP, "SG" => SG, "US" => US, "BETA" => BETA}.select { |_, proxies| proxies.any? }
 Proxy = ProxySet.keys
 
+if Akile.any?
+  Proxy1 = ["Akile"] + Proxy
+  proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy1 + node_name}]
+  proxy_groups << {"name" => "Akile", "type" => "select", "proxies" => Akile}
+else
+  Proxy1 = Proxy
+  proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy1 + node_name}]
+end
+
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
 Strategy3 = ['Spotify', 'Microsoft']
-
-proxy_groups = [{"name" => "Proxy", "type" => "select", "proxies" => Proxy + node_name}]
 
 Strategy1.each do |group|
   proxy_groups << {"name" => group, "type" => "select", "proxies" => node_name}                         
 end
 
 Strategy2.each do |group|
-  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy}
+  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy1}
 end
 
 Strategy3.each do |group|
-  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy + ["DIRECT"]}
+  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy1 + ["DIRECT"]}
 end
 
 Proxy.each do |group|
