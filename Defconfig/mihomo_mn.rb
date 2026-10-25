@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'yaml'
 
-source = "config.yaml"
+source = "config_mn.yaml"
 output = "profiles/config_mn.yaml"
 
 data = YAML.load_file(source, aliases: true)
@@ -29,8 +29,8 @@ else
 end
 
 Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
-Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
-Strategy3 = ['Spotify', 'Microsoft']
+Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram']
+Strategy3 = ['Spotify', 'Emby', 'Microsoft']
 
 Strategy1.each do |group|
   proxy_groups << {"name" => group, "type" => "select", "proxies" => node_name}                         
