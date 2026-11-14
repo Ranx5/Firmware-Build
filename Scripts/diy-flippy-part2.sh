@@ -21,3 +21,9 @@ git clone --depth=1 https://github.com/nikkinikki-org/OpenWrt-nikki.git -b main 
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git -b main package/luci-app-amlogic
 # 修改Rust编译方式
 # sed -i 's/download-ci-llvm = true/download-ci-llvm = false/g' feeds/packages/lang/rust/Makefile
+# 添加luci-app-honk
+git clone --depth=1 https://github.com/kenzok8/openwrt-honk.git -b main package/luci-app-honk
+# 添加luci-theme-7dollar
+git clone --depth=1 https://github.com/itsmaiGe/luci-theme-7dollar.git -b main package/luci-theme-7dollar
+# 添加luci-theme-vantage
+git clone --depth=1 https://github.com/anothaDev/luci-theme-vantage.git -b main package/luci-theme-vantage
