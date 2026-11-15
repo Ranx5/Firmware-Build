@@ -24,7 +24,7 @@ Strategy1 = ['Google', 'DisneyPlus', 'Netflix', 'OpenAI']
 Strategy2 = ['Instagram', 'YouTube', 'GitHub', 'Twitter', 'Telegram', 'Emby']
 Strategy3 = ['Spotify', 'Microsoft']
 
-ProxySet = {"香港专线" => HK_ZX, "香港高速" => HK_GS, "日本专线" => JP_ZX, "日本高速" => JP_GS, "新加坡专线" => SG_ZX, "新加坡高速" => SG_GS, "美国流媒体" => US_LMT, "美国高速" => US_GS, "TW" => TW, "UK" => UK}.select { |_, proxies| proxies.any? }
+ProxySet = {"香港专线" => HK_ZX, "香港高速" => HK_GS, "日本专线" => JP_ZX, "日本高速" => JP_GS, "新加坡专线" => SG_ZX, "新加坡高速" => SG_GS, "美国流媒体" => US_LMT, "美国高速" => US_GS, "台湾" => TW, "英国" => UK}.select { |_, proxies| proxies.any? }
 
 Proxy = ProxySet.keys
 
@@ -42,11 +42,11 @@ Strategy1.each do |group|
 end
 
 Strategy2.each do |group|
-  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy}
+  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy1}
 end
 
 Strategy3.each do |group|
-  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy + ["DIRECT"]}
+  proxy_groups << {"name" => group, "type" => "select", "proxies" => Proxy1 + ["DIRECT"]}
 end
 
 Proxy.each do |group|
