@@ -12,3 +12,5 @@ git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git -b main packag
 # 添加luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon.git -b master package/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git -b master package/luci-app-argon-config
+# 添加luci-theme-7dollar
+git clone --depth=1 https://github.com/itsmaiGe/luci-theme-7dollar.git -b main package/luci-theme-7dollar
