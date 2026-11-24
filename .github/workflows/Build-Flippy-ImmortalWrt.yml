@@ -1,5 +1,5 @@
 
-name: Build-Flippy-OpenWrt
+name: Build-Flippy-ImmortalWrt
 
 on:
   workflow_dispatch:
