@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'yaml'
 
-source = "config.yaml"
+source = "config_kl.yaml"
 output = "profiles/config_kl.yaml"
 
 data = YAML.load_file(source, aliases: true)
